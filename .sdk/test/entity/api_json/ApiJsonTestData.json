@@ -1,0 +1,66 @@
+{
+  "existing": {
+    "api_json": {
+      "API_JSON00": {
+        "city": "s78",
+        "continent": "s79",
+        "continent_code": "s7a",
+        "country": "s7b",
+        "country_code": "s7c",
+        "currency": "s7d",
+        "currency_name": "s7e",
+        "ip": "s7f",
+        "latitude": 128,
+        "longitude": 129,
+        "region": "s82",
+        "timezone": "s83"
+      },
+      "API_JSON01": {
+        "city": "sf0",
+        "continent": "sf1",
+        "continent_code": "sf2",
+        "country": "sf3",
+        "country_code": "sf4",
+        "currency": "sf5",
+        "currency_name": "sf6",
+        "ip": "sf7",
+        "latitude": 248,
+        "longitude": 249,
+        "region": "sfa",
+        "timezone": "sfb"
+      },
+      "API_JSON02": {
+        "city": "s168",
+        "continent": "s169",
+        "continent_code": "s16a",
+        "country": "s16b",
+        "country_code": "s16c",
+        "currency": "s16d",
+        "currency_name": "s16e",
+        "ip": "s16f",
+        "latitude": 368,
+        "longitude": 369,
+        "region": "s172",
+        "timezone": "s173"
+      }
+    }
+  },
+  "new": {
+    "api_json": {
+      "api_json_ref01": {
+        "city": "s1e0",
+        "continent": "s1e1",
+        "continent_code": "s1e2",
+        "country": "s1e3",
+        "country_code": "s1e4",
+        "currency": "s1e5",
+        "currency_name": "s1e6",
+        "ip": "s1e7",
+        "latitude": 488,
+        "longitude": 489,
+        "region": "s1ea",
+        "timezone": "s1eb"
+      }
+    }
+  }
+}

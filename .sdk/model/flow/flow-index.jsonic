@@ -1,0 +1,6 @@
+# Flows
+
+@"BasicApiJsonFlow.jsonic"
+@"BasicCurrencyConversionFlow.jsonic"
+@"BasicCurrencyRateFlow.jsonic"
+@"BasicJsonFlow.jsonic"

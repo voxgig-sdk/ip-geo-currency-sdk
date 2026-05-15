@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://apip.cc/docs.html"
+      }
+      description: "This API provides geolocation information and currency data based on a user's IP address. It allows developers to retrieve IP details such as country, city, and currency exchange rates through simple HTTP requests."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://apip.cc"
+        }
+      ]
+      termsOfService: "https://apip.cc/terms"
+      title: "IP Geo Currency API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

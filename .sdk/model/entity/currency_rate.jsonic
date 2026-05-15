@@ -1,0 +1,47 @@
+# Entity: currency_rate
+
+main: kit: entity: currency_rate: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "base"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "date"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "rate"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "currency_rate"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/rates.json"
+          parts: [
+            "rates.json"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

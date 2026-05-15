@@ -1,0 +1,28 @@
+# BasicCurrencyRateFlow
+
+main: kit: flow: BasicCurrencyRateFlow:
+{
+  entity: "currency_rate",
+  kind: "basic",
+  name: "BasicCurrencyRateFlow",
+  step: [
+    {
+      input: {
+        ref: "currency_rate_ref01",
+        srcdatavar: "currency_rate_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-currency_rate_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCurrencyRateFlow"
+}

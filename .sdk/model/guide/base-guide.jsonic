@@ -1,0 +1,34 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 4
+  metrics: count: path: 4
+  metrics: count: method: 4
+
+  entity: api_json: {
+    path: "/api-json/{ip-or-domain}": {
+      rename: param: "ip-or-domain": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: currency_conversion: {
+    path: "/api-rates/{amount}-{base}2{target}": {
+      rename: param: "amount}-{base}2{target": *"amount}_{base}2{target"
+      op: load: method: *GET
+    }
+  }
+
+  entity: currency_rate: {
+    path: "/rates.json": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: json: {
+    path: "/json": {
+      op: load: method: *GET
+    }
+  }
+
+}

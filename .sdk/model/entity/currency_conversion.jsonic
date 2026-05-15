@@ -1,0 +1,106 @@
+# Entity: currency_conversion
+
+main: kit: entity: currency_conversion: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "amount"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "base"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "rate"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "result"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "target"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "currency_conversion"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: 10
+                kind: "param"
+                name: "amount"
+                orig: "amount"
+                reqd: true
+                type: "`$NUMBER`"
+              }
+              {
+                example: "gbp"
+                kind: "param"
+                name: "base"
+                orig: "base"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "usd"
+                kind: "param"
+                name: "target"
+                orig: "target"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api-rates/{amount}-{base}2{target}"
+          parts: [
+            "api-rates"
+            "{amount}_{base}2{target}"
+          ]
+          rename: {
+            param: {
+              "amount}-{base}2{target": "amount}_{base}2{target"
+            }
+          }
+          select: {
+            exist: [
+              "amount"
+              "base"
+              "target"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "api_rate"
+      ]
+    ]
+  }
+
+
+
+}

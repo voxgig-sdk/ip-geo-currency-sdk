@@ -1,0 +1,38 @@
+{
+  "existing": {
+    "currency_conversion": {
+      "CURRENCY_CONVERSION00": {
+        "amount": 50,
+        "base": "s33",
+        "rate": 52,
+        "result": 53,
+        "target": "s36"
+      },
+      "CURRENCY_CONVERSION01": {
+        "amount": 100,
+        "base": "s65",
+        "rate": 102,
+        "result": 103,
+        "target": "s68"
+      },
+      "CURRENCY_CONVERSION02": {
+        "amount": 150,
+        "base": "s97",
+        "rate": 152,
+        "result": 153,
+        "target": "s9a"
+      }
+    }
+  },
+  "new": {
+    "currency_conversion": {
+      "currency_conversion_ref01": {
+        "amount": 200,
+        "base": "sc9",
+        "rate": 202,
+        "result": 203,
+        "target": "scc"
+      }
+    }
+  }
+}

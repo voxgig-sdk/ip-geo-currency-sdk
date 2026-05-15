@@ -1,0 +1,67 @@
+<?php
+declare(strict_types=1);
+
+// IpGeoCurrency SDK utility registration
+
+require_once __DIR__ . '/../core/UtilityType.php';
+require_once __DIR__ . '/Clean.php';
+require_once __DIR__ . '/Done.php';
+require_once __DIR__ . '/MakeError.php';
+require_once __DIR__ . '/FeatureAdd.php';
+require_once __DIR__ . '/FeatureHook.php';
+require_once __DIR__ . '/FeatureInit.php';
+require_once __DIR__ . '/Fetcher.php';
+require_once __DIR__ . '/MakeFetchDef.php';
+require_once __DIR__ . '/MakeContext.php';
+require_once __DIR__ . '/MakeOptions.php';
+require_once __DIR__ . '/MakeRequest.php';
+require_once __DIR__ . '/MakeResponse.php';
+require_once __DIR__ . '/MakeResult.php';
+require_once __DIR__ . '/MakePoint.php';
+require_once __DIR__ . '/MakeSpec.php';
+require_once __DIR__ . '/MakeUrl.php';
+require_once __DIR__ . '/Param.php';
+require_once __DIR__ . '/PrepareAuth.php';
+require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/PrepareHeaders.php';
+require_once __DIR__ . '/PrepareMethod.php';
+require_once __DIR__ . '/PrepareParams.php';
+require_once __DIR__ . '/PreparePath.php';
+require_once __DIR__ . '/PrepareQuery.php';
+require_once __DIR__ . '/ResultBasic.php';
+require_once __DIR__ . '/ResultBody.php';
+require_once __DIR__ . '/ResultHeaders.php';
+require_once __DIR__ . '/TransformRequest.php';
+require_once __DIR__ . '/TransformResponse.php';
+
+IpGeoCurrencyUtility::setRegistrar(function (IpGeoCurrencyUtility $u): void {
+    $u->clean = [IpGeoCurrencyClean::class, 'call'];
+    $u->done = [IpGeoCurrencyDone::class, 'call'];
+    $u->make_error = [IpGeoCurrencyMakeError::class, 'call'];
+    $u->feature_add = [IpGeoCurrencyFeatureAdd::class, 'call'];
+    $u->feature_hook = [IpGeoCurrencyFeatureHook::class, 'call'];
+    $u->feature_init = [IpGeoCurrencyFeatureInit::class, 'call'];
+    $u->fetcher = [IpGeoCurrencyFetcher::class, 'call'];
+    $u->make_fetch_def = [IpGeoCurrencyMakeFetchDef::class, 'call'];
+    $u->make_context = [IpGeoCurrencyMakeContext::class, 'call'];
+    $u->make_options = [IpGeoCurrencyMakeOptions::class, 'call'];
+    $u->make_request = [IpGeoCurrencyMakeRequest::class, 'call'];
+    $u->make_response = [IpGeoCurrencyMakeResponse::class, 'call'];
+    $u->make_result = [IpGeoCurrencyMakeResult::class, 'call'];
+    $u->make_point = [IpGeoCurrencyMakePoint::class, 'call'];
+    $u->make_spec = [IpGeoCurrencyMakeSpec::class, 'call'];
+    $u->make_url = [IpGeoCurrencyMakeUrl::class, 'call'];
+    $u->param = [IpGeoCurrencyParam::class, 'call'];
+    $u->prepare_auth = [IpGeoCurrencyPrepareAuth::class, 'call'];
+    $u->prepare_body = [IpGeoCurrencyPrepareBody::class, 'call'];
+    $u->prepare_headers = [IpGeoCurrencyPrepareHeaders::class, 'call'];
+    $u->prepare_method = [IpGeoCurrencyPrepareMethod::class, 'call'];
+    $u->prepare_params = [IpGeoCurrencyPrepareParams::class, 'call'];
+    $u->prepare_path = [IpGeoCurrencyPreparePath::class, 'call'];
+    $u->prepare_query = [IpGeoCurrencyPrepareQuery::class, 'call'];
+    $u->result_basic = [IpGeoCurrencyResultBasic::class, 'call'];
+    $u->result_body = [IpGeoCurrencyResultBody::class, 'call'];
+    $u->result_headers = [IpGeoCurrencyResultHeaders::class, 'call'];
+    $u->transform_request = [IpGeoCurrencyTransformRequest::class, 'call'];
+    $u->transform_response = [IpGeoCurrencyTransformResponse::class, 'call'];
+});

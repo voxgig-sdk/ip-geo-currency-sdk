@@ -1,0 +1,697 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "IP Geo Currency API",
+    "description": "This API provides geolocation information and currency data based on a user's IP address. It allows developers to retrieve IP details such as country, city, and currency exchange rates through simple HTTP requests.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://apip.cc/docs.html"
+    },
+    "termsOfService": "https://apip.cc/terms"
+  },
+  "servers": [
+    {
+      "url": "https://apip.cc",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/json": {
+      "get": {
+        "summary": "Get your IP info",
+        "description": "Retrieves geolocation and currency information for the requesting IP address",
+        "operationId": "getOwnIpInfo",
+        "parameters": [
+          {
+            "name": "nolog",
+            "in": "query",
+            "description": "Disable logging feature when set (no value required)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with IP geolocation data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpGeoResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded (10 requests per second)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api-json/{ip-or-domain}": {
+      "get": {
+        "summary": "Get any IP info",
+        "description": "Retrieves geolocation and currency information for a specific IP address or domain",
+        "operationId": "getIpInfo",
+        "parameters": [
+          {
+            "name": "ip-or-domain",
+            "in": "path",
+            "description": "IP address (e.g., 8.8.8.8) or domain name to look up",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "8.8.8.8"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with IP geolocation data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpGeoResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid IP address or domain",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded (10 requests per second)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rates.json": {
+      "get": {
+        "summary": "Get currency rates",
+        "description": "Retrieves all currency exchange rates based on USD",
+        "operationId": "getCurrencyRates",
+        "responses": {
+          "200": {
+            "description": "Successful response with currency rates",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrencyRatesResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded (10 requests per second)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api-rates/{amount}-{base}2{target}": {
+      "get": {
+        "summary": "Currency converter",
+        "description": "Converts an amount from one currency to another",
+        "operationId": "convertCurrency",
+        "parameters": [
+          {
+            "name": "amount",
+            "in": "path",
+            "description": "Amount to convert",
+            "required": true,
+            "schema": {
+              "type": "number"
+            },
+            "example": 10
+          },
+          {
+            "name": "base",
+            "in": "path",
+            "description": "Source currency code (e.g., gbp, usd, eur)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "usd",
+                "eur",
+                "gbp",
+                "btc",
+                "aed",
+                "afn",
+                "all",
+                "amd",
+                "ang",
+                "aoa",
+                "ars",
+                "aud",
+                "awg",
+                "azn",
+                "bam",
+                "bbd",
+                "bdt",
+                "bgn",
+                "bhd",
+                "bif",
+                "bmd",
+                "bnd",
+                "bob",
+                "brl",
+                "bsd",
+                "btn",
+                "bwp",
+                "byn",
+                "bzd",
+                "cad",
+                "cdf",
+                "chf",
+                "clf",
+                "clp",
+                "cnh",
+                "cny",
+                "cop",
+                "crc",
+                "cuc",
+                "cup",
+                "cve",
+                "czk",
+                "djf",
+                "dkk",
+                "dop",
+                "dzd",
+                "egp",
+                "ern",
+                "etb",
+                "fjd",
+                "fkp",
+                "gel",
+                "ggp",
+                "ghs",
+                "gip",
+                "gmd",
+                "gnf",
+                "gtq",
+                "gyd",
+                "hkd",
+                "hnl",
+                "hrk",
+                "htg",
+                "huf",
+                "idr",
+                "ils",
+                "imp",
+                "inr",
+                "iqd",
+                "irr",
+                "isk",
+                "jep",
+                "jmd",
+                "jod",
+                "jpy",
+                "kes",
+                "kgs",
+                "khr",
+                "kmf",
+                "kpw",
+                "krw",
+                "kwd",
+                "kyd",
+                "kzt",
+                "lak",
+                "lbp",
+                "lkr",
+                "lrd",
+                "lsl",
+                "lyd",
+                "mad",
+                "mdl",
+                "mga",
+                "mkd",
+                "mmk",
+                "mnt",
+                "mop",
+                "mru",
+                "mur",
+                "mvr",
+                "mwk",
+                "mxn",
+                "myr",
+                "mzn",
+                "nad",
+                "ngn",
+                "nio",
+                "nok",
+                "npr",
+                "nzd",
+                "omr",
+                "pab",
+                "pen",
+                "pgk",
+                "php",
+                "pkr",
+                "pln",
+                "pyg",
+                "qar",
+                "ron",
+                "rsd",
+                "rub",
+                "rwf",
+                "sar",
+                "sbd",
+                "scr",
+                "sdg",
+                "sek",
+                "sgd",
+                "shp",
+                "sll",
+                "sos",
+                "srd",
+                "ssp",
+                "std",
+                "stn",
+                "svc",
+                "syp",
+                "szl",
+                "thb",
+                "tjs",
+                "tmt",
+                "tnd",
+                "top",
+                "try",
+                "ttd",
+                "twd",
+                "tzs",
+                "uah",
+                "ugx",
+                "uyu",
+                "uzs",
+                "ves",
+                "vnd",
+                "vuv",
+                "wst",
+                "xaf",
+                "xag",
+                "xau",
+                "xcd",
+                "xdr",
+                "xof",
+                "xpd",
+                "xpf",
+                "xpt",
+                "yer",
+                "zar",
+                "zmw",
+                "zwl"
+              ]
+            },
+            "example": "gbp"
+          },
+          {
+            "name": "target",
+            "in": "path",
+            "description": "Target currency code (e.g., usd, eur, gbp)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "usd",
+                "eur",
+                "gbp",
+                "btc",
+                "aed",
+                "afn",
+                "all",
+                "amd",
+                "ang",
+                "aoa",
+                "ars",
+                "aud",
+                "awg",
+                "azn",
+                "bam",
+                "bbd",
+                "bdt",
+                "bgn",
+                "bhd",
+                "bif",
+                "bmd",
+                "bnd",
+                "bob",
+                "brl",
+                "bsd",
+                "btn",
+                "bwp",
+                "byn",
+                "bzd",
+                "cad",
+                "cdf",
+                "chf",
+                "clf",
+                "clp",
+                "cnh",
+                "cny",
+                "cop",
+                "crc",
+                "cuc",
+                "cup",
+                "cve",
+                "czk",
+                "djf",
+                "dkk",
+                "dop",
+                "dzd",
+                "egp",
+                "ern",
+                "etb",
+                "fjd",
+                "fkp",
+                "gel",
+                "ggp",
+                "ghs",
+                "gip",
+                "gmd",
+                "gnf",
+                "gtq",
+                "gyd",
+                "hkd",
+                "hnl",
+                "hrk",
+                "htg",
+                "huf",
+                "idr",
+                "ils",
+                "imp",
+                "inr",
+                "iqd",
+                "irr",
+                "isk",
+                "jep",
+                "jmd",
+                "jod",
+                "jpy",
+                "kes",
+                "kgs",
+                "khr",
+                "kmf",
+                "kpw",
+                "krw",
+                "kwd",
+                "kyd",
+                "kzt",
+                "lak",
+                "lbp",
+                "lkr",
+                "lrd",
+                "lsl",
+                "lyd",
+                "mad",
+                "mdl",
+                "mga",
+                "mkd",
+                "mmk",
+                "mnt",
+                "mop",
+                "mru",
+                "mur",
+                "mvr",
+                "mwk",
+                "mxn",
+                "myr",
+                "mzn",
+                "nad",
+                "ngn",
+                "nio",
+                "nok",
+                "npr",
+                "nzd",
+                "omr",
+                "pab",
+                "pen",
+                "pgk",
+                "php",
+                "pkr",
+                "pln",
+                "pyg",
+                "qar",
+                "ron",
+                "rsd",
+                "rub",
+                "rwf",
+                "sar",
+                "sbd",
+                "scr",
+                "sdg",
+                "sek",
+                "sgd",
+                "shp",
+                "sll",
+                "sos",
+                "srd",
+                "ssp",
+                "std",
+                "stn",
+                "svc",
+                "syp",
+                "szl",
+                "thb",
+                "tjs",
+                "tmt",
+                "tnd",
+                "top",
+                "try",
+                "ttd",
+                "twd",
+                "tzs",
+                "uah",
+                "ugx",
+                "uyu",
+                "uzs",
+                "ves",
+                "vnd",
+                "vuv",
+                "wst",
+                "xaf",
+                "xag",
+                "xau",
+                "xcd",
+                "xdr",
+                "xof",
+                "xpd",
+                "xpf",
+                "xpt",
+                "yer",
+                "zar",
+                "zmw",
+                "zwl"
+              ]
+            },
+            "example": "usd"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with converted currency amount",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrencyConversionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid currency code or amount",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded (10 requests per second)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "IpGeoResponse": {
+        "type": "object",
+        "properties": {
+          "ip": {
+            "type": "string",
+            "description": "IP address",
+            "example": "8.8.8.8"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country name",
+            "example": "United States"
+          },
+          "country_code": {
+            "type": "string",
+            "description": "ISO 3166-1 alpha-2 country code",
+            "example": "US"
+          },
+          "city": {
+            "type": "string",
+            "description": "City name",
+            "example": "Mountain View"
+          },
+          "continent": {
+            "type": "string",
+            "description": "Continent name",
+            "example": "North America"
+          },
+          "continent_code": {
+            "type": "string",
+            "description": "Continent code",
+            "example": "NA"
+          },
+          "region": {
+            "type": "string",
+            "description": "Region or state",
+            "example": "California"
+          },
+          "latitude": {
+            "type": "number",
+            "description": "Latitude coordinate",
+            "example": 37.386
+          },
+          "longitude": {
+            "type": "number",
+            "description": "Longitude coordinate",
+            "example": -122.0838
+          },
+          "timezone": {
+            "type": "string",
+            "description": "Timezone",
+            "example": "America/Los_Angeles"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Currency code",
+            "example": "USD"
+          },
+          "currency_name": {
+            "type": "string",
+            "description": "Currency name",
+            "example": "United States Dollar"
+          }
+        }
+      },
+      "CurrencyRatesResponse": {
+        "type": "object",
+        "properties": {
+          "base": {
+            "type": "string",
+            "description": "Base currency (USD)",
+            "example": "USD"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date of the rates",
+            "example": "2024-01-15"
+          },
+          "rates": {
+            "type": "object",
+            "description": "Exchange rates for all supported currencies",
+            "additionalProperties": {
+              "type": "number"
+            },
+            "example": {
+              "EUR": 0.92,
+              "GBP": 0.79,
+              "JPY": 149.5,
+              "AUD": 1.52
+            }
+          }
+        }
+      },
+      "CurrencyConversionResponse": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "description": "Original amount",
+            "example": 10
+          },
+          "base": {
+            "type": "string",
+            "description": "Source currency code",
+            "example": "GBP"
+          },
+          "target": {
+            "type": "string",
+            "description": "Target currency code",
+            "example": "USD"
+          },
+          "result": {
+            "type": "number",
+            "description": "Converted amount",
+            "example": 12.65
+          },
+          "rate": {
+            "type": "number",
+            "description": "Exchange rate used",
+            "example": 1.265
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "status": {
+            "type": "integer",
+            "description": "HTTP status code"
+          }
+        }
+      }
+    }
+  },
+  "x-rate-limit": {
+    "description": "This API is limited to 10 requests per second from an IP address. Custom domains can increase this to 20 requests per second."
+  }
+}
