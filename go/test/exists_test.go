@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/ip-geo-currency-sdk"
+	sdk "github.com/voxgig-sdk/ip-geo-currency-sdk/go"
 )
 
 func TestExists(t *testing.T) {

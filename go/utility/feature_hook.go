@@ -3,7 +3,7 @@ package utility
 import (
 	"reflect"
 
-	"github.com/voxgig-sdk/ip-geo-currency-sdk/core"
+	"github.com/voxgig-sdk/ip-geo-currency-sdk/go/core"
 )
 
 func featureHookUtil(ctx *core.Context, name string) {

@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/ip-geo-currency-sdk/core"
+	"github.com/voxgig-sdk/ip-geo-currency-sdk/go/core"
 )
 
 type LogFeature struct {

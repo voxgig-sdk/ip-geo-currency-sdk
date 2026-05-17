@@ -6,21 +6,24 @@
         "base": "s33",
         "rate": 52,
         "result": 53,
-        "target": "s36"
+        "target": "s36",
+        "id": "CURRENCY_CONVERSION00"
       },
       "CURRENCY_CONVERSION01": {
         "amount": 100,
         "base": "s65",
         "rate": 102,
         "result": 103,
-        "target": "s68"
+        "target": "s68",
+        "id": "CURRENCY_CONVERSION01"
       },
       "CURRENCY_CONVERSION02": {
         "amount": 150,
         "base": "s97",
         "rate": 152,
         "result": 153,
-        "target": "s9a"
+        "target": "s9a",
+        "id": "CURRENCY_CONVERSION02"
       }
     }
   },

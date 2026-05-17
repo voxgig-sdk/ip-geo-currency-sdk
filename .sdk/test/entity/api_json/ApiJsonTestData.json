@@ -13,7 +13,8 @@
         "latitude": 128,
         "longitude": 129,
         "region": "s82",
-        "timezone": "s83"
+        "timezone": "s83",
+        "id": "API_JSON00"
       },
       "API_JSON01": {
         "city": "sf0",
@@ -27,7 +28,8 @@
         "latitude": 248,
         "longitude": 249,
         "region": "sfa",
-        "timezone": "sfb"
+        "timezone": "sfb",
+        "id": "API_JSON01"
       },
       "API_JSON02": {
         "city": "s168",
@@ -41,7 +43,8 @@
         "latitude": 368,
         "longitude": 369,
         "region": "s172",
-        "timezone": "s173"
+        "timezone": "s173",
+        "id": "API_JSON02"
       }
     }
   },

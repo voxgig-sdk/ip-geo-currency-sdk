@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/ip-geo-currency-sdk"
-	"github.com/voxgig-sdk/ip-geo-currency-sdk/core"
+	sdk "github.com/voxgig-sdk/ip-geo-currency-sdk/go"
+	"github.com/voxgig-sdk/ip-geo-currency-sdk/go/core"
 )
 
 func TestCurrencyRateDirect(t *testing.T) {

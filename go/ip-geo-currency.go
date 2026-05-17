@@ -1,10 +1,10 @@
 package voxgigipgeocurrencysdk
 
 import (
-	"github.com/voxgig-sdk/ip-geo-currency-sdk/core"
-	"github.com/voxgig-sdk/ip-geo-currency-sdk/entity"
-	"github.com/voxgig-sdk/ip-geo-currency-sdk/feature"
-	_ "github.com/voxgig-sdk/ip-geo-currency-sdk/utility"
+	"github.com/voxgig-sdk/ip-geo-currency-sdk/go/core"
+	"github.com/voxgig-sdk/ip-geo-currency-sdk/go/entity"
+	"github.com/voxgig-sdk/ip-geo-currency-sdk/go/feature"
+	_ "github.com/voxgig-sdk/ip-geo-currency-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

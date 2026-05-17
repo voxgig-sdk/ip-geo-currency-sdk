@@ -4,17 +4,20 @@
       "CURRENCY_RATE00": {
         "base": "s1e",
         "date": "s1f",
-        "rate": {}
+        "rate": {},
+        "id": "CURRENCY_RATE00"
       },
       "CURRENCY_RATE01": {
         "base": "s3c",
         "date": "s3d",
-        "rate": {}
+        "rate": {},
+        "id": "CURRENCY_RATE01"
       },
       "CURRENCY_RATE02": {
         "base": "s5a",
         "date": "s5b",
-        "rate": {}
+        "rate": {},
+        "id": "CURRENCY_RATE02"
       }
     }
   },
