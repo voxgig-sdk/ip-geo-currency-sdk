@@ -23,12 +23,9 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from ipgeocurrency_sdk import IpGeoCurrencySDK
 
-client = IpGeoCurrencySDK({
-    "apikey": os.environ.get("IP-GEO-CURRENCY_APIKEY"),
-})
+client = IpGeoCurrencySDK({})
 ```
 
 ### 3. Load a apijson
@@ -117,7 +114,6 @@ Create a `.env.local` file at the project root:
 
 ```
 IP-GEO-CURRENCY_TEST_LIVE=TRUE
-IP-GEO-CURRENCY_APIKEY=<your-key>
 ```
 
 Then run:
@@ -141,7 +137,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |

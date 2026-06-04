@@ -99,14 +99,12 @@ func currency_rateDirectSetup(mockres any) *currency_rateDirectSetupResult {
 	env := envOverride(map[string]any{
 		"IPGEOCURRENCY_TEST_CURRENCY_RATE_ENTID": map[string]any{},
 		"IPGEOCURRENCY_TEST_LIVE":    "FALSE",
-		"IPGEOCURRENCY_APIKEY":       "NONE",
 	})
 
 	live := env["IPGEOCURRENCY_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["IPGEOCURRENCY_APIKEY"],
 		}
 		client := sdk.NewIpGeoCurrencySDK(mergedOpts)
 

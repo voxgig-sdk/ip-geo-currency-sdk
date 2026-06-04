@@ -70,14 +70,12 @@ function api_json_direct_setup(mockres)
   local env = runner.env_override({
     ["IPGEOCURRENCY_TEST_API_JSON_ENTID"] = {},
     ["IPGEOCURRENCY_TEST_LIVE"] = "FALSE",
-    ["IPGEOCURRENCY_APIKEY"] = "NONE",
   })
 
   local live = env["IPGEOCURRENCY_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["IPGEOCURRENCY_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

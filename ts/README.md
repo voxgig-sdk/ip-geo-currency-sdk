@@ -17,9 +17,7 @@ loading a specific record.
 ```ts
 import { IpGeoCurrencySDK } from 'ip-geo-currency'
 
-const client = new IpGeoCurrencySDK({
-  apikey: process.env.IP-GEO-CURRENCY_APIKEY,
-})
+const client = new IpGeoCurrencySDK({})
 ```
 
 ### 3. Load a apijson
@@ -82,7 +80,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new IpGeoCurrencySDK({ apikey: '...' })
+const client = new IpGeoCurrencySDK()
 const testClient = client.tester()
 ```
 
@@ -118,7 +116,6 @@ const logger = {
 }
 
 const client = new IpGeoCurrencySDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -129,7 +126,6 @@ Create a `.env.local` file at the project root:
 
 ```
 IP-GEO-CURRENCY_TEST_LIVE=TRUE
-IP-GEO-CURRENCY_APIKEY=<your-key>
 ```
 
 Then run:
@@ -147,7 +143,6 @@ cd ts && npm test
 
 ```ts
 new IpGeoCurrencySDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -158,7 +153,6 @@ new IpGeoCurrencySDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

@@ -17,7 +17,20 @@
         ],
         "termsOfService": "https://apip.cc/terms",
         "title": "IP Geo Currency API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Look up IP geolocation and USD-based currency rates with no API key required",
+        "homepage": "https://apip.cc",
+        "docs_url": "https://apip.cc/docs.html",
+        "license_short": "Free for commercial and non-commercial use; see apip.cc terms.",
+        "license_md": "- Service is advertised as free for both commercial and non-commercial use.\n- No registration or API key is required to call the endpoints.\n- Operator terms, privacy, and disclaimer pages on `apip.cc` govern actual use; review them before redistributing data.\n- No explicit attribution requirement is documented, but checking the upstream terms is recommended.",
+        "about_md": "[apip.cc](https://apip.cc) is a small public service that exposes IP geolocation and USD-based currency data over plain HTTP, returning JSON. It is operated by the apip.cc maintainers and aims to be usable directly from a browser or server without any signup.\n\nWhat you get from the API:\n\n- Geolocation lookups for the caller's own IP via `/json`, or for any IPv4/IPv6 address via `/api-json/{ip-or-domain}`.\n- USD-based currency rates via `/rates.json`, refreshed roughly hourly.\n- Currency conversion via `/api-rates/{amount}-{base}2{target}`.\n\nOperational notes: CORS is enabled on all endpoints, so the API can be called from browser JavaScript. The published rate limit is approximately 1 request per second per IP (around 86,400 requests/day). No authentication header or API key is needed.",
+        "entity_desc": {
+          "api_json": "IP geolocation lookups returning JSON; call `/json` for the caller's IP or `/api-json/{ipv4-ipv6-or-domain}` for a specific host.",
+          "currency_conversion": "Currency conversion between a base and target currency via `/api-rates/{amount}-{base}2{target}`.",
+          "currency_rate": "USD-based exchange rates exposed at `/rates.json`, updated automatically about once per hour.",
+          "json": "Generic JSON responses returned by the apip.cc endpoints; all data is delivered as plain JSON over HTTPS."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -25,7 +38,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "api_json": {

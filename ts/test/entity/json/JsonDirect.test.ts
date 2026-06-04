@@ -74,14 +74,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'IPGEOCURRENCY_TEST_JSON_ENTID': {},
     'IPGEOCURRENCY_TEST_LIVE': 'FALSE',
-    'IPGEOCURRENCY_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.IPGEOCURRENCY_TEST_LIVE
 
   if (live) {
     const client = new IpGeoCurrencySDK({
-      apikey: env.IPGEOCURRENCY_APIKEY,
     })
 
     let idmap: any = env['IPGEOCURRENCY_TEST_JSON_ENTID']

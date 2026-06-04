@@ -15,9 +15,6 @@ module IpGeoCurrencyConfig
       },
       "options" => {
         "base" => "https://apip.cc",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

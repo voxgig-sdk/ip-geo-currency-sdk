@@ -111,7 +111,6 @@ function basicSetup(extra?: any) {
     'IP_GEO_CURRENCY_TEST_API_JSON_ENTID': idmap,
     'IP_GEO_CURRENCY_TEST_LIVE': 'FALSE',
     'IP_GEO_CURRENCY_TEST_EXPLAIN': 'FALSE',
-    'IP_GEO_CURRENCY_APIKEY': 'NONE',
   })
 
   idmap = env['IP_GEO_CURRENCY_TEST_API_JSON_ENTID']
@@ -121,7 +120,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new IpGeoCurrencySDK(merge([
       {
-        apikey: env.IP_GEO_CURRENCY_APIKEY,
       },
       extra
     ]))
