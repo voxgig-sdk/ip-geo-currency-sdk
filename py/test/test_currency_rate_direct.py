@@ -59,12 +59,14 @@ def _currency_rate_direct_setup(mockres):
     env = runner.env_override({
         "IPGEOCURRENCY_TEST_CURRENCY_RATE_ENTID": {},
         "IPGEOCURRENCY_TEST_LIVE": "FALSE",
+        "IPGEOCURRENCY_APIKEY": "NONE",
     })
 
     live = env.get("IPGEOCURRENCY_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("IPGEOCURRENCY_APIKEY"),
         }
         client = IpGeoCurrencySDK(merged_opts)
         return {

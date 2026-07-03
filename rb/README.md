@@ -1,6 +1,11 @@
 # IpGeoCurrency Ruby SDK
 
-The Ruby SDK for the IpGeoCurrency API. Provides an entity-oriented interface using idiomatic Ruby conventions.
+
+
+The Ruby SDK for the IpGeoCurrency API — an entity-oriented client using idiomatic Ruby conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -31,13 +36,15 @@ loading a specific record.
 ```ruby
 require_relative "IpGeoCurrency_sdk"
 
-client = IpGeoCurrencySDK.new({})
+client = IpGeoCurrencySDK.new({
+  "apikey" => ENV["IP-GEO-CURRENCY_APIKEY"],
+})
 ```
 
 ### 3. Load a apijson
 
 ```ruby
-result, err = client.ApiJson(nil).load({ "id" => "example_id" }, nil)
+result, err = client.ApiJson().load({ "id" => "example_id" })
 raise err if err
 puts result
 ```
@@ -83,11 +90,9 @@ puts fetchdef["headers"]
 Create a mock client for unit testing — no server required:
 
 ```ruby
-client = IpGeoCurrencySDK.test(nil, nil)
+client = IpGeoCurrencySDK.test
 
-result, err = client.IpGeoCurrency(nil).load(
-  { "id" => "test01" }, nil
-)
+result, err = client.IpGeoCurrency().load({ "id" => "test01" })
 # result contains mock response data
 ```
 
@@ -119,6 +124,7 @@ Create a `.env.local` file at the project root:
 
 ```
 IP-GEO-CURRENCY_TEST_LIVE=TRUE
+IP-GEO-CURRENCY_APIKEY=<your-key>
 ```
 
 Then run:
@@ -141,6 +147,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `String` | API key for authentication. |
 | `base` | `String` | Base URL of the API server. |
 | `prefix` | `String` | URL path prefix prepended to all requests. |
 | `suffix` | `String` | URL path suffix appended to all requests. |

@@ -117,6 +117,7 @@ func jsonBasicSetup(extra map[string]any) *entityTestSetup {
 		"IPGEOCURRENCY_TEST_JSON_ENTID": idmap,
 		"IPGEOCURRENCY_TEST_LIVE":      "FALSE",
 		"IPGEOCURRENCY_TEST_EXPLAIN":   "FALSE",
+		"IPGEOCURRENCY_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["IPGEOCURRENCY_TEST_JSON_ENTID"])
@@ -127,6 +128,7 @@ func jsonBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["IPGEOCURRENCY_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["IPGEOCURRENCY_APIKEY"],
 			},
 			extra,
 		})

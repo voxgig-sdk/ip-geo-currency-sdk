@@ -91,6 +91,7 @@ def _json_basic_setup(extra):
         "IPGEOCURRENCY_TEST_JSON_ENTID": idmap,
         "IPGEOCURRENCY_TEST_LIVE": "FALSE",
         "IPGEOCURRENCY_TEST_EXPLAIN": "FALSE",
+        "IPGEOCURRENCY_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -101,6 +102,7 @@ def _json_basic_setup(extra):
     if env.get("IPGEOCURRENCY_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("IPGEOCURRENCY_APIKEY"),
             },
             extra or {},
         ])

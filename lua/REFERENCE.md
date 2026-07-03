@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -123,7 +123,7 @@ local api_json = client:ApiJson(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ApiJson(nil):load({ id = "api_json_id" }, nil)
+local result, err = client:ApiJson():load({ id = "api_json_id" })
 ```
 
 ### Common Methods
@@ -179,7 +179,7 @@ local currency_conversion = client:CurrencyConversion(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:CurrencyConversion(nil):load({ id = "currency_conversion_id" }, nil)
+local result, err = client:CurrencyConversion():load({ id = "currency_conversion_id" })
 ```
 
 ### Common Methods
@@ -233,7 +233,7 @@ local currency_rate = client:CurrencyRate(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:CurrencyRate(nil):load({ id = "currency_rate_id" }, nil)
+local result, err = client:CurrencyRate():load({ id = "currency_rate_id" })
 ```
 
 ### Common Methods
@@ -296,7 +296,7 @@ local json = client:Json(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Json(nil):load({ id = "json_id" }, nil)
+local result, err = client:Json():load({ id = "json_id" })
 ```
 
 ### Common Methods

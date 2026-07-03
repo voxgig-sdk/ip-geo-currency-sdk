@@ -85,6 +85,7 @@ function currency_conversion_basic_setup($extra)
         "IPGEOCURRENCY_TEST_CURRENCY_CONVERSION_ENTID" => $idmap,
         "IPGEOCURRENCY_TEST_LIVE" => "FALSE",
         "IPGEOCURRENCY_TEST_EXPLAIN" => "FALSE",
+        "IPGEOCURRENCY_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -96,6 +97,7 @@ function currency_conversion_basic_setup($extra)
     if ($env["IPGEOCURRENCY_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["IPGEOCURRENCY_APIKEY"],
             ],
             $extra ?? [],
         ]);
