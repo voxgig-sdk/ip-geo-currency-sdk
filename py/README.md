@@ -10,7 +10,7 @@ The Python SDK for the IpGeoCurrency API — an entity-oriented client following
 
 ## Install
 ```bash
-pip install ip-geo-currency-sdk
+pip install voxgig-sdk-ip-geo-currency
 ```
 
 Or install from source:

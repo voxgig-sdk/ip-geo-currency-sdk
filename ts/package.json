@@ -1,7 +1,23 @@
 {
   "name": "@voxgig-sdk/ip-geo-currency",
   "version": "0.0.1",
-  "description": "DESCRIPTION",
+  "description": "Unofficial generated TypeScript SDK for the IP Geo Currency public API. Not affiliated with or endorsed by the upstream API provider.",
+  "keywords": [
+    "voxgig",
+    "sdk",
+    "generated-sdk",
+    "openapi",
+    "api-client",
+    "ip-geo-currency"
+  ],
+  "homepage": "https://github.com/voxgig-sdk/ip-geo-currency-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxgig-sdk/ip-geo-currency-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/voxgig-sdk/ip-geo-currency-sdk/issues"
+  },
   "main": "dist/IpGeoCurrencySDK.js",
   "type": "commonjs",
   "types": "dist/IpGeoCurrencySDK.d.ts",
@@ -14,7 +30,10 @@
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm run build && npm test"
   },
-  "author": "IpGeoCurrency",
+  "author": {
+    "name": "Voxgig",
+    "url": "https://voxgig.com"
+  },
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {},

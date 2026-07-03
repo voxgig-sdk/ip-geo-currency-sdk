@@ -10,7 +10,7 @@ The TypeScript SDK for the IpGeoCurrency API — a type-safe, entity-oriented cl
 
 ## Install
 ```bash
-npm install ip-geo-currency
+npm install @voxgig-sdk/ip-geo-currency
 ```
 ## Tutorial: your first API call
 

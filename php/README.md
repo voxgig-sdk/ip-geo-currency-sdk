@@ -10,7 +10,7 @@ The PHP SDK for the IpGeoCurrency API — an entity-oriented client using PHP co
 
 ## Install
 ```bash
-composer require voxgig/ip-geo-currency-sdk
+composer require voxgig-sdk/ip-geo-currency
 ```
 
 

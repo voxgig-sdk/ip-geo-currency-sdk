@@ -10,13 +10,13 @@ The Ruby SDK for the IpGeoCurrency API — an entity-oriented client using idiom
 
 ## Install
 ```bash
-gem install ip-geo-currency-sdk
+gem install voxgig-sdk-ip-geo-currency
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "ip-geo-currency-sdk"
+gem "voxgig-sdk-ip-geo-currency"
 ```
 
 Then run:

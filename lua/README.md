@@ -10,7 +10,7 @@ The Lua SDK for the IpGeoCurrency API — an entity-oriented client using Lua co
 
 ## Install
 ```bash
-luarocks install ip-geo-currency-sdk
+luarocks install voxgig-sdk-ip-geo-currency
 ```
 
 If the module is not yet published, add the source directory to
