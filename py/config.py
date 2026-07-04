@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://apip.cc",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
@@ -134,6 +131,7 @@ def make_config():
                       "orig": "ip_or_domain",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                 },
@@ -223,6 +221,7 @@ def make_config():
                       "orig": "amount",
                       "reqd": True,
                       "type": "`$NUMBER`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -232,6 +231,7 @@ def make_config():
                       "orig": "base",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 1,
                     },
                     {
                       "active": True,
@@ -241,6 +241,7 @@ def make_config():
                       "orig": "target",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 2,
                     },
                   ],
                 },

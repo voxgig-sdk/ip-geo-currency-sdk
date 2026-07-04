@@ -9,12 +9,9 @@ The Lua SDK for the IpGeoCurrency API — an entity-oriented client using Lua co
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-ip-geo-currency
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("ip-geo-currency_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("IP-GEO-CURRENCY_APIKEY"),
-})
+local client = sdk.new()
 ```
 
-### 3. Load a apijson
+### 3. Load an apijson
 
 ```lua
-local result, err = client:ApiJson():load({ id = "example_id" })
+local result, err = client:apijson():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -87,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:IpGeoCurrency():load({ id = "test01" })
+local result, err = client:apijson():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -120,8 +115,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-IP-GEO-CURRENCY_TEST_LIVE=TRUE
-IP-GEO-CURRENCY_APIKEY=<your-key>
+IP_GEO_CURRENCY_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -144,7 +138,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -282,7 +275,7 @@ API path: `/json`
 
 ### ApiJson
 
-Create an instance: `const api_json = client.ApiJson()`
+Create an instance: `const api_json = client.api_json`
 
 #### Operations
 
@@ -310,13 +303,13 @@ Create an instance: `const api_json = client.ApiJson()`
 #### Example: Load
 
 ```ts
-const api_json = await client.ApiJson().load({ id: 'api_json_id' })
+const api_json = await client.api_json.load({ id: 'api_json_id' })
 ```
 
 
 ### CurrencyConversion
 
-Create an instance: `const currency_conversion = client.CurrencyConversion()`
+Create an instance: `const currency_conversion = client.currency_conversion`
 
 #### Operations
 
@@ -337,13 +330,13 @@ Create an instance: `const currency_conversion = client.CurrencyConversion()`
 #### Example: Load
 
 ```ts
-const currency_conversion = await client.CurrencyConversion().load({ id: 'currency_conversion_id' })
+const currency_conversion = await client.currency_conversion.load({ id: 'currency_conversion_id' })
 ```
 
 
 ### CurrencyRate
 
-Create an instance: `const currency_rate = client.CurrencyRate()`
+Create an instance: `const currency_rate = client.currency_rate`
 
 #### Operations
 
@@ -362,13 +355,13 @@ Create an instance: `const currency_rate = client.CurrencyRate()`
 #### Example: Load
 
 ```ts
-const currency_rate = await client.CurrencyRate().load({ id: 'currency_rate_id' })
+const currency_rate = await client.currency_rate.load({ id: 'currency_rate_id' })
 ```
 
 
 ### Json
 
-Create an instance: `const json = client.Json()`
+Create an instance: `const json = client.json`
 
 #### Operations
 
@@ -396,7 +389,7 @@ Create an instance: `const json = client.Json()`
 #### Example: Load
 
 ```ts
-const json = await client.Json().load({ id: 'json_id' })
+const json = await client.json.load({ id: 'json_id' })
 ```
 
 
@@ -471,11 +464,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local apijson = client:apijson()
+apijson:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- apijson:data_get() now returns the loaded apijson data
+-- apijson:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

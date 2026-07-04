@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'IpGeoCurrency_types'
+
 
 class IpGeoCurrencySDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class IpGeoCurrencySDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class IpGeoCurrencySDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue IpGeoCurrencyError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = IpGeoCurrencyHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class IpGeoCurrencySDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,34 +198,62 @@ class IpGeoCurrencySDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.api_json.list / client.api_json.load({ "id" => ... })
+  def api_json
+    require_relative 'entity/api_json_entity'
+    @api_json ||= ApiJsonEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.api_json instead.
   def ApiJson(data = nil)
     require_relative 'entity/api_json_entity'
     ApiJsonEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.currency_conversion.list / client.currency_conversion.load({ "id" => ... })
+  def currency_conversion
+    require_relative 'entity/currency_conversion_entity'
+    @currency_conversion ||= CurrencyConversionEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.currency_conversion instead.
   def CurrencyConversion(data = nil)
     require_relative 'entity/currency_conversion_entity'
     CurrencyConversionEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.currency_rate.list / client.currency_rate.load({ "id" => ... })
+  def currency_rate
+    require_relative 'entity/currency_rate_entity'
+    @currency_rate ||= CurrencyRateEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.currency_rate instead.
   def CurrencyRate(data = nil)
     require_relative 'entity/currency_rate_entity'
     CurrencyRateEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.json.list / client.json.load({ "id" => ... })
+  def json
+    require_relative 'entity/json_entity'
+    @json ||= JsonEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.json instead.
   def Json(data = nil)
     require_relative 'entity/json_entity'
     JsonEntity.new(self, data)

@@ -244,24 +244,76 @@ end
 
 
 
+-- Idiomatic facade: client:api_json():list() / client:api_json():load({ id = ... })
+function IpGeoCurrencySDK:api_json(data)
+  local EntityMod = require("entity.api_json_entity")
+  if data == nil then
+    if self._api_json == nil then
+      self._api_json = EntityMod.new(self, nil)
+    end
+    return self._api_json
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:api_json() instead.
 function IpGeoCurrencySDK:ApiJson(data)
   local EntityMod = require("entity.api_json_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:currency_conversion():list() / client:currency_conversion():load({ id = ... })
+function IpGeoCurrencySDK:currency_conversion(data)
+  local EntityMod = require("entity.currency_conversion_entity")
+  if data == nil then
+    if self._currency_conversion == nil then
+      self._currency_conversion = EntityMod.new(self, nil)
+    end
+    return self._currency_conversion
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:currency_conversion() instead.
 function IpGeoCurrencySDK:CurrencyConversion(data)
   local EntityMod = require("entity.currency_conversion_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:currency_rate():list() / client:currency_rate():load({ id = ... })
+function IpGeoCurrencySDK:currency_rate(data)
+  local EntityMod = require("entity.currency_rate_entity")
+  if data == nil then
+    if self._currency_rate == nil then
+      self._currency_rate = EntityMod.new(self, nil)
+    end
+    return self._currency_rate
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:currency_rate() instead.
 function IpGeoCurrencySDK:CurrencyRate(data)
   local EntityMod = require("entity.currency_rate_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:json():list() / client:json():load({ id = ... })
+function IpGeoCurrencySDK:json(data)
+  local EntityMod = require("entity.json_entity")
+  if data == nil then
+    if self._json == nil then
+      self._json = EntityMod.new(self, nil)
+    end
+    return self._json
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:json() instead.
 function IpGeoCurrencySDK:Json(data)
   local EntityMod = require("entity.json_entity")
   return EntityMod.new(self, data)

@@ -49,8 +49,7 @@ class CurrencyConversionEntityTest extends TestCase
         // LOAD
         $currency_conversion_ref01_ent = $client->CurrencyConversion(null);
         $currency_conversion_ref01_match_dt0 = [];
-        [$currency_conversion_ref01_data_dt0_loaded, $err] = $currency_conversion_ref01_ent->load($currency_conversion_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $currency_conversion_ref01_data_dt0_loaded = $currency_conversion_ref01_ent->load($currency_conversion_ref01_match_dt0, null);
         $this->assertNotNull($currency_conversion_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function currency_conversion_basic_setup($extra)
         "IPGEOCURRENCY_TEST_CURRENCY_CONVERSION_ENTID" => $idmap,
         "IPGEOCURRENCY_TEST_LIVE" => "FALSE",
         "IPGEOCURRENCY_TEST_EXPLAIN" => "FALSE",
-        "IPGEOCURRENCY_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function currency_conversion_basic_setup($extra)
     if ($env["IPGEOCURRENCY_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["IPGEOCURRENCY_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -49,8 +49,7 @@ class ApiJsonEntityTest extends TestCase
         // LOAD
         $api_json_ref01_ent = $client->ApiJson(null);
         $api_json_ref01_match_dt0 = [];
-        [$api_json_ref01_data_dt0_loaded, $err] = $api_json_ref01_ent->load($api_json_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $api_json_ref01_data_dt0_loaded = $api_json_ref01_ent->load($api_json_ref01_match_dt0, null);
         $this->assertNotNull($api_json_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function api_json_basic_setup($extra)
         "IPGEOCURRENCY_TEST_API_JSON_ENTID" => $idmap,
         "IPGEOCURRENCY_TEST_LIVE" => "FALSE",
         "IPGEOCURRENCY_TEST_EXPLAIN" => "FALSE",
-        "IPGEOCURRENCY_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function api_json_basic_setup($extra)
     if ($env["IPGEOCURRENCY_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["IPGEOCURRENCY_APIKEY"],
             ],
             $extra ?? [],
         ]);

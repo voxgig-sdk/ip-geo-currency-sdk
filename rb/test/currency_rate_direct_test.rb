@@ -16,7 +16,7 @@ class CurrencyRateDirectTest < Minitest::Test
     client = setup[:client]
 
 
-    result, err = client.direct({
+    result = client.direct({
       "path" => "rates.json",
       "method" => "GET",
       "params" => {},
@@ -25,8 +25,8 @@ class CurrencyRateDirectTest < Minitest::Test
       # Live mode is lenient: synthetic IDs frequently 4xx. Skip rather
       # than fail when the load endpoint isn't reachable with the IDs
       # we can construct from setup.idmap.
-      if !err.nil?
-        skip("load call failed (likely synthetic IDs against live API): #{err}")
+      if !result["err"].nil?
+        skip("load call failed (likely synthetic IDs against live API): #{result["err"]}")
         return
       end
       unless result["ok"]
@@ -39,7 +39,7 @@ class CurrencyRateDirectTest < Minitest::Test
         return
       end
     else
-      assert_nil err
+      assert_nil result["err"]
       assert result["ok"]
       assert_equal 200, Helpers.to_int(result["status"])
       assert !result["data"].nil?
@@ -61,14 +61,12 @@ def currency_rate_direct_setup(mockres)
   env = Runner.env_override({
     "IPGEOCURRENCY_TEST_CURRENCY_RATE_ENTID" => {},
     "IPGEOCURRENCY_TEST_LIVE" => "FALSE",
-    "IPGEOCURRENCY_APIKEY" => "NONE",
   })
 
   live = env["IPGEOCURRENCY_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["IPGEOCURRENCY_APIKEY"],
     }
     client = IpGeoCurrencySDK.new(merged_opts)
     return {

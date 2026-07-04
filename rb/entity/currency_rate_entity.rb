@@ -45,6 +45,7 @@ class CurrencyRateEntity
     end
   end
 
+  # @return [CurrencyRate, Hash] the current CurrencyRate data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class CurrencyRateEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of CurrencyRate fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single CurrencyRate.
+  #
+  # @param reqmatch [CurrencyRateLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [CurrencyRate, Hash] the loaded CurrencyRate; raises IpGeoCurrencyError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

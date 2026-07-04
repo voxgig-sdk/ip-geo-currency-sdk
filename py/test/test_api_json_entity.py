@@ -49,8 +49,7 @@ class TestApiJsonEntity:
         # LOAD
         api_json_ref01_ent = client.ApiJson(None)
         api_json_ref01_match_dt0 = {}
-        api_json_ref01_data_dt0_loaded, err = api_json_ref01_ent.load(api_json_ref01_match_dt0, None)
-        assert err is None
+        api_json_ref01_data_dt0_loaded = api_json_ref01_ent.load(api_json_ref01_match_dt0, None)
         assert api_json_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _api_json_basic_setup(extra):
         "IPGEOCURRENCY_TEST_API_JSON_ENTID": idmap,
         "IPGEOCURRENCY_TEST_LIVE": "FALSE",
         "IPGEOCURRENCY_TEST_EXPLAIN": "FALSE",
-        "IPGEOCURRENCY_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _api_json_basic_setup(extra):
     if env.get("IPGEOCURRENCY_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("IPGEOCURRENCY_APIKEY"),
             },
             extra or {},
         ])

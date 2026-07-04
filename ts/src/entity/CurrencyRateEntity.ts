@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  CurrencyRate,
+  CurrencyRateLoadMatch,
+} from '../IpGeoCurrencyTypes'
 
 // TODO: needs Entity superclass
-class CurrencyRateEntity extends IpGeoCurrencyEntityBase {
+class CurrencyRateEntity extends IpGeoCurrencyEntityBase<CurrencyRate> {
 
   constructor(client: IpGeoCurrencySDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class CurrencyRateEntity extends IpGeoCurrencyEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: CurrencyRateLoadMatch, ctrl?: Control): Promise<CurrencyRate> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class CurrencyRateEntity extends IpGeoCurrencyEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<CurrencyRate> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

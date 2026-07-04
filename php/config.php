@@ -20,9 +20,6 @@ class IpGeoCurrencyConfig
             ],
             "options" => [
                 "base" => "https://apip.cc",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -139,6 +136,7 @@ class IpGeoCurrencyConfig
                         'orig' => 'ip_or_domain',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -228,6 +226,7 @@ class IpGeoCurrencyConfig
                         'orig' => 'amount',
                         'reqd' => true,
                         'type' => '`$NUMBER`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -237,6 +236,7 @@ class IpGeoCurrencyConfig
                         'orig' => 'base',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 1,
                       ],
                       [
                         'active' => true,
@@ -246,6 +246,7 @@ class IpGeoCurrencyConfig
                         'orig' => 'target',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 2,
                       ],
                     ],
                   ],

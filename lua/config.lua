@@ -14,9 +14,6 @@ local function make_config()
     },
     options = {
       base = "https://apip.cc",
-      auth = {
-        prefix = "Bearer",
-      },
       headers = {
         ["content-type"] = "application/json",
       },
@@ -133,6 +130,7 @@ local function make_config()
                       ["orig"] = "ip_or_domain",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                 },
@@ -222,6 +220,7 @@ local function make_config()
                       ["orig"] = "amount",
                       ["reqd"] = true,
                       ["type"] = "`$NUMBER`",
+                      ["index$"] = 0,
                     },
                     {
                       ["active"] = true,
@@ -231,6 +230,7 @@ local function make_config()
                       ["orig"] = "base",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 1,
                     },
                     {
                       ["active"] = true,
@@ -240,6 +240,7 @@ local function make_config()
                       ["orig"] = "target",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 2,
                     },
                   },
                 },

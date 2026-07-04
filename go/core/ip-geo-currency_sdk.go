@@ -245,21 +245,33 @@ func (sdk *IpGeoCurrencySDK) Direct(fetchargs map[string]any) (map[string]any, e
 }
 
 
+// ApiJson returns a ApiJson entity bound to this client.
+// Idiomatic usage: client.ApiJson(nil).List(nil, nil) or
+// client.ApiJson(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpGeoCurrencySDK) ApiJson(data map[string]any) IpGeoCurrencyEntity {
 	return NewApiJsonEntityFunc(sdk, data)
 }
 
 
+// CurrencyConversion returns a CurrencyConversion entity bound to this client.
+// Idiomatic usage: client.CurrencyConversion(nil).List(nil, nil) or
+// client.CurrencyConversion(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpGeoCurrencySDK) CurrencyConversion(data map[string]any) IpGeoCurrencyEntity {
 	return NewCurrencyConversionEntityFunc(sdk, data)
 }
 
 
+// CurrencyRate returns a CurrencyRate entity bound to this client.
+// Idiomatic usage: client.CurrencyRate(nil).List(nil, nil) or
+// client.CurrencyRate(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpGeoCurrencySDK) CurrencyRate(data map[string]any) IpGeoCurrencyEntity {
 	return NewCurrencyRateEntityFunc(sdk, data)
 }
 
 
+// Json returns a Json entity bound to this client.
+// Idiomatic usage: client.Json(nil).List(nil, nil) or
+// client.Json(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpGeoCurrencySDK) Json(data map[string]any) IpGeoCurrencyEntity {
 	return NewJsonEntityFunc(sdk, data)
 }

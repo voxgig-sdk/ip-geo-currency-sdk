@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `$options` | `array` | SDK configuration options. |
-| `$options["apikey"]` | `string` | API key for authentication. |
 | `$options["base"]` | `string` | Base URL for API requests. |
 | `$options["prefix"]` | `string` | URL prefix appended after base. |
 | `$options["suffix"]` | `string` | URL suffix appended after path. |
@@ -68,7 +67,10 @@ Return a copy of the SDK utility object.
 
 #### `direct(array $fetchargs = []): array`
 
-Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
+Make a direct HTTP request to any API endpoint. This is the raw-HTTP escape
+hatch: it does **not** throw. It returns a result array
+`["ok" => bool, "status" => int, "headers" => array, "data" => mixed]`, or
+`["ok" => false, "err" => \Exception]` on failure. Branch on `$result["ok"]`.
 
 **Parameters:**
 
@@ -82,11 +84,12 @@ Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
 | `$fetchargs["body"]` | `mixed` | Request body (arrays are JSON-serialized). |
 | `$fetchargs["ctrl"]` | `array` | Control options. |
 
-**Returns:** `array [$result, $err]`
+**Returns:** `array` — the result dict (see above); never throws.
 
-#### `prepare(array $fetchargs = []): array`
+#### `prepare(array $fetchargs = []): mixed`
 
-Prepare a fetch definition without sending the request. Returns `[$fetchdef, $err]`.
+Prepare a fetch definition without sending the request. Returns the
+`$fetchdef` array. Throws on error.
 
 
 ---
@@ -94,7 +97,7 @@ Prepare a fetch definition without sending the request. Returns `[$fetchdef, $er
 ## ApiJsonEntity
 
 ```php
-$api_json = $client->ApiJson();
+$api_json = $client->api_json();
 ```
 
 ### Fields
@@ -116,12 +119,12 @@ $api_json = $client->ApiJson();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->ApiJson()->load(["id" => "api_json_id"]);
+$result = $client->api_json()->load(["id" => "api_json_id"]);
 ```
 
 ### Common Methods
@@ -157,7 +160,7 @@ Return the entity name.
 ## CurrencyConversionEntity
 
 ```php
-$currency_conversion = $client->CurrencyConversion();
+$currency_conversion = $client->currency_conversion();
 ```
 
 ### Fields
@@ -172,12 +175,12 @@ $currency_conversion = $client->CurrencyConversion();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->CurrencyConversion()->load(["id" => "currency_conversion_id"]);
+$result = $client->currency_conversion()->load(["id" => "currency_conversion_id"]);
 ```
 
 ### Common Methods
@@ -213,7 +216,7 @@ Return the entity name.
 ## CurrencyRateEntity
 
 ```php
-$currency_rate = $client->CurrencyRate();
+$currency_rate = $client->currency_rate();
 ```
 
 ### Fields
@@ -226,12 +229,12 @@ $currency_rate = $client->CurrencyRate();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->CurrencyRate()->load(["id" => "currency_rate_id"]);
+$result = $client->currency_rate()->load(["id" => "currency_rate_id"]);
 ```
 
 ### Common Methods
@@ -267,7 +270,7 @@ Return the entity name.
 ## JsonEntity
 
 ```php
-$json = $client->Json();
+$json = $client->json();
 ```
 
 ### Fields
@@ -289,12 +292,12 @@ $json = $client->Json();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Json()->load(["id" => "json_id"]);
+$result = $client->json()->load(["id" => "json_id"]);
 ```
 
 ### Common Methods

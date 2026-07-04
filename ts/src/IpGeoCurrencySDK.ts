@@ -5,6 +5,8 @@ import { CurrencyConversionEntity } from './entity/CurrencyConversionEntity'
 import { CurrencyRateEntity } from './entity/CurrencyRateEntity'
 import { JsonEntity } from './entity/JsonEntity'
 
+export type * from './IpGeoCurrencyTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -205,24 +207,56 @@ class IpGeoCurrencySDK {
 
 
 
+  _api_json?: ApiJsonEntity
+
+  // Idiomatic facade: `client.api_json.list()` / `client.api_json.load({ id })`.
+  get api_json(): ApiJsonEntity {
+    return (this._api_json ??= new ApiJsonEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.api_json` instead. */
   ApiJson(data?: any) {
     const self = this
     return new ApiJsonEntity(self,data)
   }
 
 
+  _currency_conversion?: CurrencyConversionEntity
+
+  // Idiomatic facade: `client.currency_conversion.list()` / `client.currency_conversion.load({ id })`.
+  get currency_conversion(): CurrencyConversionEntity {
+    return (this._currency_conversion ??= new CurrencyConversionEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.currency_conversion` instead. */
   CurrencyConversion(data?: any) {
     const self = this
     return new CurrencyConversionEntity(self,data)
   }
 
 
+  _currency_rate?: CurrencyRateEntity
+
+  // Idiomatic facade: `client.currency_rate.list()` / `client.currency_rate.load({ id })`.
+  get currency_rate(): CurrencyRateEntity {
+    return (this._currency_rate ??= new CurrencyRateEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.currency_rate` instead. */
   CurrencyRate(data?: any) {
     const self = this
     return new CurrencyRateEntity(self,data)
   }
 
 
+  _json?: JsonEntity
+
+  // Idiomatic facade: `client.json.list()` / `client.json.load({ id })`.
+  get json(): JsonEntity {
+    return (this._json ??= new JsonEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.json` instead. */
   Json(data?: any) {
     const self = this
     return new JsonEntity(self,data)

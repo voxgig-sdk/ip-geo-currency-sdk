@@ -15,9 +15,6 @@ module IpGeoCurrencyConfig
       },
       "options" => {
         "base" => "https://apip.cc",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -134,6 +131,7 @@ module IpGeoCurrencyConfig
                         "orig" => "ip_or_domain",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },
@@ -223,6 +221,7 @@ module IpGeoCurrencyConfig
                         "orig" => "amount",
                         "reqd" => true,
                         "type" => "`$NUMBER`",
+                        "index$" => 0,
                       },
                       {
                         "active" => true,
@@ -232,6 +231,7 @@ module IpGeoCurrencyConfig
                         "orig" => "base",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 1,
                       },
                       {
                         "active" => true,
@@ -241,6 +241,7 @@ module IpGeoCurrencyConfig
                         "orig" => "target",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 2,
                       },
                     ],
                   },

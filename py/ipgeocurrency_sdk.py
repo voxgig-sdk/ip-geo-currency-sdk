@@ -144,16 +144,23 @@ class IpGeoCurrencySDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class IpGeoCurrencySDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,30 +212,74 @@ class IpGeoCurrencySDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def api_json(self):
+        """Idiomatic facade: client.api_json.list() / client.api_json.load({"id": ...})."""
+        from entity.api_json_entity import ApiJsonEntity
+        cached = getattr(self, "_api_json", None)
+        if cached is None:
+            cached = ApiJsonEntity(self, None)
+            self._api_json = cached
+        return cached
 
     def ApiJson(self, data=None):
+        # Deprecated: use client.api_json instead.
         from entity.api_json_entity import ApiJsonEntity
         return ApiJsonEntity(self, data)
 
 
+    @property
+    def currency_conversion(self):
+        """Idiomatic facade: client.currency_conversion.list() / client.currency_conversion.load({"id": ...})."""
+        from entity.currency_conversion_entity import CurrencyConversionEntity
+        cached = getattr(self, "_currency_conversion", None)
+        if cached is None:
+            cached = CurrencyConversionEntity(self, None)
+            self._currency_conversion = cached
+        return cached
+
     def CurrencyConversion(self, data=None):
+        # Deprecated: use client.currency_conversion instead.
         from entity.currency_conversion_entity import CurrencyConversionEntity
         return CurrencyConversionEntity(self, data)
 
 
+    @property
+    def currency_rate(self):
+        """Idiomatic facade: client.currency_rate.list() / client.currency_rate.load({"id": ...})."""
+        from entity.currency_rate_entity import CurrencyRateEntity
+        cached = getattr(self, "_currency_rate", None)
+        if cached is None:
+            cached = CurrencyRateEntity(self, None)
+            self._currency_rate = cached
+        return cached
+
     def CurrencyRate(self, data=None):
+        # Deprecated: use client.currency_rate instead.
         from entity.currency_rate_entity import CurrencyRateEntity
         return CurrencyRateEntity(self, data)
 
 
+    @property
+    def json(self):
+        """Idiomatic facade: client.json.list() / client.json.load({"id": ...})."""
+        from entity.json_entity import JsonEntity
+        cached = getattr(self, "_json", None)
+        if cached is None:
+            cached = JsonEntity(self, None)
+            self._json = cached
+        return cached
+
     def Json(self, data=None):
+        # Deprecated: use client.json instead.
         from entity.json_entity import JsonEntity
         return JsonEntity(self, data)
 

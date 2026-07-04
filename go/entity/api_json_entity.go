@@ -85,6 +85,27 @@ func (e *ApiJsonEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an ApiJson; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *ApiJsonEntity) DataTyped(data ...ApiJson) ApiJson {
+	if len(data) > 0 {
+		return typedFrom[ApiJson](e.Data(asMap(data[0])))
+	}
+	return typedFrom[ApiJson](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through ApiJson (all fields
+// optional at the wire level).
+func (e *ApiJsonEntity) MatchTyped(match ...ApiJson) ApiJson {
+	if len(match) > 0 {
+		return typedFrom[ApiJson](e.Match(asMap(match[0])))
+	}
+	return typedFrom[ApiJson](e.Match())
+}
+
 
 func (e *ApiJsonEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *ApiJsonEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any,
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// ApiJsonLoadMatch and returns an ApiJson. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *ApiJsonEntity) LoadTyped(reqmatch ApiJsonLoadMatch, ctrl map[string]any) (ApiJson, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return ApiJson{}, err
+	}
+	return typedFrom[ApiJson](res), nil
 }
 
 

@@ -49,8 +49,7 @@ class TestCurrencyConversionEntity:
         # LOAD
         currency_conversion_ref01_ent = client.CurrencyConversion(None)
         currency_conversion_ref01_match_dt0 = {}
-        currency_conversion_ref01_data_dt0_loaded, err = currency_conversion_ref01_ent.load(currency_conversion_ref01_match_dt0, None)
-        assert err is None
+        currency_conversion_ref01_data_dt0_loaded = currency_conversion_ref01_ent.load(currency_conversion_ref01_match_dt0, None)
         assert currency_conversion_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _currency_conversion_basic_setup(extra):
         "IPGEOCURRENCY_TEST_CURRENCY_CONVERSION_ENTID": idmap,
         "IPGEOCURRENCY_TEST_LIVE": "FALSE",
         "IPGEOCURRENCY_TEST_EXPLAIN": "FALSE",
-        "IPGEOCURRENCY_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _currency_conversion_basic_setup(extra):
     if env.get("IPGEOCURRENCY_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("IPGEOCURRENCY_APIKEY"),
             },
             extra or {},
         ])

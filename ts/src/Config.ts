@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://apip.cc',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -169,7 +165,8 @@ class Config {
                     "name": "id",
                     "orig": "ip_or_domain",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -258,7 +255,8 @@ class Config {
                     "name": "amount",
                     "orig": "amount",
                     "reqd": true,
-                    "type": "`$NUMBER`"
+                    "type": "`$NUMBER`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -267,7 +265,8 @@ class Config {
                     "name": "base",
                     "orig": "base",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   },
                   {
                     "active": true,
@@ -276,7 +275,8 @@ class Config {
                     "name": "target",
                     "orig": "target",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 2
                   }
                 ]
               },

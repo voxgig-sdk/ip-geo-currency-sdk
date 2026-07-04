@@ -14,9 +14,6 @@ func MakeConfig() map[string]any {
 		},
 		"options": map[string]any{
 			"base": "https://apip.cc",
-			"auth": map[string]any{
-				"prefix": "Bearer",
-			},
 			"headers": map[string]any{
 				"content-type": "application/json",
 			},
@@ -133,6 +130,7 @@ func MakeConfig() map[string]any {
 											"orig": "ip_or_domain",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 								},
@@ -222,6 +220,7 @@ func MakeConfig() map[string]any {
 											"orig": "amount",
 											"reqd": true,
 											"type": "`$NUMBER`",
+											"index$": 0,
 										},
 										map[string]any{
 											"active": true,
@@ -231,6 +230,7 @@ func MakeConfig() map[string]any {
 											"orig": "base",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 1,
 										},
 										map[string]any{
 											"active": true,
@@ -240,6 +240,7 @@ func MakeConfig() map[string]any {
 											"orig": "target",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 2,
 										},
 									},
 								},

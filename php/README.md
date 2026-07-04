@@ -9,9 +9,10 @@ The PHP SDK for the IpGeoCurrency API — an entity-oriented client using PHP co
 
 
 ## Install
-```bash
-composer require voxgig-sdk/ip-geo-currency
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases](https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,17 +26,18 @@ loading a specific record.
 <?php
 require_once 'ipgeocurrency_sdk.php';
 
-$client = new IpGeoCurrencySDK([
-    "apikey" => getenv("IP-GEO-CURRENCY_APIKEY"),
-]);
+$client = new IpGeoCurrencySDK();
 ```
 
-### 3. Load a apijson
+### 3. Load an apijson
 
 ```php
-[$result, $err] = $client->ApiJson()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->apijson()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -46,28 +48,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -81,7 +86,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = IpGeoCurrencySDK::test();
 
-[$result, $err] = $client->IpGeoCurrency()->load(["id" => "test01"]);
+$result = $client->apijson()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -115,8 +120,7 @@ $client = new IpGeoCurrencySDK([
 Create a `.env.local` file at the project root:
 
 ```
-IP-GEO-CURRENCY_TEST_LIVE=TRUE
-IP-GEO-CURRENCY_APIKEY=<your-key>
+IP_GEO_CURRENCY_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -139,7 +143,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -188,8 +191,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -277,7 +284,7 @@ API path: `/json`
 
 ### ApiJson
 
-Create an instance: `const api_json = client.ApiJson()`
+Create an instance: `const api_json = client.api_json`
 
 #### Operations
 
@@ -305,13 +312,13 @@ Create an instance: `const api_json = client.ApiJson()`
 #### Example: Load
 
 ```ts
-const api_json = await client.ApiJson().load({ id: 'api_json_id' })
+const api_json = await client.api_json.load({ id: 'api_json_id' })
 ```
 
 
 ### CurrencyConversion
 
-Create an instance: `const currency_conversion = client.CurrencyConversion()`
+Create an instance: `const currency_conversion = client.currency_conversion`
 
 #### Operations
 
@@ -332,13 +339,13 @@ Create an instance: `const currency_conversion = client.CurrencyConversion()`
 #### Example: Load
 
 ```ts
-const currency_conversion = await client.CurrencyConversion().load({ id: 'currency_conversion_id' })
+const currency_conversion = await client.currency_conversion.load({ id: 'currency_conversion_id' })
 ```
 
 
 ### CurrencyRate
 
-Create an instance: `const currency_rate = client.CurrencyRate()`
+Create an instance: `const currency_rate = client.currency_rate`
 
 #### Operations
 
@@ -357,13 +364,13 @@ Create an instance: `const currency_rate = client.CurrencyRate()`
 #### Example: Load
 
 ```ts
-const currency_rate = await client.CurrencyRate().load({ id: 'currency_rate_id' })
+const currency_rate = await client.currency_rate.load({ id: 'currency_rate_id' })
 ```
 
 
 ### Json
 
-Create an instance: `const json = client.Json()`
+Create an instance: `const json = client.json`
 
 #### Operations
 
@@ -391,7 +398,7 @@ Create an instance: `const json = client.Json()`
 #### Example: Load
 
 ```ts
-const json = await client.Json().load({ id: 'json_id' })
+const json = await client.json.load({ id: 'json_id' })
 ```
 
 
@@ -466,11 +473,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$apijson = $client->apijson();
+$apijson->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $apijson->dataGet() now returns the loaded apijson data
+// $apijson->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

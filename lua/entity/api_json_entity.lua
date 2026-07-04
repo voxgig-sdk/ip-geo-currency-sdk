@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch ApiJsonLoadMatch
+---@param ctrl? table
+---@return ApiJson
+---@return string? err
 function ApiJsonEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

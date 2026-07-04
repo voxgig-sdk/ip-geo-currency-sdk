@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -96,7 +95,7 @@ same parameters as `direct()`.
 ## ApiJsonEntity
 
 ```lua
-local api_json = client:ApiJson(nil)
+local api_json = client:api_json(nil)
 ```
 
 ### Fields
@@ -123,7 +122,7 @@ local api_json = client:ApiJson(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ApiJson():load({ id = "api_json_id" })
+local result, err = client:api_json():load({ id = "api_json_id" })
 ```
 
 ### Common Methods
@@ -159,7 +158,7 @@ Return the entity name.
 ## CurrencyConversionEntity
 
 ```lua
-local currency_conversion = client:CurrencyConversion(nil)
+local currency_conversion = client:currency_conversion(nil)
 ```
 
 ### Fields
@@ -179,7 +178,7 @@ local currency_conversion = client:CurrencyConversion(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:CurrencyConversion():load({ id = "currency_conversion_id" })
+local result, err = client:currency_conversion():load({ id = "currency_conversion_id" })
 ```
 
 ### Common Methods
@@ -215,7 +214,7 @@ Return the entity name.
 ## CurrencyRateEntity
 
 ```lua
-local currency_rate = client:CurrencyRate(nil)
+local currency_rate = client:currency_rate(nil)
 ```
 
 ### Fields
@@ -233,7 +232,7 @@ local currency_rate = client:CurrencyRate(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:CurrencyRate():load({ id = "currency_rate_id" })
+local result, err = client:currency_rate():load({ id = "currency_rate_id" })
 ```
 
 ### Common Methods
@@ -269,7 +268,7 @@ Return the entity name.
 ## JsonEntity
 
 ```lua
-local json = client:Json(nil)
+local json = client:json(nil)
 ```
 
 ### Fields
@@ -296,7 +295,7 @@ local json = client:Json(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Json():load({ id = "json_id" })
+local result, err = client:json():load({ id = "json_id" })
 ```
 
 ### Common Methods

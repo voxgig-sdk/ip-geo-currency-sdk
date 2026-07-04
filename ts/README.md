@@ -9,9 +9,12 @@ The TypeScript SDK for the IpGeoCurrency API — a type-safe, entity-oriented cl
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/ip-geo-currency
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases](https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { IpGeoCurrencySDK } from 'ip-geo-currency'
+import { IpGeoCurrencySDK } from '@voxgig-sdk/ip-geo-currency'
 
-const client = new IpGeoCurrencySDK({
-  apikey: process.env.IP-GEO-CURRENCY_APIKEY,
-})
+const client = new IpGeoCurrencySDK()
 ```
 
-### 3. Load a apijson
+### 3. Load an apijson
 
 ```ts
-const result = await client.ApiJson().load({ id: 'example_id' })
+const result = await client.apijson.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = IpGeoCurrencySDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.apijson.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new IpGeoCurrencySDK({ apikey: '...' })
+const client = new IpGeoCurrencySDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.apijson
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new IpGeoCurrencySDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -133,8 +133,7 @@ const client = new IpGeoCurrencySDK({
 Create a `.env.local` file at the project root:
 
 ```
-IP-GEO-CURRENCY_TEST_LIVE=TRUE
-IP-GEO-CURRENCY_APIKEY=<your-key>
+IP_GEO_CURRENCY_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new IpGeoCurrencySDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new IpGeoCurrencySDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -327,7 +324,7 @@ API path: `/json`
 
 ### ApiJson
 
-Create an instance: `const api_json = client.ApiJson()`
+Create an instance: `const api_json = client.api_json`
 
 #### Operations
 
@@ -355,13 +352,13 @@ Create an instance: `const api_json = client.ApiJson()`
 #### Example: Load
 
 ```ts
-const api_json = await client.ApiJson().load({ id: 'api_json_id' })
+const api_json = await client.api_json.load({ id: 'api_json_id' })
 ```
 
 
 ### CurrencyConversion
 
-Create an instance: `const currency_conversion = client.CurrencyConversion()`
+Create an instance: `const currency_conversion = client.currency_conversion`
 
 #### Operations
 
@@ -382,13 +379,13 @@ Create an instance: `const currency_conversion = client.CurrencyConversion()`
 #### Example: Load
 
 ```ts
-const currency_conversion = await client.CurrencyConversion().load({ id: 'currency_conversion_id' })
+const currency_conversion = await client.currency_conversion.load({ id: 'currency_conversion_id' })
 ```
 
 
 ### CurrencyRate
 
-Create an instance: `const currency_rate = client.CurrencyRate()`
+Create an instance: `const currency_rate = client.currency_rate`
 
 #### Operations
 
@@ -407,13 +404,13 @@ Create an instance: `const currency_rate = client.CurrencyRate()`
 #### Example: Load
 
 ```ts
-const currency_rate = await client.CurrencyRate().load({ id: 'currency_rate_id' })
+const currency_rate = await client.currency_rate.load({ id: 'currency_rate_id' })
 ```
 
 
 ### Json
 
-Create an instance: `const json = client.Json()`
+Create an instance: `const json = client.json`
 
 #### Operations
 
@@ -441,7 +438,7 @@ Create an instance: `const json = client.Json()`
 #### Example: Load
 
 ```ts
-const json = await client.Json().load({ id: 'json_id' })
+const json = await client.json.load({ id: 'json_id' })
 ```
 
 
@@ -502,7 +499,7 @@ ip-geo-currency/
 Import the SDK from the package root:
 
 ```ts
-import { IpGeoCurrencySDK } from 'ip-geo-currency'
+import { IpGeoCurrencySDK } from '@voxgig-sdk/ip-geo-currency'
 ```
 
 ### Entity state
@@ -512,11 +509,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const apijson = client.apijson
+await apijson.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// apijson.data() now returns the loaded apijson data
+// apijson.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration
