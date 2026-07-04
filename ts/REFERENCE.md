@@ -145,7 +145,7 @@ Alias for `IpGeoCurrencySDK.test()`.
 ## ApiJsonEntity
 
 ```ts
-const api_json = client.api_json
+const api_json = client.ApiJson()
 ```
 
 ### Fields
@@ -172,7 +172,7 @@ const api_json = client.api_json
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.api_json.load({ id: 'api_json_id' })
+const result = await client.ApiJson().load({ id: 'api_json_id' })
 ```
 
 ### Common Methods
@@ -206,7 +206,7 @@ Return a copy of the entity options.
 ## CurrencyConversionEntity
 
 ```ts
-const currency_conversion = client.currency_conversion
+const currency_conversion = client.CurrencyConversion()
 ```
 
 ### Fields
@@ -226,7 +226,7 @@ const currency_conversion = client.currency_conversion
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.currency_conversion.load({ id: 'currency_conversion_id' })
+const result = await client.CurrencyConversion().load({ id: 'currency_conversion_id' })
 ```
 
 ### Common Methods
@@ -260,7 +260,7 @@ Return a copy of the entity options.
 ## CurrencyRateEntity
 
 ```ts
-const currency_rate = client.currency_rate
+const currency_rate = client.CurrencyRate()
 ```
 
 ### Fields
@@ -278,7 +278,7 @@ const currency_rate = client.currency_rate
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.currency_rate.load({ id: 'currency_rate_id' })
+const result = await client.CurrencyRate().load({ id: 'currency_rate_id' })
 ```
 
 ### Common Methods
@@ -312,7 +312,7 @@ Return a copy of the entity options.
 ## JsonEntity
 
 ```ts
-const json = client.json
+const json = client.Json()
 ```
 
 ### Fields
@@ -339,7 +339,7 @@ const json = client.json
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.json.load({ id: 'json_id' })
+const result = await client.Json().load({ id: 'json_id' })
 ```
 
 ### Common Methods

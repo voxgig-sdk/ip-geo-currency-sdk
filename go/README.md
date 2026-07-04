@@ -30,36 +30,30 @@ go mod edit -replace github.com/voxgig-sdk/ip-geo-currency-sdk/go=../ip-geo-curr
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/ip-geo-currency-sdk/go"
-    "github.com/voxgig-sdk/ip-geo-currency-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 3. Load an apijson
-
-```go
-    result, err = client.ApiJson(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single apijson — the value is the loaded record.
+    apijson, err := client.ApiJson(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
-    }
+    fmt.Println(apijson)
 }
 ```
 
@@ -110,10 +104,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.ApiJson(nil).Load(
+apijson, err := client.ApiJson(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(apijson) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -190,7 +187,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `ApiJson` | `(data map[string]any) IpGeoCurrencyEntity` | Create a ApiJson entity instance. |
+| `ApiJson` | `(data map[string]any) IpGeoCurrencyEntity` | Create an ApiJson entity instance. |
 | `CurrencyConversion` | `(data map[string]any) IpGeoCurrencyEntity` | Create a CurrencyConversion entity instance. |
 | `CurrencyRate` | `(data map[string]any) IpGeoCurrencyEntity` | Create a CurrencyRate entity instance. |
 | `Json` | `(data map[string]any) IpGeoCurrencyEntity` | Create a Json entity instance. |
@@ -213,17 +210,24 @@ All entities implement the `IpGeoCurrencyEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    apijson, err := client.ApiJson(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // apijson is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -330,7 +334,11 @@ Create an instance: `api_json := client.ApiJson(nil)`
 #### Example: Load
 
 ```go
-result, err := client.ApiJson(nil).Load(map[string]any{"id": "api_json_id"}, nil)
+api_json, err := client.ApiJson(nil).Load(map[string]any{"id": "api_json_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(api_json) // the loaded record
 ```
 
 
@@ -357,7 +365,11 @@ Create an instance: `currency_conversion := client.CurrencyConversion(nil)`
 #### Example: Load
 
 ```go
-result, err := client.CurrencyConversion(nil).Load(map[string]any{"id": "currency_conversion_id"}, nil)
+currency_conversion, err := client.CurrencyConversion(nil).Load(map[string]any{"id": "currency_conversion_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(currency_conversion) // the loaded record
 ```
 
 
@@ -382,7 +394,11 @@ Create an instance: `currency_rate := client.CurrencyRate(nil)`
 #### Example: Load
 
 ```go
-result, err := client.CurrencyRate(nil).Load(map[string]any{"id": "currency_rate_id"}, nil)
+currency_rate, err := client.CurrencyRate(nil).Load(map[string]any{"id": "currency_rate_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(currency_rate) // the loaded record
 ```
 
 
@@ -416,7 +432,11 @@ Create an instance: `json := client.Json(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Json(nil).Load(map[string]any{"id": "json_id"}, nil)
+json, err := client.Json(nil).Load(map[string]any{"id": "json_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(json) // the loaded record
 ```
 
 

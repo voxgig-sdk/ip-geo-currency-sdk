@@ -33,10 +33,12 @@ client = IpGeoCurrencySDK()
 
 ### 3. Load an apijson
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.apijson.load({"id": "example_id"})
-    print(result)
+    apijson = client.ApiJson().load({"id": "example_id"})
+    print(apijson)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -84,8 +86,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = IpGeoCurrencySDK.test()
 
-result = client.apijson.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+apijson = client.ApiJson().load({"id": "test01"})
+# apijson contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -161,7 +164,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `ApiJson` | `(data) -> ApiJsonEntity` | Create a ApiJson entity instance. |
+| `ApiJson` | `(data) -> ApiJsonEntity` | Create an ApiJson entity instance. |
 | `CurrencyConversion` | `(data) -> CurrencyConversionEntity` | Create a CurrencyConversion entity instance. |
 | `CurrencyRate` | `(data) -> CurrencyRateEntity` | Create a CurrencyRate entity instance. |
 | `Json` | `(data) -> JsonEntity` | Create a Json entity instance. |
@@ -279,7 +282,7 @@ API path: `/json`
 
 ### ApiJson
 
-Create an instance: `const api_json = client.api_json`
+Create an instance: `api_json = client.ApiJson()`
 
 #### Operations
 
@@ -306,14 +309,14 @@ Create an instance: `const api_json = client.api_json`
 
 #### Example: Load
 
-```ts
-const api_json = await client.api_json.load({ id: 'api_json_id' })
+```python
+api_json = client.ApiJson().load({"id": "api_json_id"})
 ```
 
 
 ### CurrencyConversion
 
-Create an instance: `const currency_conversion = client.currency_conversion`
+Create an instance: `currency_conversion = client.CurrencyConversion()`
 
 #### Operations
 
@@ -333,14 +336,14 @@ Create an instance: `const currency_conversion = client.currency_conversion`
 
 #### Example: Load
 
-```ts
-const currency_conversion = await client.currency_conversion.load({ id: 'currency_conversion_id' })
+```python
+currency_conversion = client.CurrencyConversion().load({"id": "currency_conversion_id"})
 ```
 
 
 ### CurrencyRate
 
-Create an instance: `const currency_rate = client.currency_rate`
+Create an instance: `currency_rate = client.CurrencyRate()`
 
 #### Operations
 
@@ -358,14 +361,14 @@ Create an instance: `const currency_rate = client.currency_rate`
 
 #### Example: Load
 
-```ts
-const currency_rate = await client.currency_rate.load({ id: 'currency_rate_id' })
+```python
+currency_rate = client.CurrencyRate().load({"id": "currency_rate_id"})
 ```
 
 
 ### Json
 
-Create an instance: `const json = client.json`
+Create an instance: `json = client.Json()`
 
 #### Operations
 
@@ -392,8 +395,8 @@ Create an instance: `const json = client.json`
 
 #### Example: Load
 
-```ts
-const json = await client.json.load({ id: 'json_id' })
+```python
+json = client.Json().load({"id": "json_id"})
 ```
 
 
@@ -467,7 +470,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-apijson = client.apijson
+apijson = client.ApiJson()
 apijson.load({"id": "example_id"})
 
 # apijson.data_get() now returns the loaded apijson data

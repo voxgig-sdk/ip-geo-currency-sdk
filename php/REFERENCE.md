@@ -97,7 +97,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## ApiJsonEntity
 
 ```php
-$api_json = $client->api_json();
+$api_json = $client->ApiJson();
 ```
 
 ### Fields
@@ -124,7 +124,7 @@ $api_json = $client->api_json();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->api_json()->load(["id" => "api_json_id"]);
+$result = $client->ApiJson()->load(["id" => "api_json_id"]);
 ```
 
 ### Common Methods
@@ -160,7 +160,7 @@ Return the entity name.
 ## CurrencyConversionEntity
 
 ```php
-$currency_conversion = $client->currency_conversion();
+$currency_conversion = $client->CurrencyConversion();
 ```
 
 ### Fields
@@ -180,7 +180,7 @@ $currency_conversion = $client->currency_conversion();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->currency_conversion()->load(["id" => "currency_conversion_id"]);
+$result = $client->CurrencyConversion()->load(["id" => "currency_conversion_id"]);
 ```
 
 ### Common Methods
@@ -216,7 +216,7 @@ Return the entity name.
 ## CurrencyRateEntity
 
 ```php
-$currency_rate = $client->currency_rate();
+$currency_rate = $client->CurrencyRate();
 ```
 
 ### Fields
@@ -234,7 +234,7 @@ $currency_rate = $client->currency_rate();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->currency_rate()->load(["id" => "currency_rate_id"]);
+$result = $client->CurrencyRate()->load(["id" => "currency_rate_id"]);
 ```
 
 ### Common Methods
@@ -270,7 +270,7 @@ Return the entity name.
 ## JsonEntity
 
 ```php
-$json = $client->json();
+$json = $client->Json();
 ```
 
 ### Fields
@@ -297,7 +297,7 @@ $json = $client->json();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->json()->load(["id" => "json_id"]);
+$result = $client->Json()->load(["id" => "json_id"]);
 ```
 
 ### Common Methods

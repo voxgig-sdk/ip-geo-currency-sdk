@@ -34,9 +34,9 @@ local client = sdk.new()
 ### 3. Load an apijson
 
 ```lua
-local result, err = client:apijson():load({ id = "example_id" })
+local apijson, err = client:ApiJson():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(apijson)
 ```
 
 
@@ -82,8 +82,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:apijson():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:ApiJson():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -161,7 +161,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `ApiJson` | `(data) -> ApiJsonEntity` | Create a ApiJson entity instance. |
+| `ApiJson` | `(data) -> ApiJsonEntity` | Create an ApiJson entity instance. |
 | `CurrencyConversion` | `(data) -> CurrencyConversionEntity` | Create a CurrencyConversion entity instance. |
 | `CurrencyRate` | `(data) -> CurrencyRateEntity` | Create a CurrencyRate entity instance. |
 | `Json` | `(data) -> JsonEntity` | Create a Json entity instance. |
@@ -186,17 +186,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local api_json, err = client:ApiJson():load({ id = "example_id" })
+    if err then error(err) end
+    -- api_json is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -275,7 +280,7 @@ API path: `/json`
 
 ### ApiJson
 
-Create an instance: `const api_json = client.api_json`
+Create an instance: `local api_json = client:ApiJson(nil)`
 
 #### Operations
 
@@ -302,14 +307,14 @@ Create an instance: `const api_json = client.api_json`
 
 #### Example: Load
 
-```ts
-const api_json = await client.api_json.load({ id: 'api_json_id' })
+```lua
+local api_json, err = client:ApiJson():load({ id = "api_json_id" })
 ```
 
 
 ### CurrencyConversion
 
-Create an instance: `const currency_conversion = client.currency_conversion`
+Create an instance: `local currency_conversion = client:CurrencyConversion(nil)`
 
 #### Operations
 
@@ -329,14 +334,14 @@ Create an instance: `const currency_conversion = client.currency_conversion`
 
 #### Example: Load
 
-```ts
-const currency_conversion = await client.currency_conversion.load({ id: 'currency_conversion_id' })
+```lua
+local currency_conversion, err = client:CurrencyConversion():load({ id = "currency_conversion_id" })
 ```
 
 
 ### CurrencyRate
 
-Create an instance: `const currency_rate = client.currency_rate`
+Create an instance: `local currency_rate = client:CurrencyRate(nil)`
 
 #### Operations
 
@@ -354,14 +359,14 @@ Create an instance: `const currency_rate = client.currency_rate`
 
 #### Example: Load
 
-```ts
-const currency_rate = await client.currency_rate.load({ id: 'currency_rate_id' })
+```lua
+local currency_rate, err = client:CurrencyRate():load({ id = "currency_rate_id" })
 ```
 
 
 ### Json
 
-Create an instance: `const json = client.json`
+Create an instance: `local json = client:Json(nil)`
 
 #### Operations
 
@@ -388,8 +393,8 @@ Create an instance: `const json = client.json`
 
 #### Example: Load
 
-```ts
-const json = await client.json.load({ id: 'json_id' })
+```lua
+local json, err = client:Json():load({ id = "json_id" })
 ```
 
 
@@ -464,7 +469,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local apijson = client:apijson()
+local apijson = client:ApiJson()
 apijson:load({ id = "example_id" })
 
 -- apijson:data_get() now returns the loaded apijson data

@@ -220,73 +220,33 @@ class IpGeoCurrencySDK:
         }
 
 
-    @property
-    def api_json(self):
-        """Idiomatic facade: client.api_json.list() / client.api_json.load({"id": ...})."""
-        from entity.api_json_entity import ApiJsonEntity
-        cached = getattr(self, "_api_json", None)
-        if cached is None:
-            cached = ApiJsonEntity(self, None)
-            self._api_json = cached
-        return cached
-
-    def ApiJson(self, data=None):
-        # Deprecated: use client.api_json instead.
+    def ApiJson(self, data=None) -> "ApiJsonEntity":
+        """Entity factory: client.ApiJson().list({}) / client.ApiJson().load({"id": ...})."""
         from entity.api_json_entity import ApiJsonEntity
         return ApiJsonEntity(self, data)
 
 
-    @property
-    def currency_conversion(self):
-        """Idiomatic facade: client.currency_conversion.list() / client.currency_conversion.load({"id": ...})."""
-        from entity.currency_conversion_entity import CurrencyConversionEntity
-        cached = getattr(self, "_currency_conversion", None)
-        if cached is None:
-            cached = CurrencyConversionEntity(self, None)
-            self._currency_conversion = cached
-        return cached
-
-    def CurrencyConversion(self, data=None):
-        # Deprecated: use client.currency_conversion instead.
+    def CurrencyConversion(self, data=None) -> "CurrencyConversionEntity":
+        """Entity factory: client.CurrencyConversion().list({}) / client.CurrencyConversion().load({"id": ...})."""
         from entity.currency_conversion_entity import CurrencyConversionEntity
         return CurrencyConversionEntity(self, data)
 
 
-    @property
-    def currency_rate(self):
-        """Idiomatic facade: client.currency_rate.list() / client.currency_rate.load({"id": ...})."""
-        from entity.currency_rate_entity import CurrencyRateEntity
-        cached = getattr(self, "_currency_rate", None)
-        if cached is None:
-            cached = CurrencyRateEntity(self, None)
-            self._currency_rate = cached
-        return cached
-
-    def CurrencyRate(self, data=None):
-        # Deprecated: use client.currency_rate instead.
+    def CurrencyRate(self, data=None) -> "CurrencyRateEntity":
+        """Entity factory: client.CurrencyRate().list({}) / client.CurrencyRate().load({"id": ...})."""
         from entity.currency_rate_entity import CurrencyRateEntity
         return CurrencyRateEntity(self, data)
 
 
-    @property
-    def json(self):
-        """Idiomatic facade: client.json.list() / client.json.load({"id": ...})."""
-        from entity.json_entity import JsonEntity
-        cached = getattr(self, "_json", None)
-        if cached is None:
-            cached = JsonEntity(self, None)
-            self._json = cached
-        return cached
-
-    def Json(self, data=None):
-        # Deprecated: use client.json instead.
+    def Json(self, data=None) -> "JsonEntity":
+        """Entity factory: client.Json().list({}) / client.Json().load({"id": ...})."""
         from entity.json_entity import JsonEntity
         return JsonEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "IpGeoCurrencySDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -306,3 +266,12 @@ class IpGeoCurrencySDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.api_json_entity import ApiJsonEntity
+    from entity.currency_conversion_entity import CurrencyConversionEntity
+    from entity.currency_rate_entity import CurrencyRateEntity
+    from entity.json_entity import JsonEntity

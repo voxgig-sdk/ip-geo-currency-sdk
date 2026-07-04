@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:api_json():list() / client:api_json():load({ id = ... })
-function IpGeoCurrencySDK:api_json(data)
+-- Idiomatic facade: client:ApiJson():list() / client:ApiJson():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpGeoCurrencySDK:ApiJson(data)
   local EntityMod = require("entity.api_json_entity")
   if data == nil then
     if self._api_json == nil then
@@ -256,15 +257,10 @@ function IpGeoCurrencySDK:api_json(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:api_json() instead.
-function IpGeoCurrencySDK:ApiJson(data)
-  local EntityMod = require("entity.api_json_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:currency_conversion():list() / client:currency_conversion():load({ id = ... })
-function IpGeoCurrencySDK:currency_conversion(data)
+-- Idiomatic facade: client:CurrencyConversion():list() / client:CurrencyConversion():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpGeoCurrencySDK:CurrencyConversion(data)
   local EntityMod = require("entity.currency_conversion_entity")
   if data == nil then
     if self._currency_conversion == nil then
@@ -275,15 +271,10 @@ function IpGeoCurrencySDK:currency_conversion(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:currency_conversion() instead.
-function IpGeoCurrencySDK:CurrencyConversion(data)
-  local EntityMod = require("entity.currency_conversion_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:currency_rate():list() / client:currency_rate():load({ id = ... })
-function IpGeoCurrencySDK:currency_rate(data)
+-- Idiomatic facade: client:CurrencyRate():list() / client:CurrencyRate():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpGeoCurrencySDK:CurrencyRate(data)
   local EntityMod = require("entity.currency_rate_entity")
   if data == nil then
     if self._currency_rate == nil then
@@ -294,15 +285,10 @@ function IpGeoCurrencySDK:currency_rate(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:currency_rate() instead.
-function IpGeoCurrencySDK:CurrencyRate(data)
-  local EntityMod = require("entity.currency_rate_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:json():list() / client:json():load({ id = ... })
-function IpGeoCurrencySDK:json(data)
+-- Idiomatic facade: client:Json():list() / client:Json():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpGeoCurrencySDK:Json(data)
   local EntityMod = require("entity.json_entity")
   if data == nil then
     if self._json == nil then
@@ -310,12 +296,6 @@ function IpGeoCurrencySDK:json(data)
     end
     return self._json
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:json() instead.
-function IpGeoCurrencySDK:Json(data)
-  local EntityMod = require("entity.json_entity")
   return EntityMod.new(self, data)
 end
 

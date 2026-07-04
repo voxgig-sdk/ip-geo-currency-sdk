@@ -33,9 +33,10 @@ $client = new IpGeoCurrencySDK();
 
 ```php
 try {
-    $result = $client->apijson()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare ApiJson record (throws on error).
+    $apijson = $client->ApiJson()->load(["id" => "example_id"]);
+    print_r($apijson);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -81,13 +82,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = IpGeoCurrencySDK::test();
+$client = IpGeoCurrencySDK::test([
+    "entity" => ["apijson" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->apijson()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$apijson = $client->ApiJson()->load(["id" => "test01"]);
+print_r($apijson);
 ```
 
 ### Use a custom fetch function
@@ -166,7 +171,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `ApiJson` | `($data): ApiJsonEntity` | Create a ApiJson entity instance. |
+| `ApiJson` | `($data): ApiJsonEntity` | Create an ApiJson entity instance. |
 | `CurrencyConversion` | `($data): CurrencyConversionEntity` | Create a CurrencyConversion entity instance. |
 | `CurrencyRate` | `($data): CurrencyRateEntity` | Create a CurrencyRate entity instance. |
 | `Json` | `($data): JsonEntity` | Create a Json entity instance. |
@@ -284,7 +289,7 @@ API path: `/json`
 
 ### ApiJson
 
-Create an instance: `const api_json = client.api_json`
+Create an instance: `$api_json = $client->ApiJson();`
 
 #### Operations
 
@@ -311,14 +316,15 @@ Create an instance: `const api_json = client.api_json`
 
 #### Example: Load
 
-```ts
-const api_json = await client.api_json.load({ id: 'api_json_id' })
+```php
+// load() returns the bare ApiJson record (throws on error).
+$api_json = $client->ApiJson()->load(["id" => "api_json_id"]);
 ```
 
 
 ### CurrencyConversion
 
-Create an instance: `const currency_conversion = client.currency_conversion`
+Create an instance: `$currency_conversion = $client->CurrencyConversion();`
 
 #### Operations
 
@@ -338,14 +344,15 @@ Create an instance: `const currency_conversion = client.currency_conversion`
 
 #### Example: Load
 
-```ts
-const currency_conversion = await client.currency_conversion.load({ id: 'currency_conversion_id' })
+```php
+// load() returns the bare CurrencyConversion record (throws on error).
+$currency_conversion = $client->CurrencyConversion()->load(["id" => "currency_conversion_id"]);
 ```
 
 
 ### CurrencyRate
 
-Create an instance: `const currency_rate = client.currency_rate`
+Create an instance: `$currency_rate = $client->CurrencyRate();`
 
 #### Operations
 
@@ -363,14 +370,15 @@ Create an instance: `const currency_rate = client.currency_rate`
 
 #### Example: Load
 
-```ts
-const currency_rate = await client.currency_rate.load({ id: 'currency_rate_id' })
+```php
+// load() returns the bare CurrencyRate record (throws on error).
+$currency_rate = $client->CurrencyRate()->load(["id" => "currency_rate_id"]);
 ```
 
 
 ### Json
 
-Create an instance: `const json = client.json`
+Create an instance: `$json = $client->Json();`
 
 #### Operations
 
@@ -397,8 +405,9 @@ Create an instance: `const json = client.json`
 
 #### Example: Load
 
-```ts
-const json = await client.json.load({ id: 'json_id' })
+```php
+// load() returns the bare Json record (throws on error).
+$json = $client->Json()->load(["id" => "json_id"]);
 ```
 
 
@@ -473,7 +482,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$apijson = $client->apijson();
+$apijson = $client->ApiJson();
 $apijson->load(["id" => "example_id"]);
 
 // $apijson->dataGet() now returns the loaded apijson data

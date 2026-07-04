@@ -26,9 +26,9 @@ import { IpGeoCurrencySDK } from '@voxgig-sdk/ip-geo-currency'
 
 const client = new IpGeoCurrencySDK()
 
-// Load apijson data
-const apijson = await client.apijson.load({})
-console.log(apijson.data)
+// Load apijson data (returns a ApiJson)
+const apijson = await client.ApiJson().load()
+console.log(apijson)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -87,8 +87,8 @@ from ipgeocurrency_sdk import IpGeoCurrencySDK
 client = IpGeoCurrencySDK()
 
 
-# Load a specific apijson
-apijson = client.apijson.load({"id": "example_id"})
+# Load a specific apijson (returns the record, raises on error)
+apijson = client.ApiJson().load({"id": "example_id"})
 print(apijson)
 ```
 
@@ -101,8 +101,8 @@ require_once 'ipgeocurrency_sdk.php';
 $client = new IpGeoCurrencySDK();
 
 
-// Load a specific apijson
-$apijson = $client->apijson()->load(["id" => "example_id"]);
+// Load a specific apijson (returns the bare record; throws on error)
+$apijson = $client->ApiJson()->load(["id" => "example_id"]);
 print_r($apijson);
 ```
 
@@ -126,8 +126,8 @@ require_relative "IpGeoCurrency_sdk"
 client = IpGeoCurrencySDK.new
 
 
-# Load a specific apijson
-apijson = client.apijson.load({ "id" => "example_id" })
+# Load a specific apijson (returns the bare record; raises on error)
+apijson = client.ApiJson.load({ "id" => "example_id" })
 puts apijson
 ```
 
@@ -140,7 +140,7 @@ local client = sdk.new()
 
 
 -- Load a specific apijson
-local apijson, err = client:apijson():load({ id = "example_id" })
+local apijson, err = client:ApiJson():load({ id = "example_id" })
 print(apijson)
 ```
 
@@ -153,22 +153,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = IpGeoCurrencySDK.test()
-const result = await client.apijson.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const apijson = await client.ApiJson().load({ id: 'test01' })
+// apijson is a bare ApiJson populated with mock data
+console.log(apijson)
 ```
 
 ### Python
 
 ```python
 client = IpGeoCurrencySDK.test()
-result = client.apijson.load({"id": "test01"})
+apijson = client.ApiJson().load({"id": "test01"})
+print(apijson)
 ```
 
 ### PHP
 
 ```php
-$client = IpGeoCurrencySDK::test();
-$result = $client->apijson()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = IpGeoCurrencySDK::test([
+    "entity" => ["apijson" => ["test01" => ["id" => "test01"]]],
+]);
+$apijson = $client->ApiJson()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -183,15 +188,18 @@ result, err := client.ApiJson(nil).Load(
 ### Ruby
 
 ```ruby
-client = IpGeoCurrencySDK.test
-result = client.apijson.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = IpGeoCurrencySDK.test({
+  "entity" => { "apijson" => { "test01" => { "id" => "test01" } } },
+})
+apijson = client.ApiJson.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:apijson():load({ id = "test01" })
+local result, err = client:ApiJson():load({ id = "test01" })
 ```
 
 ## How it works
@@ -239,6 +247,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

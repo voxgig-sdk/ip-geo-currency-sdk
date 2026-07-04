@@ -4,92 +4,88 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class ApiJson:
-    city: Optional[str] = None
-    continent: Optional[str] = None
-    continent_code: Optional[str] = None
-    country: Optional[str] = None
-    country_code: Optional[str] = None
-    currency: Optional[str] = None
-    currency_name: Optional[str] = None
-    ip: Optional[str] = None
-    latitude: Optional[float] = None
-    longitude: Optional[float] = None
-    region: Optional[str] = None
-    timezone: Optional[str] = None
+class ApiJson(TypedDict, total=False):
+    city: str
+    continent: str
+    continent_code: str
+    country: str
+    country_code: str
+    currency: str
+    currency_name: str
+    ip: str
+    latitude: float
+    longitude: float
+    region: str
+    timezone: str
 
 
-@dataclass
-class ApiJsonLoadMatch:
+class ApiJsonLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class CurrencyConversion:
-    amount: Optional[float] = None
-    base: Optional[str] = None
-    rate: Optional[float] = None
-    result: Optional[float] = None
-    target: Optional[str] = None
+class CurrencyConversion(TypedDict, total=False):
+    amount: float
+    base: str
+    rate: float
+    result: float
+    target: str
 
 
-@dataclass
-class CurrencyConversionLoadMatch:
+class CurrencyConversionLoadMatch(TypedDict):
     amount: float
     base: str
     target: str
 
 
-@dataclass
-class CurrencyRate:
-    base: Optional[str] = None
-    date: Optional[str] = None
-    rate: Optional[dict] = None
+class CurrencyRate(TypedDict, total=False):
+    base: str
+    date: str
+    rate: dict
 
 
-@dataclass
-class CurrencyRateLoadMatch:
-    base: Optional[str] = None
-    date: Optional[str] = None
-    rate: Optional[dict] = None
+class CurrencyRateLoadMatch(TypedDict, total=False):
+    base: str
+    date: str
+    rate: dict
 
 
-@dataclass
-class Json:
-    city: Optional[str] = None
-    continent: Optional[str] = None
-    continent_code: Optional[str] = None
-    country: Optional[str] = None
-    country_code: Optional[str] = None
-    currency: Optional[str] = None
-    currency_name: Optional[str] = None
-    ip: Optional[str] = None
-    latitude: Optional[float] = None
-    longitude: Optional[float] = None
-    region: Optional[str] = None
-    timezone: Optional[str] = None
+class Json(TypedDict, total=False):
+    city: str
+    continent: str
+    continent_code: str
+    country: str
+    country_code: str
+    currency: str
+    currency_name: str
+    ip: str
+    latitude: float
+    longitude: float
+    region: str
+    timezone: str
 
 
-@dataclass
-class JsonLoadMatch:
-    city: Optional[str] = None
-    continent: Optional[str] = None
-    continent_code: Optional[str] = None
-    country: Optional[str] = None
-    country_code: Optional[str] = None
-    currency: Optional[str] = None
-    currency_name: Optional[str] = None
-    ip: Optional[str] = None
-    latitude: Optional[float] = None
-    longitude: Optional[float] = None
-    region: Optional[str] = None
-    timezone: Optional[str] = None
-
+class JsonLoadMatch(TypedDict, total=False):
+    city: str
+    continent: str
+    continent_code: str
+    country: str
+    country_code: str
+    currency: str
+    currency_name: str
+    ip: str
+    latitude: float
+    longitude: float
+    region: str
+    timezone: str

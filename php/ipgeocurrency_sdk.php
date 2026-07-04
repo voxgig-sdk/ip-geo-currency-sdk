@@ -233,10 +233,10 @@ class IpGeoCurrencySDK
 
     private $_api_json = null;
 
-    // Idiomatic facade: $client->api_json()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias ApiJson() (PHP method
-    // names are case-insensitive).
-    public function api_json($data = null)
+    // Canonical facade: $client->ApiJson()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->api_json()
+    // resolves here too.
+    public function ApiJson($data = null)
     {
         require_once __DIR__ . '/entity/api_json_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class IpGeoCurrencySDK
 
     private $_currency_conversion = null;
 
-    // Idiomatic facade: $client->currency_conversion()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias CurrencyConversion() (PHP method
-    // names are case-insensitive).
-    public function currency_conversion($data = null)
+    // Canonical facade: $client->CurrencyConversion()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->currency_conversion()
+    // resolves here too.
+    public function CurrencyConversion($data = null)
     {
         require_once __DIR__ . '/entity/currency_conversion_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class IpGeoCurrencySDK
 
     private $_currency_rate = null;
 
-    // Idiomatic facade: $client->currency_rate()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias CurrencyRate() (PHP method
-    // names are case-insensitive).
-    public function currency_rate($data = null)
+    // Canonical facade: $client->CurrencyRate()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->currency_rate()
+    // resolves here too.
+    public function CurrencyRate($data = null)
     {
         require_once __DIR__ . '/entity/currency_rate_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class IpGeoCurrencySDK
 
     private $_json = null;
 
-    // Idiomatic facade: $client->json()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Json() (PHP method
-    // names are case-insensitive).
-    public function json($data = null)
+    // Canonical facade: $client->Json()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->json()
+    // resolves here too.
+    public function Json($data = null)
     {
         require_once __DIR__ . '/entity/json_entity.php';
         if ($data === null) {

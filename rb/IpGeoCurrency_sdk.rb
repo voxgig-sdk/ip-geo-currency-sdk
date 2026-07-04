@@ -208,52 +208,28 @@ class IpGeoCurrencySDK
   end
 
 
-  # Idiomatic facade: client.api_json.list / client.api_json.load({ "id" => ... })
-  def api_json
-    require_relative 'entity/api_json_entity'
-    @api_json ||= ApiJsonEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.api_json instead.
+  # Canonical facade: client.ApiJson.list / client.ApiJson.load({ "id" => ... })
   def ApiJson(data = nil)
     require_relative 'entity/api_json_entity'
     ApiJsonEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.currency_conversion.list / client.currency_conversion.load({ "id" => ... })
-  def currency_conversion
-    require_relative 'entity/currency_conversion_entity'
-    @currency_conversion ||= CurrencyConversionEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.currency_conversion instead.
+  # Canonical facade: client.CurrencyConversion.list / client.CurrencyConversion.load({ "id" => ... })
   def CurrencyConversion(data = nil)
     require_relative 'entity/currency_conversion_entity'
     CurrencyConversionEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.currency_rate.list / client.currency_rate.load({ "id" => ... })
-  def currency_rate
-    require_relative 'entity/currency_rate_entity'
-    @currency_rate ||= CurrencyRateEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.currency_rate instead.
+  # Canonical facade: client.CurrencyRate.list / client.CurrencyRate.load({ "id" => ... })
   def CurrencyRate(data = nil)
     require_relative 'entity/currency_rate_entity'
     CurrencyRateEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.json.list / client.json.load({ "id" => ... })
-  def json
-    require_relative 'entity/json_entity'
-    @json ||= JsonEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.json instead.
+  # Canonical facade: client.Json.list / client.Json.load({ "id" => ... })
   def Json(data = nil)
     require_relative 'entity/json_entity'
     JsonEntity.new(self, data)
