@@ -152,18 +152,18 @@ const api_json = client.ApiJson()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `continent_code` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `country_code` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `currency_name` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `continent` | `string` | No |  |
+| `continent_code` | `string` | No |  |
+| `country` | `string` | No |  |
+| `country_code` | `string` | No |  |
+| `currency` | `string` | No |  |
+| `currency_name` | `string` | No |  |
+| `ip` | `string` | No |  |
+| `latitude` | `number` | No |  |
+| `longitude` | `number` | No |  |
+| `region` | `string` | No |  |
+| `timezone` | `string` | No |  |
 
 ### Operations
 
@@ -213,11 +213,11 @@ const currency_conversion = client.CurrencyConversion()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | ``$NUMBER`` | No |  |
-| `base` | ``$STRING`` | No |  |
-| `rate` | ``$NUMBER`` | No |  |
-| `result` | ``$NUMBER`` | No |  |
-| `target` | ``$STRING`` | No |  |
+| `amount` | `number` | No |  |
+| `base` | `string` | No |  |
+| `rate` | `number` | No |  |
+| `result` | `number` | No |  |
+| `target` | `string` | No |  |
 
 ### Operations
 
@@ -226,7 +226,7 @@ const currency_conversion = client.CurrencyConversion()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.CurrencyConversion().load({ id: 'currency_conversion_id' })
+const result = await client.CurrencyConversion().load()
 ```
 
 ### Common Methods
@@ -267,9 +267,9 @@ const currency_rate = client.CurrencyRate()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `base` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `rate` | ``$OBJECT`` | No |  |
+| `base` | `string` | No |  |
+| `date` | `string` | No |  |
+| `rate` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -278,7 +278,7 @@ const currency_rate = client.CurrencyRate()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.CurrencyRate().load({ id: 'currency_rate_id' })
+const result = await client.CurrencyRate().load()
 ```
 
 ### Common Methods
@@ -319,18 +319,18 @@ const json = client.Json()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `continent_code` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `country_code` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `currency_name` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `continent` | `string` | No |  |
+| `continent_code` | `string` | No |  |
+| `country` | `string` | No |  |
+| `country_code` | `string` | No |  |
+| `currency` | `string` | No |  |
+| `currency_name` | `string` | No |  |
+| `ip` | `string` | No |  |
+| `latitude` | `number` | No |  |
+| `longitude` | `number` | No |  |
+| `region` | `string` | No |  |
+| `timezone` | `string` | No |  |
 
 ### Operations
 
@@ -339,7 +339,7 @@ const json = client.Json()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Json().load({ id: 'json_id' })
+const result = await client.Json().load()
 ```
 
 ### Common Methods

@@ -129,7 +129,7 @@ CurrencyRate = Struct.new(
   keyword_init: true
 )
 
-# Match filter for CurrencyRate#load (any subset of CurrencyRate fields).
+# Request payload for CurrencyRate#load.
 #
 # @!attribute [rw] base
 #   @return [String, nil]
@@ -199,7 +199,7 @@ Json = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Json#load (any subset of Json fields).
+# Request payload for Json#load.
 #
 # @!attribute [rw] city
 #   @return [String, nil]

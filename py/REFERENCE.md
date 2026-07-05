@@ -8,7 +8,7 @@ Complete API reference for the IpGeoCurrency Python SDK.
 ### Constructor
 
 ```python
-from ip-geo-currency_sdk import IpGeoCurrencySDK
+from ipgeocurrency_sdk import IpGeoCurrencySDK
 
 client = IpGeoCurrencySDK(options)
 ```
@@ -99,18 +99,18 @@ api_json = client.ApiJson()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `continent_code` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `country_code` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `currency_name` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `city` | `str` | No |  |
+| `continent` | `str` | No |  |
+| `continent_code` | `str` | No |  |
+| `country` | `str` | No |  |
+| `country_code` | `str` | No |  |
+| `currency` | `str` | No |  |
+| `currency_name` | `str` | No |  |
+| `ip` | `str` | No |  |
+| `latitude` | `float` | No |  |
+| `longitude` | `float` | No |  |
+| `region` | `str` | No |  |
+| `timezone` | `str` | No |  |
 
 ### Operations
 
@@ -161,11 +161,11 @@ currency_conversion = client.CurrencyConversion()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | ``$NUMBER`` | No |  |
-| `base` | ``$STRING`` | No |  |
-| `rate` | ``$NUMBER`` | No |  |
-| `result` | ``$NUMBER`` | No |  |
-| `target` | ``$STRING`` | No |  |
+| `amount` | `float` | No |  |
+| `base` | `str` | No |  |
+| `rate` | `float` | No |  |
+| `result` | `float` | No |  |
+| `target` | `str` | No |  |
 
 ### Operations
 
@@ -174,7 +174,7 @@ currency_conversion = client.CurrencyConversion()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.CurrencyConversion().load({"id": "currency_conversion_id"})
+result = client.CurrencyConversion().load()
 ```
 
 ### Common Methods
@@ -216,9 +216,9 @@ currency_rate = client.CurrencyRate()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `base` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `rate` | ``$OBJECT`` | No |  |
+| `base` | `str` | No |  |
+| `date` | `str` | No |  |
+| `rate` | `dict` | No |  |
 
 ### Operations
 
@@ -227,7 +227,7 @@ currency_rate = client.CurrencyRate()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.CurrencyRate().load({"id": "currency_rate_id"})
+result = client.CurrencyRate().load()
 ```
 
 ### Common Methods
@@ -269,18 +269,18 @@ json = client.Json()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `continent_code` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `country_code` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `currency_name` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `city` | `str` | No |  |
+| `continent` | `str` | No |  |
+| `continent_code` | `str` | No |  |
+| `country` | `str` | No |  |
+| `country_code` | `str` | No |  |
+| `currency` | `str` | No |  |
+| `currency_name` | `str` | No |  |
+| `ip` | `str` | No |  |
+| `latitude` | `float` | No |  |
+| `longitude` | `float` | No |  |
+| `region` | `str` | No |  |
+| `timezone` | `str` | No |  |
 
 ### Operations
 
@@ -289,7 +289,7 @@ json = client.Json()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Json().load({"id": "json_id"})
+result = client.Json().load()
 ```
 
 ### Common Methods

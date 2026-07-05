@@ -8,7 +8,7 @@ Complete API reference for the IpGeoCurrency Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'ip-geo-currency_sdk'
+require_relative 'IpGeoCurrency_sdk'
 
 client = IpGeoCurrencySDK.new(options)
 ```
@@ -105,18 +105,18 @@ api_json = client.ApiJson
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `continent_code` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `country_code` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `currency_name` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `city` | `String` | No |  |
+| `continent` | `String` | No |  |
+| `continent_code` | `String` | No |  |
+| `country` | `String` | No |  |
+| `country_code` | `String` | No |  |
+| `currency` | `String` | No |  |
+| `currency_name` | `String` | No |  |
+| `ip` | `String` | No |  |
+| `latitude` | `Float` | No |  |
+| `longitude` | `Float` | No |  |
+| `region` | `String` | No |  |
+| `timezone` | `String` | No |  |
 
 ### Operations
 
@@ -168,11 +168,11 @@ currency_conversion = client.CurrencyConversion
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | ``$NUMBER`` | No |  |
-| `base` | ``$STRING`` | No |  |
-| `rate` | ``$NUMBER`` | No |  |
-| `result` | ``$NUMBER`` | No |  |
-| `target` | ``$STRING`` | No |  |
+| `amount` | `Float` | No |  |
+| `base` | `String` | No |  |
+| `rate` | `Float` | No |  |
+| `result` | `Float` | No |  |
+| `target` | `String` | No |  |
 
 ### Operations
 
@@ -181,7 +181,7 @@ currency_conversion = client.CurrencyConversion
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.CurrencyConversion.load({ "id" => "currency_conversion_id" })
+result = client.CurrencyConversion.load()
 ```
 
 ### Common Methods
@@ -224,9 +224,9 @@ currency_rate = client.CurrencyRate
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `base` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `rate` | ``$OBJECT`` | No |  |
+| `base` | `String` | No |  |
+| `date` | `String` | No |  |
+| `rate` | `Hash` | No |  |
 
 ### Operations
 
@@ -235,7 +235,7 @@ currency_rate = client.CurrencyRate
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.CurrencyRate.load({ "id" => "currency_rate_id" })
+result = client.CurrencyRate.load()
 ```
 
 ### Common Methods
@@ -278,18 +278,18 @@ json = client.Json
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `continent_code` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `country_code` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `currency_name` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `city` | `String` | No |  |
+| `continent` | `String` | No |  |
+| `continent_code` | `String` | No |  |
+| `country` | `String` | No |  |
+| `country_code` | `String` | No |  |
+| `currency` | `String` | No |  |
+| `currency_name` | `String` | No |  |
+| `ip` | `String` | No |  |
+| `latitude` | `Float` | No |  |
+| `longitude` | `Float` | No |  |
+| `region` | `String` | No |  |
+| `timezone` | `String` | No |  |
 
 ### Operations
 
@@ -298,7 +298,7 @@ json = client.Json
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Json.load({ "id" => "json_id" })
+result = client.Json.load()
 ```
 
 ### Common Methods

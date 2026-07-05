@@ -61,7 +61,7 @@ class CurrencyRate
     public ?array $rate = null;
 }
 
-/** Match filter for CurrencyRate#load (any subset of CurrencyRate fields). */
+/** Request payload for CurrencyRate#load. */
 class CurrencyRateLoadMatch
 {
     public ?string $base = null;
@@ -86,7 +86,7 @@ class Json
     public ?string $timezone = null;
 }
 
-/** Match filter for Json#load (any subset of Json fields). */
+/** Request payload for Json#load. */
 class JsonLoadMatch
 {
     public ?string $city = null;

@@ -102,18 +102,18 @@ local api_json = client:ApiJson(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `continent_code` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `country_code` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `currency_name` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `continent` | `string` | No |  |
+| `continent_code` | `string` | No |  |
+| `country` | `string` | No |  |
+| `country_code` | `string` | No |  |
+| `currency` | `string` | No |  |
+| `currency_name` | `string` | No |  |
+| `ip` | `string` | No |  |
+| `latitude` | `number` | No |  |
+| `longitude` | `number` | No |  |
+| `region` | `string` | No |  |
+| `timezone` | `string` | No |  |
 
 ### Operations
 
@@ -165,11 +165,11 @@ local currency_conversion = client:CurrencyConversion(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | ``$NUMBER`` | No |  |
-| `base` | ``$STRING`` | No |  |
-| `rate` | ``$NUMBER`` | No |  |
-| `result` | ``$NUMBER`` | No |  |
-| `target` | ``$STRING`` | No |  |
+| `amount` | `number` | No |  |
+| `base` | `string` | No |  |
+| `rate` | `number` | No |  |
+| `result` | `number` | No |  |
+| `target` | `string` | No |  |
 
 ### Operations
 
@@ -178,7 +178,7 @@ local currency_conversion = client:CurrencyConversion(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:CurrencyConversion():load({ id = "currency_conversion_id" })
+local result, err = client:CurrencyConversion():load()
 ```
 
 ### Common Methods
@@ -221,9 +221,9 @@ local currency_rate = client:CurrencyRate(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `base` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `rate` | ``$OBJECT`` | No |  |
+| `base` | `string` | No |  |
+| `date` | `string` | No |  |
+| `rate` | `table` | No |  |
 
 ### Operations
 
@@ -232,7 +232,7 @@ local currency_rate = client:CurrencyRate(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:CurrencyRate():load({ id = "currency_rate_id" })
+local result, err = client:CurrencyRate():load()
 ```
 
 ### Common Methods
@@ -275,18 +275,18 @@ local json = client:Json(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `continent_code` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `country_code` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `currency_name` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `continent` | `string` | No |  |
+| `continent_code` | `string` | No |  |
+| `country` | `string` | No |  |
+| `country_code` | `string` | No |  |
+| `currency` | `string` | No |  |
+| `currency_name` | `string` | No |  |
+| `ip` | `string` | No |  |
+| `latitude` | `number` | No |  |
+| `longitude` | `number` | No |  |
+| `region` | `string` | No |  |
+| `timezone` | `string` | No |  |
 
 ### Operations
 
@@ -295,7 +295,7 @@ local json = client:Json(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Json():load({ id = "json_id" })
+local result, err = client:Json():load()
 ```
 
 ### Common Methods

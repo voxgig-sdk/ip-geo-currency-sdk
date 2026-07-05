@@ -41,6 +41,9 @@
 ---@field rate? table
 
 ---@class CurrencyRateLoadMatch
+---@field base? string
+---@field date? string
+---@field rate? table
 
 ---@class Json
 ---@field city? string
@@ -57,6 +60,18 @@
 ---@field timezone? string
 
 ---@class JsonLoadMatch
+---@field city? string
+---@field continent? string
+---@field continent_code? string
+---@field country? string
+---@field country_code? string
+---@field currency? string
+---@field currency_name? string
+---@field ip? string
+---@field latitude? number
+---@field longitude? number
+---@field region? string
+---@field timezone? string
 
 local M = {}
 

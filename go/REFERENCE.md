@@ -109,18 +109,18 @@ api_json := client.ApiJson(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `continent_code` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `country_code` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `currency_name` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `continent` | `string` | No |  |
+| `continent_code` | `string` | No |  |
+| `country` | `string` | No |  |
+| `country_code` | `string` | No |  |
+| `currency` | `string` | No |  |
+| `currency_name` | `string` | No |  |
+| `ip` | `string` | No |  |
+| `latitude` | `float64` | No |  |
+| `longitude` | `float64` | No |  |
+| `region` | `string` | No |  |
+| `timezone` | `string` | No |  |
 
 ### Operations
 
@@ -166,11 +166,11 @@ currency_conversion := client.CurrencyConversion(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | ``$NUMBER`` | No |  |
-| `base` | ``$STRING`` | No |  |
-| `rate` | ``$NUMBER`` | No |  |
-| `result` | ``$NUMBER`` | No |  |
-| `target` | ``$STRING`` | No |  |
+| `amount` | `float64` | No |  |
+| `base` | `string` | No |  |
+| `rate` | `float64` | No |  |
+| `result` | `float64` | No |  |
+| `target` | `string` | No |  |
 
 ### Operations
 
@@ -179,7 +179,7 @@ currency_conversion := client.CurrencyConversion(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.CurrencyConversion(nil).Load(map[string]any{"id": "currency_conversion_id"}, nil)
+result, err := client.CurrencyConversion(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -216,9 +216,9 @@ currency_rate := client.CurrencyRate(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `base` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `rate` | ``$OBJECT`` | No |  |
+| `base` | `string` | No |  |
+| `date` | `string` | No |  |
+| `rate` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -227,7 +227,7 @@ currency_rate := client.CurrencyRate(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.CurrencyRate(nil).Load(map[string]any{"id": "currency_rate_id"}, nil)
+result, err := client.CurrencyRate(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -264,18 +264,18 @@ json := client.Json(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `continent_code` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `country_code` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `currency_name` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `continent` | `string` | No |  |
+| `continent_code` | `string` | No |  |
+| `country` | `string` | No |  |
+| `country_code` | `string` | No |  |
+| `currency` | `string` | No |  |
+| `currency_name` | `string` | No |  |
+| `ip` | `string` | No |  |
+| `latitude` | `float64` | No |  |
+| `longitude` | `float64` | No |  |
+| `region` | `string` | No |  |
+| `timezone` | `string` | No |  |
 
 ### Operations
 
@@ -284,7 +284,7 @@ json := client.Json(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Json(nil).Load(map[string]any{"id": "json_id"}, nil)
+result, err := client.Json(nil).Load(nil, nil)
 ```
 
 ### Common Methods

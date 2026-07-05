@@ -8,7 +8,7 @@ Complete API reference for the IpGeoCurrency PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/ip-geo-currency_sdk.php';
+require_once __DIR__ . '/ipgeocurrency_sdk.php';
 
 $client = new IpGeoCurrencySDK($options);
 ```
@@ -57,11 +57,11 @@ Create a new `CurrencyRateEntity` instance. Pass `null` for no initial data.
 
 Create a new `JsonEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): IpGeoCurrencyUtility`
 
 Return a copy of the SDK utility object.
 
@@ -104,18 +104,18 @@ $api_json = $client->ApiJson();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `continent_code` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `country_code` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `currency_name` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `continent` | `string` | No |  |
+| `continent_code` | `string` | No |  |
+| `country` | `string` | No |  |
+| `country_code` | `string` | No |  |
+| `currency` | `string` | No |  |
+| `currency_name` | `string` | No |  |
+| `ip` | `string` | No |  |
+| `latitude` | `float` | No |  |
+| `longitude` | `float` | No |  |
+| `region` | `string` | No |  |
+| `timezone` | `string` | No |  |
 
 ### Operations
 
@@ -129,19 +129,19 @@ $result = $client->ApiJson()->load(["id" => "api_json_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -150,7 +150,7 @@ Set the entity match criteria.
 Create a new `ApiJsonEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -167,11 +167,11 @@ $currency_conversion = $client->CurrencyConversion();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | ``$NUMBER`` | No |  |
-| `base` | ``$STRING`` | No |  |
-| `rate` | ``$NUMBER`` | No |  |
-| `result` | ``$NUMBER`` | No |  |
-| `target` | ``$STRING`` | No |  |
+| `amount` | `float` | No |  |
+| `base` | `string` | No |  |
+| `rate` | `float` | No |  |
+| `result` | `float` | No |  |
+| `target` | `string` | No |  |
 
 ### Operations
 
@@ -180,24 +180,24 @@ $currency_conversion = $client->CurrencyConversion();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->CurrencyConversion()->load(["id" => "currency_conversion_id"]);
+$result = $client->CurrencyConversion()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -206,7 +206,7 @@ Set the entity match criteria.
 Create a new `CurrencyConversionEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -223,9 +223,9 @@ $currency_rate = $client->CurrencyRate();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `base` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `rate` | ``$OBJECT`` | No |  |
+| `base` | `string` | No |  |
+| `date` | `string` | No |  |
+| `rate` | `array` | No |  |
 
 ### Operations
 
@@ -234,24 +234,24 @@ $currency_rate = $client->CurrencyRate();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->CurrencyRate()->load(["id" => "currency_rate_id"]);
+$result = $client->CurrencyRate()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -260,7 +260,7 @@ Set the entity match criteria.
 Create a new `CurrencyRateEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -277,18 +277,18 @@ $json = $client->Json();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `continent_code` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `country_code` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `currency_name` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `continent` | `string` | No |  |
+| `continent_code` | `string` | No |  |
+| `country` | `string` | No |  |
+| `country_code` | `string` | No |  |
+| `currency` | `string` | No |  |
+| `currency_name` | `string` | No |  |
+| `ip` | `string` | No |  |
+| `latitude` | `float` | No |  |
+| `longitude` | `float` | No |  |
+| `region` | `string` | No |  |
+| `timezone` | `string` | No |  |
 
 ### Operations
 
@@ -297,24 +297,24 @@ $json = $client->Json();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Json()->load(["id" => "json_id"]);
+$result = $client->Json()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -323,7 +323,7 @@ Set the entity match criteria.
 Create a new `JsonEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

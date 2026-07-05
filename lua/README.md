@@ -4,6 +4,8 @@
 
 The Lua SDK for the IpGeoCurrency API — an entity-oriented client using Lua conventions.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:ApiJson()` — each with the same small set of operations (`load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -37,6 +39,28 @@ local client = sdk.new()
 local apijson, err = client:ApiJson():load({ id = "example_id" })
 if err then error(err) end
 print(apijson)
+```
+
+
+## Error handling
+
+Entity operations return `(value, err)`. Check `err` before using
+the value:
+
+```lua
+local apijson, err = client:ApiJson():load({ id = "example_id" })
+if err then error(err) end
+```
+
+`direct` follows the same `(value, err)` convention:
+
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example_id" },
+})
+if err then error(err) end
 ```
 
 
@@ -83,7 +107,7 @@ Create a mock client for unit testing — no server required:
 local client = sdk.test()
 
 local result, err = client:ApiJson():load({ id = "test01" })
--- result is the loaded data; err is set on failure
+-- result is the returned data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -173,10 +197,6 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> any, err` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -191,8 +211,7 @@ data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
-| `list` | an array (`table`) of entity records |
+| `load` | the entity record (a `table`) |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
@@ -292,18 +311,18 @@ Create an instance: `local api_json = client:ApiJson(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `continent` | ``$STRING`` |  |
-| `continent_code` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `country_code` | ``$STRING`` |  |
-| `currency` | ``$STRING`` |  |
-| `currency_name` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `region` | ``$STRING`` |  |
-| `timezone` | ``$STRING`` |  |
+| `city` | `string` |  |
+| `continent` | `string` |  |
+| `continent_code` | `string` |  |
+| `country` | `string` |  |
+| `country_code` | `string` |  |
+| `currency` | `string` |  |
+| `currency_name` | `string` |  |
+| `ip` | `string` |  |
+| `latitude` | `number` |  |
+| `longitude` | `number` |  |
+| `region` | `string` |  |
+| `timezone` | `string` |  |
 
 #### Example: Load
 
@@ -326,16 +345,16 @@ Create an instance: `local currency_conversion = client:CurrencyConversion(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `amount` | ``$NUMBER`` |  |
-| `base` | ``$STRING`` |  |
-| `rate` | ``$NUMBER`` |  |
-| `result` | ``$NUMBER`` |  |
-| `target` | ``$STRING`` |  |
+| `amount` | `number` |  |
+| `base` | `string` |  |
+| `rate` | `number` |  |
+| `result` | `number` |  |
+| `target` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local currency_conversion, err = client:CurrencyConversion():load({ id = "currency_conversion_id" })
+local currency_conversion, err = client:CurrencyConversion():load()
 ```
 
 
@@ -353,14 +372,14 @@ Create an instance: `local currency_rate = client:CurrencyRate(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `base` | ``$STRING`` |  |
-| `date` | ``$STRING`` |  |
-| `rate` | ``$OBJECT`` |  |
+| `base` | `string` |  |
+| `date` | `string` |  |
+| `rate` | `table` |  |
 
 #### Example: Load
 
 ```lua
-local currency_rate, err = client:CurrencyRate():load({ id = "currency_rate_id" })
+local currency_rate, err = client:CurrencyRate():load()
 ```
 
 
@@ -378,32 +397,36 @@ Create an instance: `local json = client:Json(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `continent` | ``$STRING`` |  |
-| `continent_code` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `country_code` | ``$STRING`` |  |
-| `currency` | ``$STRING`` |  |
-| `currency_name` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `region` | ``$STRING`` |  |
-| `timezone` | ``$STRING`` |  |
+| `city` | `string` |  |
+| `continent` | `string` |  |
+| `continent_code` | `string` |  |
+| `country` | `string` |  |
+| `country_code` | `string` |  |
+| `currency` | `string` |  |
+| `currency_name` | `string` |  |
+| `ip` | `string` |  |
+| `latitude` | `number` |  |
+| `longitude` | `number` |  |
+| `region` | `string` |  |
+| `timezone` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local json, err = client:Json():load({ id = "json_id" })
+local json, err = client:Json():load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -420,8 +443,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -472,7 +496,7 @@ stores the returned data and match criteria internally.
 local apijson = client:ApiJson()
 apijson:load({ id = "example_id" })
 
--- apijson:data_get() now returns the loaded apijson data
+-- apijson:data_get() now returns the apijson data from the last load
 -- apijson:match_get() returns the last match criteria
 ```
 

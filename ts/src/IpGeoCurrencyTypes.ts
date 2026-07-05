@@ -44,7 +44,11 @@ export interface CurrencyRate {
   rate?: Record<string, any>
 }
 
-export type CurrencyRateLoadMatch = Partial<CurrencyRate>
+export interface CurrencyRateLoadMatch {
+  base?: string
+  date?: string
+  rate?: Record<string, any>
+}
 
 export interface Json {
   city?: string
@@ -61,5 +65,18 @@ export interface Json {
   timezone?: string
 }
 
-export type JsonLoadMatch = Partial<Json>
+export interface JsonLoadMatch {
+  city?: string
+  continent?: string
+  continent_code?: string
+  country?: string
+  country_code?: string
+  currency?: string
+  currency_name?: string
+  ip?: string
+  latitude?: number
+  longitude?: number
+  region?: string
+  timezone?: string
+}
 

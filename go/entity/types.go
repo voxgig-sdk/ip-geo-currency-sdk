@@ -52,8 +52,7 @@ type CurrencyRate struct {
 	Rate *map[string]any `json:"rate,omitempty"`
 }
 
-// CurrencyRateLoadMatch mirrors the currency_rate fields as an all-optional match
-// filter (Go analog of Partial<CurrencyRate>).
+// CurrencyRateLoadMatch is the typed request payload for CurrencyRate.LoadTyped.
 type CurrencyRateLoadMatch struct {
 	Base *string `json:"base,omitempty"`
 	Date *string `json:"date,omitempty"`
@@ -76,8 +75,7 @@ type Json struct {
 	Timezone *string `json:"timezone,omitempty"`
 }
 
-// JsonLoadMatch mirrors the json fields as an all-optional match
-// filter (Go analog of Partial<Json>).
+// JsonLoadMatch is the typed request payload for Json.LoadTyped.
 type JsonLoadMatch struct {
 	City *string `json:"city,omitempty"`
 	Continent *string `json:"continent,omitempty"`
