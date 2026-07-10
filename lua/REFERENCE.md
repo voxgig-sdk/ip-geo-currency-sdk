@@ -178,7 +178,7 @@ local currency_conversion = client:CurrencyConversion(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:CurrencyConversion():load()
+local result, err = client:CurrencyConversion():load({ amount = 1, base = "base", target = "target" })
 ```
 
 ### Common Methods

@@ -102,7 +102,8 @@ same parameters as `Direct()`.
 ## ApiJsonEntity
 
 ```go
-api_json := client.ApiJson(nil)
+apiJson := client.ApiJson(nil)
+fmt.Println(apiJson.GetName()) // "api_json"
 ```
 
 ### Fields
@@ -130,6 +131,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.ApiJson(nil).Load(map[string]any{"id": "api_json_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -159,7 +164,8 @@ Return the entity name.
 ## CurrencyConversionEntity
 
 ```go
-currency_conversion := client.CurrencyConversion(nil)
+currencyConversion := client.CurrencyConversion(nil)
+fmt.Println(currencyConversion.GetName()) // "currency_conversion"
 ```
 
 ### Fields
@@ -179,7 +185,11 @@ currency_conversion := client.CurrencyConversion(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.CurrencyConversion(nil).Load(nil, nil)
+result, err := client.CurrencyConversion(nil).Load(map[string]any{"amount": 1, "base": "base", "target": "target"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -209,7 +219,8 @@ Return the entity name.
 ## CurrencyRateEntity
 
 ```go
-currency_rate := client.CurrencyRate(nil)
+currencyRate := client.CurrencyRate(nil)
+fmt.Println(currencyRate.GetName()) // "currency_rate"
 ```
 
 ### Fields
@@ -228,6 +239,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.CurrencyRate(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -258,6 +273,7 @@ Return the entity name.
 
 ```go
 json := client.Json(nil)
+fmt.Println(json.GetName()) // "json"
 ```
 
 ### Fields
@@ -285,6 +301,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Json(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

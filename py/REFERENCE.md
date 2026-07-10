@@ -174,7 +174,7 @@ currency_conversion = client.CurrencyConversion()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.CurrencyConversion().load()
+result = client.CurrencyConversion().load({"amount": 1, "base": "base", "target": "target"})
 ```
 
 ### Common Methods

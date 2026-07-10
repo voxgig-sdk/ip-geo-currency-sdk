@@ -181,7 +181,7 @@ currency_conversion = client.CurrencyConversion
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.CurrencyConversion.load()
+result = client.CurrencyConversion.load({ "amount" => 1, "base" => "base", "target" => "target" })
 ```
 
 ### Common Methods

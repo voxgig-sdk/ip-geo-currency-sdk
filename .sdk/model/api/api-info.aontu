@@ -15,10 +15,10 @@ main: {
           url: "https://apip.cc"
         }
       ]
+      summary: "This API provides geolocation information and currency data based on a user's IP address."
       termsOfService: "https://apip.cc/terms"
       title: "IP Geo Currency API"
       version: "1.0.0"
+      website: "https://apip.cc"
     }
   }
-}
-

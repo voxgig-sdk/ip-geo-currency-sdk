@@ -33,12 +33,14 @@ local sdk = require("ip-geo-currency_sdk")
 local client = sdk.new()
 ```
 
-### 3. Load an apijson
+### 3. Load a currencyconversion
+
+CurrencyConversion is nested under amount, so provide the `amount`.
 
 ```lua
-local apijson, err = client:ApiJson():load({ id = "example_id" })
+local currencyconversion, err = client:CurrencyConversion():load({ amount = 1, base = "example_base", target = "example_target" })
 if err then error(err) end
-print(apijson)
+print(currencyconversion)
 ```
 
 
@@ -354,7 +356,7 @@ Create an instance: `local currency_conversion = client:CurrencyConversion(nil)`
 #### Example: Load
 
 ```lua
-local currency_conversion, err = client:CurrencyConversion():load()
+local currency_conversion, err = client:CurrencyConversion():load({ amount = 1, base = "base", target = "target" })
 ```
 
 

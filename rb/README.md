@@ -30,13 +30,15 @@ require_relative "IpGeoCurrency_sdk"
 client = IpGeoCurrencySDK.new
 ```
 
-### 3. Load an apijson
+### 3. Load a currencyconversion
+
+CurrencyConversion is nested under amount, so provide the `amount`.
 
 ```ruby
 begin
-  # load returns the bare ApiJson record (raises on error).
-  apijson = client.ApiJson.load({ "id" => "example_id" })
-  puts apijson
+  # load returns the bare CurrencyConversion record (raises on error).
+  currencyconversion = client.CurrencyConversion.load({ "amount" => 1, "base" => "example_base", "target" => "example_target" })
+  puts currencyconversion
 rescue => err
   warn "load failed: #{err}"
 end
@@ -368,7 +370,7 @@ Create an instance: `currency_conversion = client.CurrencyConversion`
 
 ```ruby
 # load returns the bare CurrencyConversion record (raises on error).
-currency_conversion = client.CurrencyConversion.load()
+currency_conversion = client.CurrencyConversion.load({ "amount" => 1, "base" => "base", "target" => "target" })
 ```
 
 

@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // Load a single apijson — the value is the loaded record.
-    apijson, err := client.ApiJson(nil).Load(map[string]any{"id": "example"}, nil)
+    // Load a single apiJson — the value is the loaded record.
+    apiJson, err := client.ApiJson(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(apijson)
+    fmt.Println(apiJson)
 }
 ```
 
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-apijson, err := client.ApiJson(nil).Load(
+apiJson, err := client.ApiJson(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(apijson) // the returned mock data
+fmt.Println(apiJson) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -248,9 +248,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    apijson, err := client.ApiJson(nil).Load(map[string]any{"id": "example_id"}, nil)
+    apiJson, err := client.ApiJson(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil { /* handle */ }
-    // apijson is the returned record
+    // apiJson is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -332,7 +332,7 @@ API path: `/json`
 
 ### ApiJson
 
-Create an instance: `api_json := client.ApiJson(nil)`
+Create an instance: `apiJson := client.ApiJson(nil)`
 
 #### Operations
 
@@ -360,17 +360,17 @@ Create an instance: `api_json := client.ApiJson(nil)`
 #### Example: Load
 
 ```go
-api_json, err := client.ApiJson(nil).Load(map[string]any{"id": "api_json_id"}, nil)
+apiJson, err := client.ApiJson(nil).Load(map[string]any{"id": "api_json_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(api_json) // the loaded record
+fmt.Println(apiJson) // the loaded record
 ```
 
 
 ### CurrencyConversion
 
-Create an instance: `currency_conversion := client.CurrencyConversion(nil)`
+Create an instance: `currencyConversion := client.CurrencyConversion(nil)`
 
 #### Operations
 
@@ -391,17 +391,17 @@ Create an instance: `currency_conversion := client.CurrencyConversion(nil)`
 #### Example: Load
 
 ```go
-currency_conversion, err := client.CurrencyConversion(nil).Load(nil, nil)
+currencyConversion, err := client.CurrencyConversion(nil).Load(map[string]any{"amount": 1, "base": "base", "target": "target"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(currency_conversion) // the loaded record
+fmt.Println(currencyConversion) // the loaded record
 ```
 
 
 ### CurrencyRate
 
-Create an instance: `currency_rate := client.CurrencyRate(nil)`
+Create an instance: `currencyRate := client.CurrencyRate(nil)`
 
 #### Operations
 
@@ -420,11 +420,11 @@ Create an instance: `currency_rate := client.CurrencyRate(nil)`
 #### Example: Load
 
 ```go
-currency_rate, err := client.CurrencyRate(nil).Load(nil, nil)
+currencyRate, err := client.CurrencyRate(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(currency_rate) // the loaded record
+fmt.Println(currencyRate) // the loaded record
 ```
 
 

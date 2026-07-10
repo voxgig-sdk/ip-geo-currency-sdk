@@ -226,7 +226,7 @@ const currency_conversion = client.CurrencyConversion()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.CurrencyConversion().load()
+const result = await client.CurrencyConversion().load({ amount: 1, base: 'base', target: 'target' })
 ```
 
 ### Common Methods
