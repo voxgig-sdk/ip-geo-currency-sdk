@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- IpGeoCurrency SDK exists test
 
 local sdk = require("ip-geo-currency_sdk")
 
