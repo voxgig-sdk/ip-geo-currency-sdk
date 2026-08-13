@@ -135,6 +135,7 @@ module IpGeoCurrencyConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api-json/{ip-or-domain}",
                   "parts" => [
@@ -245,6 +246,7 @@ module IpGeoCurrencyConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api-rates/{amount}-{base}2{target}",
                   "parts" => [
@@ -282,29 +284,7 @@ module IpGeoCurrencyConfig
           },
         },
         "currency_rate" => {
-          "fields" => [
-            {
-              "active" => true,
-              "name" => "base",
-              "req" => false,
-              "type" => "`$STRING`",
-              "index$" => 0,
-            },
-            {
-              "active" => true,
-              "name" => "date",
-              "req" => false,
-              "type" => "`$STRING`",
-              "index$" => 1,
-            },
-            {
-              "active" => true,
-              "name" => "rate",
-              "req" => false,
-              "type" => "`$OBJECT`",
-              "index$" => 2,
-            },
-          ],
+          "fields" => [],
           "name" => "currency_rate",
           "op" => {
             "load" => {
@@ -314,6 +294,7 @@ module IpGeoCurrencyConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/rates.json",
                   "parts" => [
@@ -322,7 +303,7 @@ module IpGeoCurrencyConfig
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.rates`",
                   },
                   "index$" => 0,
                 },
@@ -441,6 +422,7 @@ module IpGeoCurrencyConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/json",
                   "parts" => [

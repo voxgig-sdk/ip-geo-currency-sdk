@@ -223,14 +223,6 @@ currencyRate := client.CurrencyRate(nil)
 fmt.Println(currencyRate.GetName()) // "currency_rate"
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `base` | `string` | No |  |
-| `date` | `string` | No |  |
-| `rate` | `map[string]any` | No |  |
-
 ### Operations
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`

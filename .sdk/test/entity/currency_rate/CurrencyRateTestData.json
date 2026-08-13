@@ -2,32 +2,19 @@
   "existing": {
     "currency_rate": {
       "CURRENCY_RATE00": {
-        "base": "s1e",
-        "date": "s1f",
-        "rate": {},
         "id": "CURRENCY_RATE00"
       },
       "CURRENCY_RATE01": {
-        "base": "s3c",
-        "date": "s3d",
-        "rate": {},
         "id": "CURRENCY_RATE01"
       },
       "CURRENCY_RATE02": {
-        "base": "s5a",
-        "date": "s5b",
-        "rate": {},
         "id": "CURRENCY_RATE02"
       }
     }
   },
   "new": {
     "currency_rate": {
-      "currency_rate_ref01": {
-        "base": "s78",
-        "date": "s79",
-        "rate": {}
-      }
+      "currency_rate_ref01": {}
     }
   }
 }

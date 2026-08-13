@@ -113,38 +113,12 @@ CurrencyConversionLoadMatch = Struct.new(
 )
 
 # CurrencyRate entity data model.
-#
-# @!attribute [rw] base
-#   @return [String, nil]
-#
-# @!attribute [rw] date
-#   @return [String, nil]
-#
-# @!attribute [rw] rate
-#   @return [Hash, nil]
-CurrencyRate = Struct.new(
-  :base,
-  :date,
-  :rate,
-  keyword_init: true
-)
+class CurrencyRate
+end
 
 # Request payload for CurrencyRate#load.
-#
-# @!attribute [rw] base
-#   @return [String, nil]
-#
-# @!attribute [rw] date
-#   @return [String, nil]
-#
-# @!attribute [rw] rate
-#   @return [Hash, nil]
-CurrencyRateLoadMatch = Struct.new(
-  :base,
-  :date,
-  :rate,
-  keyword_init: true
-)
+class CurrencyRateLoadMatch
+end
 
 # Json entity data model.
 #

@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import IpGeoCurrencyControl
-from core.error import IpGeoCurrencyError
-from core.result import IpGeoCurrencyResult
-from core.spec import IpGeoCurrencySpec
+from ipgeocurrency_sdk.config import make_config
+from ipgeocurrency_sdk.features import _make_feature
+from ipgeocurrency_sdk.core.control import IpGeoCurrencyControl
+from ipgeocurrency_sdk.core.error import IpGeoCurrencyError
+from ipgeocurrency_sdk.core.result import IpGeoCurrencyResult
+from ipgeocurrency_sdk.core.spec import IpGeoCurrencySpec
 
 
 # True when this SDK was generated with the named feature.

@@ -39,15 +39,9 @@ export interface CurrencyConversionLoadMatch {
 }
 
 export interface CurrencyRate {
-  base?: string
-  date?: string
-  rate?: Record<string, any>
 }
 
 export interface CurrencyRateLoadMatch {
-  base?: string
-  date?: string
-  rate?: Record<string, any>
 }
 
 export interface Json {

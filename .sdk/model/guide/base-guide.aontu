@@ -22,6 +22,7 @@ guide: {
   entity: currency_rate: {
     path: "/rates.json": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.rates`")|top
     }
   }
 

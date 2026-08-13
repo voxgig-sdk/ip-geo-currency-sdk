@@ -134,6 +134,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api-json/{ip-or-domain}",
                 ["parts"] = {
@@ -244,6 +245,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api-rates/{amount}-{base}2{target}",
                 ["parts"] = {
@@ -281,29 +283,7 @@ local function make_config()
         },
       },
       ["currency_rate"] = {
-        ["fields"] = {
-          {
-            ["active"] = true,
-            ["name"] = "base",
-            ["req"] = false,
-            ["type"] = "`$STRING`",
-            ["index$"] = 0,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "date",
-            ["req"] = false,
-            ["type"] = "`$STRING`",
-            ["index$"] = 1,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "rate",
-            ["req"] = false,
-            ["type"] = "`$OBJECT`",
-            ["index$"] = 2,
-          },
-        },
+        ["fields"] = {},
         ["name"] = "currency_rate",
         ["op"] = {
           ["load"] = {
@@ -313,6 +293,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/rates.json",
                 ["parts"] = {
@@ -321,7 +302,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.rates`",
                 },
                 ["index$"] = 0,
               },
@@ -440,6 +421,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/json",
                 ["parts"] = {

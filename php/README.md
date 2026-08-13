@@ -37,7 +37,7 @@ CurrencyConversion is nested under amount, so provide the `amount`.
 
 ```php
 try {
-    // load() returns the bare CurrencyConversion record (throws on error).
+    // load() returns the ENTITY — call data_get() for the CurrencyConversion record (throws on error).
     $currencyconversion = $client->CurrencyConversion()->load(["amount" => 1, "base" => "example_base", "target" => "example_target"]);
     print_r($currencyconversion);
 } catch (\Throwable $err) {
@@ -128,7 +128,8 @@ $client = IpGeoCurrencySDK::test([
     "entity" => ["apijson" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $apijson = $client->ApiJson()->load(["id" => "test01"]);
 print_r($apijson);
 ```
@@ -230,7 +231,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -287,9 +288,6 @@ API path: `/api-rates/{amount}-{base}2{target}`
 
 | Field | Description |
 | --- | --- |
-| `base` |  |
-| `date` |  |
-| `rate` |  |
 
 Operations: Load.
 
@@ -351,7 +349,7 @@ Create an instance: `$api_json = $client->ApiJson();`
 #### Example: Load
 
 ```php
-// load() returns the bare ApiJson record (throws on error).
+// load() returns the ENTITY — call data_get() for the ApiJson record (throws on error).
 $api_json = $client->ApiJson()->load(["id" => "api_json_id"]);
 ```
 
@@ -379,7 +377,7 @@ Create an instance: `$currency_conversion = $client->CurrencyConversion();`
 #### Example: Load
 
 ```php
-// load() returns the bare CurrencyConversion record (throws on error).
+// load() returns the ENTITY — call data_get() for the CurrencyConversion record (throws on error).
 $currency_conversion = $client->CurrencyConversion()->load(["amount" => 1, "base" => "base", "target" => "target"]);
 ```
 
@@ -394,18 +392,10 @@ Create an instance: `$currency_rate = $client->CurrencyRate();`
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `base` | `string` |  |
-| `date` | `string` |  |
-| `rate` | `array` |  |
-
 #### Example: Load
 
 ```php
-// load() returns the bare CurrencyRate record (throws on error).
+// load() returns the ENTITY — call data_get() for the CurrencyRate record (throws on error).
 $currency_rate = $client->CurrencyRate()->load();
 ```
 
@@ -440,7 +430,7 @@ Create an instance: `$json = $client->Json();`
 #### Example: Load
 
 ```php
-// load() returns the bare Json record (throws on error).
+// load() returns the ENTITY — call data_get() for the Json record (throws on error).
 $json = $client->Json()->load();
 ```
 

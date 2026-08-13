@@ -43,8 +43,8 @@ class IpGeoCurrencyTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('IPGEOCURRENCY_TEST_LIVE');
-        $override = self::getenv('IPGEOCURRENCY_TEST_OVERRIDE');
+        $live = self::getenv('IP_GEO_CURRENCY_TEST_LIVE');
+        $override = self::getenv('IP_GEO_CURRENCY_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class IpGeoCurrencyTestRunner
             }
         }
 
-        $explain = self::getenv('IPGEOCURRENCY_TEST_EXPLAIN');
+        $explain = self::getenv('IP_GEO_CURRENCY_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['IPGEOCURRENCY_TEST_EXPLAIN'] = $explain;
+            $m['IP_GEO_CURRENCY_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

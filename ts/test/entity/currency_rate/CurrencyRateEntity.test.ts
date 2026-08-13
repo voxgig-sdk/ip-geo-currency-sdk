@@ -26,8 +26,8 @@ import {
 describe('CurrencyRateEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when IPGEOCURRENCY_TEST_LIVE=TRUE.
-  afterEach(liveDelay('IPGEOCURRENCY_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when IP_GEO_CURRENCY_TEST_LIVE=TRUE.
+  afterEach(liveDelay('IP_GEO_CURRENCY_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = IpGeoCurrencySDK.test()
@@ -62,7 +62,7 @@ describe('CurrencyRateEntity', async () => {
     // LOAD
     const currency_rate_ref01_ent = client.CurrencyRate()
     const currency_rate_ref01_match_dt0: any = {}
-    const currency_rate_ref01_data_dt0 = await currency_rate_ref01_ent.load(currency_rate_ref01_match_dt0)
+    const currency_rate_ref01_data_dt0 = (await currency_rate_ref01_ent.load(currency_rate_ref01_match_dt0)).data()
     assert(null != currency_rate_ref01_data_dt0)
 
 

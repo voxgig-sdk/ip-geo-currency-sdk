@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# IpGeoCurrency SDK exists test
 
 import pytest
 from ipgeocurrency_sdk import IpGeoCurrencySDK

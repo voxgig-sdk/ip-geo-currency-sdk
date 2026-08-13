@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import IpGeoCurrencySDK
-from core.error import IpGeoCurrencyError
-from core.result import IpGeoCurrencyResult
-from core.response import IpGeoCurrencyResponse
-from core.spec import IpGeoCurrencySpec
-from feature.base_feature import IpGeoCurrencyBaseFeature
+from projectname_sdk.core.error import IpGeoCurrencyError
+from projectname_sdk.core.result import IpGeoCurrencyResult
+from projectname_sdk.core.response import IpGeoCurrencyResponse
+from projectname_sdk.core.spec import IpGeoCurrencySpec
+from projectname_sdk.feature.base_feature import IpGeoCurrencyBaseFeature
 
 
 def _client():

@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'IpGeoCurrency',
   }
 
 
@@ -170,6 +170,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api-json/{ip-or-domain}",
               "parts": [
@@ -280,6 +281,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api-rates/{amount}-{base}2{target}",
               "parts": [
@@ -317,29 +319,7 @@ class Config {
       }
     },
     "currency_rate": {
-      "fields": [
-        {
-          "active": true,
-          "name": "base",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
-        },
-        {
-          "active": true,
-          "name": "date",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
-        },
-        {
-          "active": true,
-          "name": "rate",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 2
-        }
-      ],
+      "fields": [],
       "name": "currency_rate",
       "op": {
         "load": {
@@ -349,6 +329,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/rates.json",
               "parts": [
@@ -357,7 +338,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.rates`"
               },
               "index$": 0
             }
@@ -476,6 +457,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/json",
               "parts": [

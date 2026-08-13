@@ -220,14 +220,6 @@ Return the entity name.
 currency_rate = client.CurrencyRate
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `base` | `String` | No |  |
-| `date` | `String` | No |  |
-| `rate` | `Hash` | No |  |
-
 ### Operations
 
 #### `load(reqmatch, ctrl = nil) -> result`

@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from ipgeocurrency_sdk.utility.voxgig_struct import voxgig_struct as vs
 from ipgeocurrency_sdk import IpGeoCurrencySDK
-from core import helpers
+from ipgeocurrency_sdk.core import helpers
 from test import runner
 
 
@@ -56,11 +56,11 @@ def _json_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "IPGEOCURRENCY_TEST_JSON_ENTID": {},
-        "IPGEOCURRENCY_TEST_LIVE": "FALSE",
+        "IP_GEO_CURRENCY_TEST_JSON_ENTID": {},
+        "IP_GEO_CURRENCY_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("IPGEOCURRENCY_TEST_LIVE") == "TRUE"
+    live = env.get("IP_GEO_CURRENCY_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

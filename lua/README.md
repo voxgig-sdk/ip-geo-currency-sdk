@@ -265,9 +265,6 @@ API path: `/api-rates/{amount}-{base}2{target}`
 
 | Field | Description |
 | --- | --- |
-| `base` |  |
-| `date` |  |
-| `rate` |  |
 
 Operations: Load.
 
@@ -369,14 +366,6 @@ Create an instance: `local currency_rate = client:CurrencyRate(nil)`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `base` | `string` |  |
-| `date` | `string` |  |
-| `rate` | `table` |  |
 
 #### Example: Load
 

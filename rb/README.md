@@ -36,7 +36,7 @@ CurrencyConversion is nested under amount, so provide the `amount`.
 
 ```ruby
 begin
-  # load returns the bare CurrencyConversion record (raises on error).
+  # load returns the ENTITY — call data_get for the CurrencyConversion record (raises on error).
   currencyconversion = client.CurrencyConversion.load({ "amount" => 1, "base" => "example_base", "target" => "example_target" })
   puts currencyconversion
 rescue => err
@@ -122,7 +122,8 @@ client = IpGeoCurrencySDK.test({
   "entity" => { "apijson" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 apijson = client.ApiJson.load({ "id" => "test01" })
 puts apijson
 ```
@@ -277,9 +278,6 @@ API path: `/api-rates/{amount}-{base}2{target}`
 
 | Field | Description |
 | --- | --- |
-| `base` |  |
-| `date` |  |
-| `rate` |  |
 
 Operations: Load.
 
@@ -341,7 +339,7 @@ Create an instance: `api_json = client.ApiJson`
 #### Example: Load
 
 ```ruby
-# load returns the bare ApiJson record (raises on error).
+# load returns the ENTITY — call data_get for the ApiJson record (raises on error).
 api_json = client.ApiJson.load({ "id" => "api_json_id" })
 ```
 
@@ -369,7 +367,7 @@ Create an instance: `currency_conversion = client.CurrencyConversion`
 #### Example: Load
 
 ```ruby
-# load returns the bare CurrencyConversion record (raises on error).
+# load returns the ENTITY — call data_get for the CurrencyConversion record (raises on error).
 currency_conversion = client.CurrencyConversion.load({ "amount" => 1, "base" => "base", "target" => "target" })
 ```
 
@@ -384,18 +382,10 @@ Create an instance: `currency_rate = client.CurrencyRate`
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `base` | `String` |  |
-| `date` | `String` |  |
-| `rate` | `Hash` |  |
-
 #### Example: Load
 
 ```ruby
-# load returns the bare CurrencyRate record (raises on error).
+# load returns the ENTITY — call data_get for the CurrencyRate record (raises on error).
 currency_rate = client.CurrencyRate.load()
 ```
 
@@ -430,7 +420,7 @@ Create an instance: `json = client.Json`
 #### Example: Load
 
 ```ruby
-# load returns the bare Json record (raises on error).
+# load returns the ENTITY — call data_get for the Json record (raises on error).
 json = client.Json.load()
 ```
 

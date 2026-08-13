@@ -19,11 +19,15 @@ import {
 describe('CurrencyRateDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when IPGEOCURRENCY_TEST_LIVE=TRUE.
-  afterEach(liveDelay('IPGEOCURRENCY_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when IP_GEO_CURRENCY_TEST_LIVE=TRUE.
+  afterEach(liveDelay('IP_GEO_CURRENCY_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new IpGeoCurrencySDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -72,17 +76,17 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'IPGEOCURRENCY_TEST_CURRENCY_RATE_ENTID': {},
-    'IPGEOCURRENCY_TEST_LIVE': 'FALSE',
+    'IP_GEO_CURRENCY_TEST_CURRENCY_RATE_ENTID': {},
+    'IP_GEO_CURRENCY_TEST_LIVE': 'FALSE',
   })
 
-  const live = 'TRUE' === env.IPGEOCURRENCY_TEST_LIVE
+  const live = 'TRUE' === env.IP_GEO_CURRENCY_TEST_LIVE
 
   if (live) {
     const client = new IpGeoCurrencySDK({
     })
 
-    let idmap: any = env['IPGEOCURRENCY_TEST_CURRENCY_RATE_ENTID']
+    let idmap: any = env['IP_GEO_CURRENCY_TEST_CURRENCY_RATE_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

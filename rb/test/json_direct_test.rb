@@ -59,11 +59,11 @@ def json_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "IPGEOCURRENCY_TEST_JSON_ENTID" => {},
-    "IPGEOCURRENCY_TEST_LIVE" => "FALSE",
+    "IP_GEO_CURRENCY_TEST_JSON_ENTID" => {},
+    "IP_GEO_CURRENCY_TEST_LIVE" => "FALSE",
   })
 
-  live = env["IPGEOCURRENCY_TEST_LIVE"] == "TRUE"
+  live = env["IP_GEO_CURRENCY_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

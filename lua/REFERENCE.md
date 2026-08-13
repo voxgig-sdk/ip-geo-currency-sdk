@@ -217,14 +217,6 @@ Return the entity name.
 local currency_rate = client:CurrencyRate(nil)
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `base` | `string` | No |  |
-| `date` | `string` | No |  |
-| `rate` | `table` | No |  |
-
 ### Operations
 
 #### `load(reqmatch, ctrl) -> any, err`

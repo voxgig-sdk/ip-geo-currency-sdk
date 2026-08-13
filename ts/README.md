@@ -126,7 +126,8 @@ Create a mock client for unit testing — no server required:
 const client = IpGeoCurrencySDK.test()
 
 const apijson = await client.ApiJson().load({ id: 'test01' })
-// apijson is a bare entity populated with mock response data
+// apijson is the entity, populated with mock response data
+// — call apijson.data() for the record itself
 console.log(apijson)
 ```
 
@@ -327,9 +328,6 @@ API path: `/api-rates/{amount}-{base}2{target}`
 
 | Field | Description |
 | --- | --- |
-| `base` |  |
-| `date` |  |
-| `rate` |  |
 
 Operations: load.
 
@@ -431,14 +429,6 @@ Create an instance: `const currency_rate = client.CurrencyRate()`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `base` | `string` |  |
-| `date` | `string` |  |
-| `rate` | `Record<string, any>` |  |
 
 #### Example: Load
 

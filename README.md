@@ -23,7 +23,7 @@ support (`load`):
 
 ```ts
 const client = new IpGeoCurrencySDK()
-const apijson = await client.ApiJson().load()
+const apijson = await client.ApiJson().load({ id: "example_id" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = IpGeoCurrencySDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = IpGeoCurrencySDK.test({
+  entity: {
+    api_json: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const apijson = await client.ApiJson().load({ id: 'test01' })
-// apijson is a bare ApiJson populated with mock data
+// apijson is the ApiJson entity, populated with mock data
+// — call apijson.data() for the record itself
 console.log(apijson)
 ```
 
@@ -190,7 +199,7 @@ require_once 'ipgeocurrency_sdk.php';
 $client = new IpGeoCurrencySDK();
 
 
-// Load a specific apijson (returns the bare record; throws on error)
+// Load a specific apijson (returns the ENTITY; call data_get() for the record; throws on error)
 $apijson = $client->ApiJson()->load(["id" => "example_id"]);
 print_r($apijson);
 ```
@@ -221,7 +230,7 @@ require_relative "IpGeoCurrency_sdk"
 client = IpGeoCurrencySDK.new
 
 
-# Load a specific apijson (returns the bare record; raises on error)
+# Load a specific apijson (returns the ENTITY; call data_get for the record)
 apijson = client.ApiJson.load({ "id" => "example_id" })
 puts apijson
 ```
@@ -355,6 +364,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://apip.cc/docs.html](https://apip.cc/docs.html)
 

@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ IpGeoCurrencyUtility.registrar = ->(u) {
   u.prepare_params = IpGeoCurrencyUtilities::PrepareParams
   u.prepare_path = IpGeoCurrencyUtilities::PreparePath
   u.prepare_query = IpGeoCurrencyUtilities::PrepareQuery
+  u.graphql_body = IpGeoCurrencyUtilities::GraphqlBody
+  u.graphql_errors = IpGeoCurrencyUtilities::GraphqlErrors
   u.result_basic = IpGeoCurrencyUtilities::ResultBasic
   u.result_body = IpGeoCurrencyUtilities::ResultBody
   u.result_headers = IpGeoCurrencyUtilities::ResultHeaders

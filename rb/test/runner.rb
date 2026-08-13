@@ -23,8 +23,8 @@ module IpGeoCurrencyTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("IPGEOCURRENCY_TEST_LIVE")
-    override = getenv("IPGEOCURRENCY_TEST_OVERRIDE")
+    live = getenv("IP_GEO_CURRENCY_TEST_LIVE")
+    override = getenv("IP_GEO_CURRENCY_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module IpGeoCurrencyTestRunner
       end
     end
 
-    explain = getenv("IPGEOCURRENCY_TEST_EXPLAIN")
-    m["IPGEOCURRENCY_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("IP_GEO_CURRENCY_TEST_EXPLAIN")
+    m["IP_GEO_CURRENCY_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

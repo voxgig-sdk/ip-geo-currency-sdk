@@ -134,6 +134,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/api-json/{ip-or-domain}",
 								"parts": []any{
@@ -157,7 +158,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -244,6 +244,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/api-rates/{amount}-{base}2{target}",
 								"parts": []any{
@@ -269,7 +270,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -281,29 +281,7 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"currency_rate": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"active": true,
-						"name": "base",
-						"req": false,
-						"type": "`$STRING`",
-						"index$": 0,
-					},
-					map[string]any{
-						"active": true,
-						"name": "date",
-						"req": false,
-						"type": "`$STRING`",
-						"index$": 1,
-					},
-					map[string]any{
-						"active": true,
-						"name": "rate",
-						"req": false,
-						"type": "`$OBJECT`",
-						"index$": 2,
-					},
-				},
+				"fields": []any{},
 				"name": "currency_rate",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -313,6 +291,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/rates.json",
 								"parts": []any{
@@ -321,12 +300,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.rates`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -440,6 +418,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/json",
 								"parts": []any{
@@ -457,7 +436,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
