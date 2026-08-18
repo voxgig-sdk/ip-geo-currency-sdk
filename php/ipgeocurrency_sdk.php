@@ -40,7 +40,7 @@ class IpGeoCurrencySDK
         $utility = new IpGeoCurrencyUtility();
         $this->_utility = $utility;
 
-        $config = IpGeoCurrencyConfig::make_config();
+        $config = IpGeoCurrencyConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

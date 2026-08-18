@@ -28,7 +28,7 @@ class IpGeoCurrencySDK
     utility = IpGeoCurrencyUtility.new
     @_utility = utility
 
-    config = IpGeoCurrencyConfig.make_config
+    config = IpGeoCurrencyConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
