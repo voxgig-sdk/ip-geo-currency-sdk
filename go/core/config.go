@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "IpGeoCurrency",
+			"slug": "ip-geo-currency",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -36,50 +39,62 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "city",
+						"short": "City name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "continent",
+						"short": "Continent name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "continent_code",
+						"short": "Continent code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "country",
+						"short": "Country name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "country_code",
+						"short": "ISO 3166-1 alpha-2 country code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "currency",
+						"short": "Currency code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "currency_name",
+						"short": "Currency name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "ip",
+						"short": "IP address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "latitude",
+						"short": "Latitude coordinate",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "longitude",
+						"short": "Longitude coordinate",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "region",
+						"short": "Region or state",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "timezone",
+						"short": "Timezone",
 						"type": "`$STRING`",
 					},
 				},
@@ -135,22 +150,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "amount",
+						"short": "Original amount",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "base",
+						"short": "Source currency code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "rate",
+						"short": "Exchange rate used",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "result",
+						"short": "Converted amount",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "target",
+						"short": "Target currency code",
 						"type": "`$STRING`",
 					},
 				},
@@ -257,50 +277,62 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "city",
+						"short": "City name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "continent",
+						"short": "Continent name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "continent_code",
+						"short": "Continent code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "country",
+						"short": "Country name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "country_code",
+						"short": "ISO 3166-1 alpha-2 country code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "currency",
+						"short": "Currency code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "currency_name",
+						"short": "Currency name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "ip",
+						"short": "IP address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "latitude",
+						"short": "Latitude coordinate",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "longitude",
+						"short": "Longitude coordinate",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "region",
+						"short": "Region or state",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "timezone",
+						"short": "Timezone",
 						"type": "`$STRING`",
 					},
 				},

@@ -19,6 +19,9 @@ module IpGeoCurrencyConfig
     {
       "main" => {
         "name" => "IpGeoCurrency",
+        "slug" => "ip-geo-currency",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -44,50 +47,62 @@ module IpGeoCurrencyConfig
           "fields" => [
             {
               "name" => "city",
+              "short" => "City name",
               "type" => "`$STRING`",
             },
             {
               "name" => "continent",
+              "short" => "Continent name",
               "type" => "`$STRING`",
             },
             {
               "name" => "continent_code",
+              "short" => "Continent code",
               "type" => "`$STRING`",
             },
             {
               "name" => "country",
+              "short" => "Country name",
               "type" => "`$STRING`",
             },
             {
               "name" => "country_code",
+              "short" => "ISO 3166-1 alpha-2 country code",
               "type" => "`$STRING`",
             },
             {
               "name" => "currency",
+              "short" => "Currency code",
               "type" => "`$STRING`",
             },
             {
               "name" => "currency_name",
+              "short" => "Currency name",
               "type" => "`$STRING`",
             },
             {
               "name" => "ip",
+              "short" => "IP address",
               "type" => "`$STRING`",
             },
             {
               "name" => "latitude",
+              "short" => "Latitude coordinate",
               "type" => "`$NUMBER`",
             },
             {
               "name" => "longitude",
+              "short" => "Longitude coordinate",
               "type" => "`$NUMBER`",
             },
             {
               "name" => "region",
+              "short" => "Region or state",
               "type" => "`$STRING`",
             },
             {
               "name" => "timezone",
+              "short" => "Timezone",
               "type" => "`$STRING`",
             },
           ],
@@ -143,22 +158,27 @@ module IpGeoCurrencyConfig
           "fields" => [
             {
               "name" => "amount",
+              "short" => "Original amount",
               "type" => "`$NUMBER`",
             },
             {
               "name" => "base",
+              "short" => "Source currency code",
               "type" => "`$STRING`",
             },
             {
               "name" => "rate",
+              "short" => "Exchange rate used",
               "type" => "`$NUMBER`",
             },
             {
               "name" => "result",
+              "short" => "Converted amount",
               "type" => "`$NUMBER`",
             },
             {
               "name" => "target",
+              "short" => "Target currency code",
               "type" => "`$STRING`",
             },
           ],
@@ -265,50 +285,62 @@ module IpGeoCurrencyConfig
           "fields" => [
             {
               "name" => "city",
+              "short" => "City name",
               "type" => "`$STRING`",
             },
             {
               "name" => "continent",
+              "short" => "Continent name",
               "type" => "`$STRING`",
             },
             {
               "name" => "continent_code",
+              "short" => "Continent code",
               "type" => "`$STRING`",
             },
             {
               "name" => "country",
+              "short" => "Country name",
               "type" => "`$STRING`",
             },
             {
               "name" => "country_code",
+              "short" => "ISO 3166-1 alpha-2 country code",
               "type" => "`$STRING`",
             },
             {
               "name" => "currency",
+              "short" => "Currency code",
               "type" => "`$STRING`",
             },
             {
               "name" => "currency_name",
+              "short" => "Currency name",
               "type" => "`$STRING`",
             },
             {
               "name" => "ip",
+              "short" => "IP address",
               "type" => "`$STRING`",
             },
             {
               "name" => "latitude",
+              "short" => "Latitude coordinate",
               "type" => "`$NUMBER`",
             },
             {
               "name" => "longitude",
+              "short" => "Longitude coordinate",
               "type" => "`$NUMBER`",
             },
             {
               "name" => "region",
+              "short" => "Region or state",
               "type" => "`$STRING`",
             },
             {
               "name" => "timezone",
+              "short" => "Timezone",
               "type" => "`$STRING`",
             },
           ],

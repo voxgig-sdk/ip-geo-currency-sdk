@@ -8,26 +8,31 @@ main: kit: entity: currency_conversion: {
     {
       name: "amount"
       req: false
+      short: "Original amount"
       type: "`$NUMBER`"
     }
     {
       name: "base"
       req: false
+      short: "Source currency code"
       type: "`$STRING`"
     }
     {
       name: "rate"
       req: false
+      short: "Exchange rate used"
       type: "`$NUMBER`"
     }
     {
       name: "result"
       req: false
+      short: "Converted amount"
       type: "`$NUMBER`"
     }
     {
       name: "target"
       req: false
+      short: "Target currency code"
       type: "`$STRING`"
     }
   ]

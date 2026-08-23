@@ -6,7 +6,7 @@ The Golang SDK for the IpGeoCurrency API — an entity-oriented client using sta
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.ApiJson(nil)` — each with the same small set of operations (`Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -261,18 +261,18 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"city"` |  |
-| `"continent"` |  |
-| `"continent_code"` |  |
-| `"country"` |  |
-| `"country_code"` |  |
-| `"currency"` |  |
-| `"currency_name"` |  |
-| `"ip"` |  |
-| `"latitude"` |  |
-| `"longitude"` |  |
-| `"region"` |  |
-| `"timezone"` |  |
+| `"city"` | City name |
+| `"continent"` | Continent name |
+| `"continent_code"` | Continent code |
+| `"country"` | Country name |
+| `"country_code"` | ISO 3166-1 alpha-2 country code |
+| `"currency"` | Currency code |
+| `"currency_name"` | Currency name |
+| `"ip"` | IP address |
+| `"latitude"` | Latitude coordinate |
+| `"longitude"` | Longitude coordinate |
+| `"region"` | Region or state |
+| `"timezone"` | Timezone |
 
 Operations: Load.
 
@@ -282,11 +282,11 @@ API path: `/api-json/{ip-or-domain}`
 
 | Field | Description |
 | --- | --- |
-| `"amount"` |  |
-| `"base"` |  |
-| `"rate"` |  |
-| `"result"` |  |
-| `"target"` |  |
+| `"amount"` | Original amount |
+| `"base"` | Source currency code |
+| `"rate"` | Exchange rate used |
+| `"result"` | Converted amount |
+| `"target"` | Target currency code |
 
 Operations: Load.
 
@@ -305,18 +305,18 @@ API path: `/rates.json`
 
 | Field | Description |
 | --- | --- |
-| `"city"` |  |
-| `"continent"` |  |
-| `"continent_code"` |  |
-| `"country"` |  |
-| `"country_code"` |  |
-| `"currency"` |  |
-| `"currency_name"` |  |
-| `"ip"` |  |
-| `"latitude"` |  |
-| `"longitude"` |  |
-| `"region"` |  |
-| `"timezone"` |  |
+| `"city"` | City name |
+| `"continent"` | Continent name |
+| `"continent_code"` | Continent code |
+| `"country"` | Country name |
+| `"country_code"` | ISO 3166-1 alpha-2 country code |
+| `"currency"` | Currency code |
+| `"currency_name"` | Currency name |
+| `"ip"` | IP address |
+| `"latitude"` | Latitude coordinate |
+| `"longitude"` | Longitude coordinate |
+| `"region"` | Region or state |
+| `"timezone"` | Timezone |
 
 Operations: Load.
 
@@ -341,18 +341,18 @@ Create an instance: `apiJson := client.ApiJson(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | `string` |  |
-| `continent` | `string` |  |
-| `continent_code` | `string` |  |
-| `country` | `string` |  |
-| `country_code` | `string` |  |
-| `currency` | `string` |  |
-| `currency_name` | `string` |  |
-| `ip` | `string` |  |
-| `latitude` | `float64` |  |
-| `longitude` | `float64` |  |
-| `region` | `string` |  |
-| `timezone` | `string` |  |
+| `city` | `string` | City name |
+| `continent` | `string` | Continent name |
+| `continent_code` | `string` | Continent code |
+| `country` | `string` | Country name |
+| `country_code` | `string` | ISO 3166-1 alpha-2 country code |
+| `currency` | `string` | Currency code |
+| `currency_name` | `string` | Currency name |
+| `ip` | `string` | IP address |
+| `latitude` | `float64` | Latitude coordinate |
+| `longitude` | `float64` | Longitude coordinate |
+| `region` | `string` | Region or state |
+| `timezone` | `string` | Timezone |
 
 #### Example: Load
 
@@ -379,11 +379,11 @@ Create an instance: `currencyConversion := client.CurrencyConversion(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `amount` | `float64` |  |
-| `base` | `string` |  |
-| `rate` | `float64` |  |
-| `result` | `float64` |  |
-| `target` | `string` |  |
+| `amount` | `float64` | Original amount |
+| `base` | `string` | Source currency code |
+| `rate` | `float64` | Exchange rate used |
+| `result` | `float64` | Converted amount |
+| `target` | `string` | Target currency code |
 
 #### Example: Load
 
@@ -431,18 +431,18 @@ Create an instance: `json := client.Json(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | `string` |  |
-| `continent` | `string` |  |
-| `continent_code` | `string` |  |
-| `country` | `string` |  |
-| `country_code` | `string` |  |
-| `currency` | `string` |  |
-| `currency_name` | `string` |  |
-| `ip` | `string` |  |
-| `latitude` | `float64` |  |
-| `longitude` | `float64` |  |
-| `region` | `string` |  |
-| `timezone` | `string` |  |
+| `city` | `string` | City name |
+| `continent` | `string` | Continent name |
+| `continent_code` | `string` | Continent code |
+| `country` | `string` | Country name |
+| `country_code` | `string` | ISO 3166-1 alpha-2 country code |
+| `currency` | `string` | Currency code |
+| `currency_name` | `string` | Currency name |
+| `ip` | `string` | IP address |
+| `latitude` | `float64` | Latitude coordinate |
+| `longitude` | `float64` | Longitude coordinate |
+| `region` | `string` | Region or state |
+| `timezone` | `string` | Timezone |
 
 #### Example: Load
 

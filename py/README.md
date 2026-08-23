@@ -245,18 +245,18 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `city` |  |
-| `continent` |  |
-| `continent_code` |  |
-| `country` |  |
-| `country_code` |  |
-| `currency` |  |
-| `currency_name` |  |
-| `ip` |  |
-| `latitude` |  |
-| `longitude` |  |
-| `region` |  |
-| `timezone` |  |
+| `city` | City name |
+| `continent` | Continent name |
+| `continent_code` | Continent code |
+| `country` | Country name |
+| `country_code` | ISO 3166-1 alpha-2 country code |
+| `currency` | Currency code |
+| `currency_name` | Currency name |
+| `ip` | IP address |
+| `latitude` | Latitude coordinate |
+| `longitude` | Longitude coordinate |
+| `region` | Region or state |
+| `timezone` | Timezone |
 
 Operations: Load.
 
@@ -266,11 +266,11 @@ API path: `/api-json/{ip-or-domain}`
 
 | Field | Description |
 | --- | --- |
-| `amount` |  |
-| `base` |  |
-| `rate` |  |
-| `result` |  |
-| `target` |  |
+| `amount` | Original amount |
+| `base` | Source currency code |
+| `rate` | Exchange rate used |
+| `result` | Converted amount |
+| `target` | Target currency code |
 
 Operations: Load.
 
@@ -289,18 +289,18 @@ API path: `/rates.json`
 
 | Field | Description |
 | --- | --- |
-| `city` |  |
-| `continent` |  |
-| `continent_code` |  |
-| `country` |  |
-| `country_code` |  |
-| `currency` |  |
-| `currency_name` |  |
-| `ip` |  |
-| `latitude` |  |
-| `longitude` |  |
-| `region` |  |
-| `timezone` |  |
+| `city` | City name |
+| `continent` | Continent name |
+| `continent_code` | Continent code |
+| `country` | Country name |
+| `country_code` | ISO 3166-1 alpha-2 country code |
+| `currency` | Currency code |
+| `currency_name` | Currency name |
+| `ip` | IP address |
+| `latitude` | Latitude coordinate |
+| `longitude` | Longitude coordinate |
+| `region` | Region or state |
+| `timezone` | Timezone |
 
 Operations: Load.
 
@@ -325,18 +325,18 @@ Create an instance: `api_json = client.ApiJson()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | `str` |  |
-| `continent` | `str` |  |
-| `continent_code` | `str` |  |
-| `country` | `str` |  |
-| `country_code` | `str` |  |
-| `currency` | `str` |  |
-| `currency_name` | `str` |  |
-| `ip` | `str` |  |
-| `latitude` | `float` |  |
-| `longitude` | `float` |  |
-| `region` | `str` |  |
-| `timezone` | `str` |  |
+| `city` | `str` | City name |
+| `continent` | `str` | Continent name |
+| `continent_code` | `str` | Continent code |
+| `country` | `str` | Country name |
+| `country_code` | `str` | ISO 3166-1 alpha-2 country code |
+| `currency` | `str` | Currency code |
+| `currency_name` | `str` | Currency name |
+| `ip` | `str` | IP address |
+| `latitude` | `float` | Latitude coordinate |
+| `longitude` | `float` | Longitude coordinate |
+| `region` | `str` | Region or state |
+| `timezone` | `str` | Timezone |
 
 #### Example: Load
 
@@ -359,11 +359,11 @@ Create an instance: `currency_conversion = client.CurrencyConversion()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `amount` | `float` |  |
-| `base` | `str` |  |
-| `rate` | `float` |  |
-| `result` | `float` |  |
-| `target` | `str` |  |
+| `amount` | `float` | Original amount |
+| `base` | `str` | Source currency code |
+| `rate` | `float` | Exchange rate used |
+| `result` | `float` | Converted amount |
+| `target` | `str` | Target currency code |
 
 #### Example: Load
 
@@ -403,18 +403,18 @@ Create an instance: `json = client.Json()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | `str` |  |
-| `continent` | `str` |  |
-| `continent_code` | `str` |  |
-| `country` | `str` |  |
-| `country_code` | `str` |  |
-| `currency` | `str` |  |
-| `currency_name` | `str` |  |
-| `ip` | `str` |  |
-| `latitude` | `float` |  |
-| `longitude` | `float` |  |
-| `region` | `str` |  |
-| `timezone` | `str` |  |
+| `city` | `str` | City name |
+| `continent` | `str` | Continent name |
+| `continent_code` | `str` | Continent code |
+| `country` | `str` | Country name |
+| `country_code` | `str` | ISO 3166-1 alpha-2 country code |
+| `currency` | `str` | Currency code |
+| `currency_name` | `str` | Currency name |
+| `ip` | `str` | IP address |
+| `latitude` | `float` | Latitude coordinate |
+| `longitude` | `float` | Longitude coordinate |
+| `region` | `str` | Region or state |
+| `timezone` | `str` | Timezone |
 
 #### Example: Load
 

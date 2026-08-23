@@ -105,18 +105,18 @@ api_json = client.ApiJson
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | `String` | No |  |
-| `continent` | `String` | No |  |
-| `continent_code` | `String` | No |  |
-| `country` | `String` | No |  |
-| `country_code` | `String` | No |  |
-| `currency` | `String` | No |  |
-| `currency_name` | `String` | No |  |
-| `ip` | `String` | No |  |
-| `latitude` | `Float` | No |  |
-| `longitude` | `Float` | No |  |
-| `region` | `String` | No |  |
-| `timezone` | `String` | No |  |
+| `city` | `String` | No | City name |
+| `continent` | `String` | No | Continent name |
+| `continent_code` | `String` | No | Continent code |
+| `country` | `String` | No | Country name |
+| `country_code` | `String` | No | ISO 3166-1 alpha-2 country code |
+| `currency` | `String` | No | Currency code |
+| `currency_name` | `String` | No | Currency name |
+| `ip` | `String` | No | IP address |
+| `latitude` | `Float` | No | Latitude coordinate |
+| `longitude` | `Float` | No | Longitude coordinate |
+| `region` | `String` | No | Region or state |
+| `timezone` | `String` | No | Timezone |
 
 ### Operations
 
@@ -168,11 +168,11 @@ currency_conversion = client.CurrencyConversion
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | `Float` | No |  |
-| `base` | `String` | No |  |
-| `rate` | `Float` | No |  |
-| `result` | `Float` | No |  |
-| `target` | `String` | No |  |
+| `amount` | `Float` | No | Original amount |
+| `base` | `String` | No | Source currency code |
+| `rate` | `Float` | No | Exchange rate used |
+| `result` | `Float` | No | Converted amount |
+| `target` | `String` | No | Target currency code |
 
 ### Operations
 
@@ -270,18 +270,18 @@ json = client.Json
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | `String` | No |  |
-| `continent` | `String` | No |  |
-| `continent_code` | `String` | No |  |
-| `country` | `String` | No |  |
-| `country_code` | `String` | No |  |
-| `currency` | `String` | No |  |
-| `currency_name` | `String` | No |  |
-| `ip` | `String` | No |  |
-| `latitude` | `Float` | No |  |
-| `longitude` | `Float` | No |  |
-| `region` | `String` | No |  |
-| `timezone` | `String` | No |  |
+| `city` | `String` | No | City name |
+| `continent` | `String` | No | Continent name |
+| `continent_code` | `String` | No | Continent code |
+| `country` | `String` | No | Country name |
+| `country_code` | `String` | No | ISO 3166-1 alpha-2 country code |
+| `currency` | `String` | No | Currency code |
+| `currency_name` | `String` | No | Currency name |
+| `ip` | `String` | No | IP address |
+| `latitude` | `Float` | No | Latitude coordinate |
+| `longitude` | `Float` | No | Longitude coordinate |
+| `region` | `String` | No | Region or state |
+| `timezone` | `String` | No | Timezone |
 
 ### Operations
 

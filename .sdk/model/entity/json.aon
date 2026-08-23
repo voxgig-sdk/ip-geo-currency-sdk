@@ -1,6 +1,6 @@
-# Entity: api_json
+# Entity: json
 
-main: kit: entity: api_json: {
+main: kit: entity: json: {
 
   alias: field: {}
 
@@ -8,97 +8,102 @@ main: kit: entity: api_json: {
     {
       name: "city"
       req: false
+      short: "City name"
       type: "`$STRING`"
     }
     {
       name: "continent"
       req: false
+      short: "Continent name"
       type: "`$STRING`"
     }
     {
       name: "continent_code"
       req: false
+      short: "Continent code"
       type: "`$STRING`"
     }
     {
       name: "country"
       req: false
+      short: "Country name"
       type: "`$STRING`"
     }
     {
       name: "country_code"
       req: false
+      short: "ISO 3166-1 alpha-2 country code"
       type: "`$STRING`"
     }
     {
       name: "currency"
       req: false
+      short: "Currency code"
       type: "`$STRING`"
     }
     {
       name: "currency_name"
       req: false
+      short: "Currency name"
       type: "`$STRING`"
     }
     {
       name: "ip"
       req: false
+      short: "IP address"
       type: "`$STRING`"
     }
     {
       name: "latitude"
       req: false
+      short: "Latitude coordinate"
       type: "`$NUMBER`"
     }
     {
       name: "longitude"
       req: false
+      short: "Longitude coordinate"
       type: "`$NUMBER`"
     }
     {
       name: "region"
       req: false
+      short: "Region or state"
       type: "`$STRING`"
     }
     {
       name: "timezone"
       req: false
+      short: "Timezone"
       type: "`$STRING`"
     }
   ]
 
-  name: "api_json"
+  name: "json"
   op: {
     load: {
       name: "load"
       points: [
         {
           args: {
-            params: [
+            query: [
               {
-                example: "8.8.8.8"
-                kind: "param"
-                name: "id"
-                orig: "ip_or_domain"
-                reqd: true
+                kind: "query"
+                name: "nolog"
+                orig: "nolog"
+                reqd: false
                 type: "`$STRING`"
               }
             ]
           }
           method: "GET"
-          orig: "/api-json/{ip-or-domain}"
+          orig: "/json"
           parts: [
-            "api-json"
-            "{id}"
+            "json"
           ]
-          rename: {
-            param: {
-              "ip-or-domain": "id"
-            }
-          }
           select: {
             exist: [
-              "id"
+              "nolog"
             ]
           }
           transform: {

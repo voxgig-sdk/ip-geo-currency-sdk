@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -293,18 +293,18 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `city` |  |
-| `continent` |  |
-| `continent_code` |  |
-| `country` |  |
-| `country_code` |  |
-| `currency` |  |
-| `currency_name` |  |
-| `ip` |  |
-| `latitude` |  |
-| `longitude` |  |
-| `region` |  |
-| `timezone` |  |
+| `city` | City name |
+| `continent` | Continent name |
+| `continent_code` | Continent code |
+| `country` | Country name |
+| `country_code` | ISO 3166-1 alpha-2 country code |
+| `currency` | Currency code |
+| `currency_name` | Currency name |
+| `ip` | IP address |
+| `latitude` | Latitude coordinate |
+| `longitude` | Longitude coordinate |
+| `region` | Region or state |
+| `timezone` | Timezone |
 
 Operations: load.
 
@@ -314,11 +314,11 @@ API path: `/api-json/{ip-or-domain}`
 
 | Field | Description |
 | --- | --- |
-| `amount` |  |
-| `base` |  |
-| `rate` |  |
-| `result` |  |
-| `target` |  |
+| `amount` | Original amount |
+| `base` | Source currency code |
+| `rate` | Exchange rate used |
+| `result` | Converted amount |
+| `target` | Target currency code |
 
 Operations: load.
 
@@ -337,18 +337,18 @@ API path: `/rates.json`
 
 | Field | Description |
 | --- | --- |
-| `city` |  |
-| `continent` |  |
-| `continent_code` |  |
-| `country` |  |
-| `country_code` |  |
-| `currency` |  |
-| `currency_name` |  |
-| `ip` |  |
-| `latitude` |  |
-| `longitude` |  |
-| `region` |  |
-| `timezone` |  |
+| `city` | City name |
+| `continent` | Continent name |
+| `continent_code` | Continent code |
+| `country` | Country name |
+| `country_code` | ISO 3166-1 alpha-2 country code |
+| `currency` | Currency code |
+| `currency_name` | Currency name |
+| `ip` | IP address |
+| `latitude` | Latitude coordinate |
+| `longitude` | Longitude coordinate |
+| `region` | Region or state |
+| `timezone` | Timezone |
 
 Operations: load.
 
@@ -373,18 +373,18 @@ Create an instance: `const api_json = client.ApiJson()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | `string` |  |
-| `continent` | `string` |  |
-| `continent_code` | `string` |  |
-| `country` | `string` |  |
-| `country_code` | `string` |  |
-| `currency` | `string` |  |
-| `currency_name` | `string` |  |
-| `ip` | `string` |  |
-| `latitude` | `number` |  |
-| `longitude` | `number` |  |
-| `region` | `string` |  |
-| `timezone` | `string` |  |
+| `city` | `string` | City name |
+| `continent` | `string` | Continent name |
+| `continent_code` | `string` | Continent code |
+| `country` | `string` | Country name |
+| `country_code` | `string` | ISO 3166-1 alpha-2 country code |
+| `currency` | `string` | Currency code |
+| `currency_name` | `string` | Currency name |
+| `ip` | `string` | IP address |
+| `latitude` | `number` | Latitude coordinate |
+| `longitude` | `number` | Longitude coordinate |
+| `region` | `string` | Region or state |
+| `timezone` | `string` | Timezone |
 
 #### Example: Load
 
@@ -407,11 +407,11 @@ Create an instance: `const currency_conversion = client.CurrencyConversion()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `amount` | `number` |  |
-| `base` | `string` |  |
-| `rate` | `number` |  |
-| `result` | `number` |  |
-| `target` | `string` |  |
+| `amount` | `number` | Original amount |
+| `base` | `string` | Source currency code |
+| `rate` | `number` | Exchange rate used |
+| `result` | `number` | Converted amount |
+| `target` | `string` | Target currency code |
 
 #### Example: Load
 
@@ -451,18 +451,18 @@ Create an instance: `const json = client.Json()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | `string` |  |
-| `continent` | `string` |  |
-| `continent_code` | `string` |  |
-| `country` | `string` |  |
-| `country_code` | `string` |  |
-| `currency` | `string` |  |
-| `currency_name` | `string` |  |
-| `ip` | `string` |  |
-| `latitude` | `number` |  |
-| `longitude` | `number` |  |
-| `region` | `string` |  |
-| `timezone` | `string` |  |
+| `city` | `string` | City name |
+| `continent` | `string` | Continent name |
+| `continent_code` | `string` | Continent code |
+| `country` | `string` | Country name |
+| `country_code` | `string` | ISO 3166-1 alpha-2 country code |
+| `currency` | `string` | Currency code |
+| `currency_name` | `string` | Currency name |
+| `ip` | `string` | IP address |
+| `latitude` | `number` | Latitude coordinate |
+| `longitude` | `number` | Longitude coordinate |
+| `region` | `string` | Region or state |
+| `timezone` | `string` | Timezone |
 
 #### Example: Load
 
