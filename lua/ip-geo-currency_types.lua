@@ -14,6 +14,7 @@
 ---@field country_code? string
 ---@field currency? string
 ---@field currency_name? string
+---@field id? string
 ---@field ip? string
 ---@field latitude? number
 ---@field longitude? number

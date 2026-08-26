@@ -252,6 +252,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | `country_code` | ISO 3166-1 alpha-2 country code |
 | `currency` | Currency code |
 | `currency_name` | Currency name |
+| `id` |  |
 | `ip` | IP address |
 | `latitude` | Latitude coordinate |
 | `longitude` | Longitude coordinate |
@@ -332,6 +333,7 @@ Create an instance: `api_json = client.ApiJson()`
 | `country_code` | `str` | ISO 3166-1 alpha-2 country code |
 | `currency` | `str` | Currency code |
 | `currency_name` | `str` | Currency name |
+| `id` | `str` |  |
 | `ip` | `str` | IP address |
 | `latitude` | `float` | Latitude coordinate |
 | `longitude` | `float` | Longitude coordinate |

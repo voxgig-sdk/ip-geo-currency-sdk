@@ -13,6 +13,7 @@ export interface ApiJson {
   country_code?: string
   currency?: string
   currency_name?: string
+  id?: string
   ip?: string
   latitude?: number
   longitude?: number

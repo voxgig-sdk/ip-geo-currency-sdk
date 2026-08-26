@@ -112,6 +112,7 @@ api_json = client.ApiJson
 | `country_code` | `String` | No | ISO 3166-1 alpha-2 country code |
 | `currency` | `String` | No | Currency code |
 | `currency_name` | `String` | No | Currency name |
+| `id` | `String` | No |  |
 | `ip` | `String` | No | IP address |
 | `latitude` | `Float` | No | Latitude coordinate |
 | `longitude` | `Float` | No | Longitude coordinate |

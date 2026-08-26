@@ -24,6 +24,7 @@ class ApiJson(TypedDict, total=False):
     country_code: str
     currency: str
     currency_name: str
+    id: str
     ip: str
     latitude: float
     longitude: float

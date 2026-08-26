@@ -31,6 +31,9 @@
 # @!attribute [rw] currency_name
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] ip
 #   @return [String, nil]
 #
@@ -53,6 +56,7 @@ ApiJson = Struct.new(
   :country_code,
   :currency,
   :currency_name,
+  :id,
   :ip,
   :latitude,
   :longitude,

@@ -260,6 +260,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | `country_code` | ISO 3166-1 alpha-2 country code |
 | `currency` | Currency code |
 | `currency_name` | Currency name |
+| `id` |  |
 | `ip` | IP address |
 | `latitude` | Latitude coordinate |
 | `longitude` | Longitude coordinate |
@@ -340,6 +341,7 @@ Create an instance: `$api_json = $client->ApiJson();`
 | `country_code` | `string` | ISO 3166-1 alpha-2 country code |
 | `currency` | `string` | Currency code |
 | `currency_name` | `string` | Currency name |
+| `id` | `string` |  |
 | `ip` | `string` | IP address |
 | `latitude` | `float` | Latitude coordinate |
 | `longitude` | `float` | Longitude coordinate |

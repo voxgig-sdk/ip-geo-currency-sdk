@@ -150,7 +150,7 @@ await entity.load({ id: 'example' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -300,6 +300,7 @@ The `prepare()` method returns:
 | `country_code` | ISO 3166-1 alpha-2 country code |
 | `currency` | Currency code |
 | `currency_name` | Currency name |
+| `id` |  |
 | `ip` | IP address |
 | `latitude` | Latitude coordinate |
 | `longitude` | Longitude coordinate |
@@ -380,6 +381,7 @@ Create an instance: `const api_json = client.ApiJson()`
 | `country_code` | `string` | ISO 3166-1 alpha-2 country code |
 | `currency` | `string` | Currency code |
 | `currency_name` | `string` | Currency name |
+| `id` | `string` |  |
 | `ip` | `string` | IP address |
 | `latitude` | `number` | Latitude coordinate |
 | `longitude` | `number` | Longitude coordinate |

@@ -237,6 +237,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | `country_code` | ISO 3166-1 alpha-2 country code |
 | `currency` | Currency code |
 | `currency_name` | Currency name |
+| `id` |  |
 | `ip` | IP address |
 | `latitude` | Latitude coordinate |
 | `longitude` | Longitude coordinate |
@@ -317,6 +318,7 @@ Create an instance: `local api_json = client:ApiJson(nil)`
 | `country_code` | `string` | ISO 3166-1 alpha-2 country code |
 | `currency` | `string` | Currency code |
 | `currency_name` | `string` | Currency name |
+| `id` | `string` |  |
 | `ip` | `string` | IP address |
 | `latitude` | `number` | Latitude coordinate |
 | `longitude` | `number` | Longitude coordinate |

@@ -42,6 +42,7 @@ class IpGeoCurrencyConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -92,6 +93,10 @@ class IpGeoCurrencyConfig
             [
               'name' => 'currency_name',
               'short' => 'Currency name',
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'id',
               'type' => '`$STRING`',
             ],
             [

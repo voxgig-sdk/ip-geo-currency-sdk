@@ -22,6 +22,7 @@ class ApiJson
     public ?string $country_code = null;
     public ?string $currency = null;
     public ?string $currency_name = null;
+    public ?string $id = null;
     public ?string $ip = null;
     public ?float $latitude = null;
     public ?float $longitude = null;

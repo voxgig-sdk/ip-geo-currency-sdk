@@ -44,10 +44,14 @@ describe("ApiJsonEntity", function()
 
     -- LOAD
     local api_json_ref01_ent = client:ApiJson(nil)
-    local api_json_ref01_match_dt0 = {}
+    local api_json_ref01_match_dt0 = {
+      id = api_json_ref01_data["id"],
+    }
     local api_json_ref01_data_dt0_loaded, err = api_json_ref01_ent:load(api_json_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(api_json_ref01_data_dt0_loaded)
+    local api_json_ref01_data_dt0_load_result = helpers.to_map(type(api_json_ref01_data_dt0_loaded) == 'table' and api_json_ref01_data_dt0_loaded.data_get and api_json_ref01_data_dt0_loaded:data_get() or api_json_ref01_data_dt0_loaded)
+    assert.is_not_nil(api_json_ref01_data_dt0_load_result)
+    assert.are.equal(api_json_ref01_data_dt0_load_result["id"], api_json_ref01_data["id"])
 
   end)
 end)

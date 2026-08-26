@@ -250,6 +250,7 @@ returns a result `Hash` with these keys:
 | `country_code` | ISO 3166-1 alpha-2 country code |
 | `currency` | Currency code |
 | `currency_name` | Currency name |
+| `id` |  |
 | `ip` | IP address |
 | `latitude` | Latitude coordinate |
 | `longitude` | Longitude coordinate |
@@ -330,6 +331,7 @@ Create an instance: `api_json = client.ApiJson`
 | `country_code` | `String` | ISO 3166-1 alpha-2 country code |
 | `currency` | `String` | Currency code |
 | `currency_name` | `String` | Currency name |
+| `id` | `String` |  |
 | `ip` | `String` | IP address |
 | `latitude` | `Float` | Latitude coordinate |
 | `longitude` | `Float` | Longitude coordinate |

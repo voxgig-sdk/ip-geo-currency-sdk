@@ -109,6 +109,7 @@ local api_json = client:ApiJson(nil)
 | `country_code` | `string` | No | ISO 3166-1 alpha-2 country code |
 | `currency` | `string` | No | Currency code |
 | `currency_name` | `string` | No | Currency name |
+| `id` | `string` | No |  |
 | `ip` | `string` | No | IP address |
 | `latitude` | `number` | No | Latitude coordinate |
 | `longitude` | `number` | No | Longitude coordinate |

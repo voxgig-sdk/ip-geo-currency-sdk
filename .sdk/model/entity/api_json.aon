@@ -48,6 +48,11 @@ main: kit: entity: api_json: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "ip"
       req: false
       short: "IP address"
@@ -78,6 +83,11 @@ main: kit: entity: api_json: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "api_json"
   op: {

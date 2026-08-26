@@ -48,9 +48,13 @@ class ApiJsonEntityTest extends TestCase
 
         // LOAD
         $api_json_ref01_ent = $client->ApiJson(null);
-        $api_json_ref01_match_dt0 = [];
+        $api_json_ref01_match_dt0 = [
+            "id" => $api_json_ref01_data["id"],
+        ];
         $api_json_ref01_data_dt0_loaded = $api_json_ref01_ent->load($api_json_ref01_match_dt0, null);
-        $this->assertNotNull($api_json_ref01_data_dt0_loaded);
+        $api_json_ref01_data_dt0_load_result = Helpers::to_map(is_object($api_json_ref01_data_dt0_loaded) && method_exists($api_json_ref01_data_dt0_loaded, 'data_get') ? $api_json_ref01_data_dt0_loaded->data_get() : $api_json_ref01_data_dt0_loaded);
+        $this->assertNotNull($api_json_ref01_data_dt0_load_result);
+        $this->assertEquals($api_json_ref01_data_dt0_load_result["id"], $api_json_ref01_data["id"]);
 
     }
 }

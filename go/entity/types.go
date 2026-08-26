@@ -21,6 +21,7 @@ type ApiJson struct {
 	CountryCode *string `json:"country_code,omitempty"`
 	Currency *string `json:"currency,omitempty"`
 	CurrencyName *string `json:"currency_name,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Ip *string `json:"ip,omitempty"`
 	Latitude *float64 `json:"latitude,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
