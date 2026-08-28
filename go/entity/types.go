@@ -76,18 +76,7 @@ type Json struct {
 
 // JsonLoadMatch is the typed request payload for Json.LoadTyped.
 type JsonLoadMatch struct {
-	City *string `json:"city,omitempty"`
-	Continent *string `json:"continent,omitempty"`
-	ContinentCode *string `json:"continent_code,omitempty"`
-	Country *string `json:"country,omitempty"`
-	CountryCode *string `json:"country_code,omitempty"`
-	Currency *string `json:"currency,omitempty"`
-	CurrencyName *string `json:"currency_name,omitempty"`
-	Ip *string `json:"ip,omitempty"`
-	Latitude *float64 `json:"latitude,omitempty"`
-	Longitude *float64 `json:"longitude,omitempty"`
-	Region *string `json:"region,omitempty"`
-	Timezone *string `json:"timezone,omitempty"`
+	Nolog *string `json:"nolog,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

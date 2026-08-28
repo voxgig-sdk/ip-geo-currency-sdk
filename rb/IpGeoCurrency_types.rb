@@ -179,54 +179,10 @@ Json = Struct.new(
 
 # Request payload for Json#load.
 #
-# @!attribute [rw] city
-#   @return [String, nil]
-#
-# @!attribute [rw] continent
-#   @return [String, nil]
-#
-# @!attribute [rw] continent_code
-#   @return [String, nil]
-#
-# @!attribute [rw] country
-#   @return [String, nil]
-#
-# @!attribute [rw] country_code
-#   @return [String, nil]
-#
-# @!attribute [rw] currency
-#   @return [String, nil]
-#
-# @!attribute [rw] currency_name
-#   @return [String, nil]
-#
-# @!attribute [rw] ip
-#   @return [String, nil]
-#
-# @!attribute [rw] latitude
-#   @return [Float, nil]
-#
-# @!attribute [rw] longitude
-#   @return [Float, nil]
-#
-# @!attribute [rw] region
-#   @return [String, nil]
-#
-# @!attribute [rw] timezone
+# @!attribute [rw] nolog
 #   @return [String, nil]
 JsonLoadMatch = Struct.new(
-  :city,
-  :continent,
-  :continent_code,
-  :country,
-  :country_code,
-  :currency,
-  :currency_name,
-  :ip,
-  :latitude,
-  :longitude,
-  :region,
-  :timezone,
+  :nolog,
   keyword_init: true
 )
 

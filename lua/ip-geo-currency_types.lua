@@ -55,18 +55,7 @@
 ---@field timezone? string
 
 ---@class JsonLoadMatch
----@field city? string
----@field continent? string
----@field continent_code? string
----@field country? string
----@field country_code? string
----@field currency? string
----@field currency_name? string
----@field ip? string
----@field latitude? number
----@field longitude? number
----@field region? string
----@field timezone? string
+---@field nolog? string
 
 local M = {}
 

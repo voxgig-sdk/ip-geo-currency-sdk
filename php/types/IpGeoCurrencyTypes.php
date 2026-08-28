@@ -84,17 +84,6 @@ class Json
 /** Request payload for Json#load. */
 class JsonLoadMatch
 {
-    public ?string $city = null;
-    public ?string $continent = null;
-    public ?string $continent_code = null;
-    public ?string $country = null;
-    public ?string $country_code = null;
-    public ?string $currency = null;
-    public ?string $currency_name = null;
-    public ?string $ip = null;
-    public ?float $latitude = null;
-    public ?float $longitude = null;
-    public ?string $region = null;
-    public ?string $timezone = null;
+    public ?string $nolog = null;
 }
 

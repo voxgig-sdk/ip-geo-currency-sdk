@@ -74,15 +74,4 @@ class Json(TypedDict, total=False):
 
 
 class JsonLoadMatch(TypedDict, total=False):
-    city: str
-    continent: str
-    continent_code: str
-    country: str
-    country_code: str
-    currency: str
-    currency_name: str
-    ip: str
-    latitude: float
-    longitude: float
-    region: str
-    timezone: str
+    nolog: str

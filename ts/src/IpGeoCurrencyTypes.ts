@@ -61,17 +61,6 @@ export interface Json {
 }
 
 export interface JsonLoadMatch {
-  city?: string
-  continent?: string
-  continent_code?: string
-  country?: string
-  country_code?: string
-  currency?: string
-  currency_name?: string
-  ip?: string
-  latitude?: number
-  longitude?: number
-  region?: string
-  timezone?: string
+  nolog?: string
 }
 
