@@ -103,6 +103,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "api_json",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -125,13 +129,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api-json/{ip-or-domain}",
-								"parts": []any{
-									"api-json",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"ip-or-domain": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "api-json",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -142,6 +150,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"api-json",
+									"{id}",
 								},
 							},
 						},
@@ -217,13 +229,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api-rates/{amount}-{base}2{target}",
-								"parts": []any{
-									"api-rates",
-									"{amount}_{base}2{target}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"amount}-{base}2{target": "amount}_{base}2{target",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "api-rates",
+									},
+									map[string]any{
+										"lit": "{amount}-{base}2{target}",
 									},
 								},
 								"select": map[string]any{
@@ -237,16 +253,16 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"api-rates",
+									"{amount}-{base}2{target}",
+								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"api_rate",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 			"currency_rate": map[string]any{
@@ -262,13 +278,18 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/rates.json",
-								"parts": []any{
-									"rates.json",
+								"segments": []any{
+									map[string]any{
+										"lit": "rates.json",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.rates`",
+								},
+								"parts": []any{
+									"rates.json",
 								},
 							},
 						},
@@ -361,8 +382,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/json",
-								"parts": []any{
-									"json",
+								"segments": []any{
+									map[string]any{
+										"lit": "json",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -372,6 +395,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"json",
 								},
 							},
 						},
@@ -383,6 +409,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

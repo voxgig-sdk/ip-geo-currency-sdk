@@ -123,14 +123,9 @@ import { IpGeoCurrencySDK } from '@voxgig-sdk/ip-geo-currency'
 
 const client = new IpGeoCurrencySDK()
 
-
-// Load a specific currencyconversion (returns a CurrencyConversion)
-const currencyconversion = await client.CurrencyConversion().load({
-  amount: 1,
-  base: 'example_base',
-  target: 'example_target',
-})
-console.log(currencyconversion)
+// Load apijson data (returns a ApiJson)
+const apijson = await client.ApiJson().load()
+console.log(apijson)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -215,15 +210,12 @@ import sdk "github.com/voxgig-sdk/ip-geo-currency-sdk/go"
 
 client := sdk.New()
 
-
-// Load a specific currencyconversion
-currencyConversion, err := client.CurrencyConversion(nil).Load(
-    map[string]any{"amount": 1, "base": "example_base", "target": "example_target"}, nil,
-)
+// Load apijson data
+apiJson, err := client.ApiJson(nil).Load(map[string]any{"id": "example_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(currencyConversion)
+fmt.Println(apiJson)
 ```
 
 ### Ruby
@@ -362,7 +354,7 @@ customizable without forking any upstream tool:
 
 - **The model** (`.sdk/model/`) declares everything this project owns:
   package names, versions, active features, per-target settings. It is
-  written in [aontu](https://github.com/aontu-lang/aontu), a JSON-based
+  written in [aontu](https://aontu.dev), a JSON-based
   specification language designed for building ontologies: easy to edit
   by hand, and files unify rather than override, so small declarations
   compose into one model. Regeneration re-reads it every time.

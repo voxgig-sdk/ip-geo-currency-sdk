@@ -31,15 +31,13 @@ require_once 'ipgeocurrency_sdk.php';
 $client = new IpGeoCurrencySDK();
 ```
 
-### 3. Load a currencyconversion
-
-CurrencyConversion is nested under amount, so provide the `amount`.
+### 3. Load an apijson
 
 ```php
 try {
-    // load() returns the ENTITY — call data_get() for the CurrencyConversion record (throws on error).
-    $currencyconversion = $client->CurrencyConversion()->load(["amount" => 1, "base" => "example_base", "target" => "example_target"]);
-    print_r($currencyconversion);
+    // load() returns the ENTITY — call data_get() for the ApiJson record (throws on error).
+    $apijson = $client->ApiJson()->load(["id" => "example_id"]);
+    print_r($apijson);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }

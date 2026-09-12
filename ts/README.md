@@ -33,19 +33,14 @@ import { IpGeoCurrencySDK } from '@voxgig-sdk/ip-geo-currency'
 const client = new IpGeoCurrencySDK()
 ```
 
-### 3. Load a currencyconversion
+### 3. Load an apijson
 
-CurrencyConversion is nested under amount, so provide the `amount`.
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const currencyconversion = await client.CurrencyConversion().load({
-    amount: 1,
-    base: 'example_base',
-    target: 'example_target',
-  })
-  console.log(currencyconversion)
+  const apijson = await client.ApiJson().load({ id: 'example_id' })
+  console.log(apijson)
 } catch (err) {
   console.error('load failed:', err)
 }

@@ -36,15 +36,14 @@ from ipgeocurrency_sdk import IpGeoCurrencySDK
 client = IpGeoCurrencySDK()
 ```
 
-### 3. Load a currencyconversion
+### 3. Load an apijson
 
-CurrencyConversion is nested under amount, so provide the `amount`.
 `load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
-    currencyconversion = client.CurrencyConversion().load({"amount": 1, "base": "example_base", "target": "example_target"})
-    print(currencyconversion)
+    apijson = client.ApiJson().load({"id": "example_id"})
+    print(apijson)
 except Exception as err:
     print(f"load failed: {err}")
 ```

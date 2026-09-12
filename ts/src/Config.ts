@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -140,6 +151,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "api_json",
       "op": {
         "load": {
@@ -162,15 +177,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api-json/{ip-or-domain}",
-              "parts": [
-                "api-json",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "ip-or-domain": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "api-json"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -179,7 +198,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api-json",
+                "{id}"
+              ]
             }
           ]
         }
@@ -254,15 +277,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api-rates/{amount}-{base}2{target}",
-              "parts": [
-                "api-rates",
-                "{amount}_{base}2{target}"
-              ],
               "rename": {
                 "param": {
                   "amount}-{base}2{target": "amount}_{base}2{target"
                 }
               },
+              "segments": [
+                {
+                  "lit": "api-rates"
+                },
+                {
+                  "lit": "{amount}-{base}2{target}"
+                }
+              ],
               "select": {
                 "exist": [
                   "amount",
@@ -273,17 +300,17 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api-rates",
+                "{amount}-{base}2{target}"
+              ]
             }
           ]
         }
       },
       "relations": {
-        "ancestors": [
-          [
-            "api_rate"
-          ]
-        ]
+        "ancestors": []
       }
     },
     "currency_rate": {
@@ -299,14 +326,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/rates.json",
-              "parts": [
-                "rates.json"
+              "segments": [
+                {
+                  "lit": "rates.json"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.rates`"
-              }
+              },
+              "parts": [
+                "rates.json"
+              ]
             }
           ]
         }
@@ -398,8 +430,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/json",
-              "parts": [
-                "json"
+              "segments": [
+                {
+                  "lit": "json"
+                }
               ],
               "select": {
                 "exist": [
@@ -409,7 +443,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "json"
+              ]
             }
           ]
         }
@@ -425,6 +462,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

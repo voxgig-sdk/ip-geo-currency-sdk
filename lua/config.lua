@@ -99,6 +99,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "api_json",
         ["op"] = {
           ["load"] = {
@@ -121,13 +125,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api-json/{ip-or-domain}",
-                ["parts"] = {
-                  "api-json",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["ip-or-domain"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "api-json",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -138,6 +146,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "api-json",
+                  "{id}",
                 },
               },
             },
@@ -213,13 +225,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api-rates/{amount}-{base}2{target}",
-                ["parts"] = {
-                  "api-rates",
-                  "{amount}_{base}2{target}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["amount}-{base}2{target"] = "amount}_{base}2{target",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "api-rates",
+                  },
+                  {
+                    ["lit"] = "{amount}-{base}2{target}",
                   },
                 },
                 ["select"] = {
@@ -233,16 +249,16 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "api-rates",
+                  "{amount}-{base}2{target}",
+                },
               },
             },
           },
         },
         ["relations"] = {
-          ["ancestors"] = {
-            {
-              "api_rate",
-            },
-          },
+          ["ancestors"] = {},
         },
       },
       ["currency_rate"] = {
@@ -258,13 +274,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/rates.json",
-                ["parts"] = {
-                  "rates.json",
+                ["segments"] = {
+                  {
+                    ["lit"] = "rates.json",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.rates`",
+                },
+                ["parts"] = {
+                  "rates.json",
                 },
               },
             },
@@ -357,8 +378,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/json",
-                ["parts"] = {
-                  "json",
+                ["segments"] = {
+                  {
+                    ["lit"] = "json",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -368,6 +391,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "json",
                 },
               },
             },

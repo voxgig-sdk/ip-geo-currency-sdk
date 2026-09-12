@@ -12,8 +12,10 @@ main: kit: entity: currency_rate: {
         {
           method: "GET"
           orig: "/rates.json"
-          parts: [
-            "rates.json"
+          segments: [
+            {
+              lit: "rates.json"
+            }
           ]
           transform: {
             req: "`reqdata`"

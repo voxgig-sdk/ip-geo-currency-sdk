@@ -50,7 +50,7 @@ func TestCurrencyConversionEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		currencyConversionRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.currency_conversion", setup.data)))
+		currencyConversionRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.currency_conversion")))
 		var currencyConversionRef01Data map[string]any
 		if len(currencyConversionRef01DataRaw) > 0 {
 			currencyConversionRef01Data = core.ToMapAny(currencyConversionRef01DataRaw[0][1])
@@ -97,8 +97,8 @@ func currency_conversionBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
-		[]any{"currency_conversion01", "currency_conversion02", "currency_conversion03", "api_rate01", "api_rate02", "api_rate03", "amount01", "base01", "target01"},
+	idmap, _ := vs.Transform(
+		[]any{"currency_conversion01", "currency_conversion02", "currency_conversion03", "amount01", "base01", "target01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",
@@ -125,10 +125,22 @@ func currency_conversionBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["IP_GEO_CURRENCY_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewIpGeoCurrencySDK(core.ToMapAny(mergedOpts))
 	}

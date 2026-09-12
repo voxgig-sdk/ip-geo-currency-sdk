@@ -73,15 +73,19 @@ main: kit: entity: currency_conversion: {
           }
           method: "GET"
           orig: "/api-rates/{amount}-{base}2{target}"
-          parts: [
-            "api-rates"
-            "{amount}_{base}2{target}"
-          ]
           rename: {
             param: {
               "amount}-{base}2{target": "amount}_{base}2{target"
             }
           }
+          segments: [
+            {
+              lit: "api-rates"
+            }
+            {
+              lit: "{amount}-{base}2{target}"
+            }
+          ]
           select: {
             exist: [
               "amount"
@@ -96,14 +100,6 @@ main: kit: entity: currency_conversion: {
         }
       ]
     }
-  }
-
-  relations: {
-    ancestors: [
-      [
-        "api_rate"
-      ]
-    ]
   }
 
 

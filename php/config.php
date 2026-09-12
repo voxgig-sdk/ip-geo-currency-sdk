@@ -125,6 +125,10 @@ class IpGeoCurrencyConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'api_json',
           'op' => [
             'load' => [
@@ -147,13 +151,17 @@ class IpGeoCurrencyConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api-json/{ip-or-domain}',
-                  'parts' => [
-                    'api-json',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'ip-or-domain' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'api-json',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -164,6 +172,10 @@ class IpGeoCurrencyConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'api-json',
+                    '{id}',
                   ],
                 ],
               ],
@@ -239,13 +251,17 @@ class IpGeoCurrencyConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api-rates/{amount}-{base}2{target}',
-                  'parts' => [
-                    'api-rates',
-                    '{amount}_{base}2{target}',
-                  ],
                   'rename' => [
                     'param' => [
                       'amount}-{base}2{target' => 'amount}_{base}2{target',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'api-rates',
+                    ],
+                    [
+                      'lit' => '{amount}-{base}2{target}',
                     ],
                   ],
                   'select' => [
@@ -259,16 +275,16 @@ class IpGeoCurrencyConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [
+                    'api-rates',
+                    '{amount}-{base}2{target}',
+                  ],
                 ],
               ],
             ],
           ],
           'relations' => [
-            'ancestors' => [
-              [
-                'api_rate',
-              ],
-            ],
+            'ancestors' => [],
           ],
         ],
         'currency_rate' => [
@@ -284,13 +300,18 @@ class IpGeoCurrencyConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/rates.json',
-                  'parts' => [
-                    'rates.json',
+                  'segments' => [
+                    [
+                      'lit' => 'rates.json',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.rates`',
+                  ],
+                  'parts' => [
+                    'rates.json',
                   ],
                 ],
               ],
@@ -383,8 +404,10 @@ class IpGeoCurrencyConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/json',
-                  'parts' => [
-                    'json',
+                  'segments' => [
+                    [
+                      'lit' => 'json',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -394,6 +417,9 @@ class IpGeoCurrencyConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'json',
                   ],
                 ],
               ],

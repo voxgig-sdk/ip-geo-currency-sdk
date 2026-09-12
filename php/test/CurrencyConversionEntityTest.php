@@ -70,7 +70,7 @@ function currency_conversion_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["currency_conversion01", "currency_conversion02", "currency_conversion03", "api_rate01", "api_rate02", "api_rate03", "amount01", "base01", "target01"] as $k) {
+    foreach (["currency_conversion01", "currency_conversion02", "currency_conversion03", "amount01", "base01", "target01"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 
@@ -94,9 +94,16 @@ function currency_conversion_basic_setup($extra)
 
     if ($env["IP_GEO_CURRENCY_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
+            // FIRST, so the generated fields below win: sdk-test-control.json's
+            // test.client.options adds to the live client, it does not redirect it.
+            Runner::live_client_options(),
             [
             ],
-            $extra ?? [],
+            // ismap, not a plain "?? []" default: an empty PHP array is a
+            // LIST, and a non-map later entry REPLACES the accumulated map in
+            // merge - so the no-extras call discarded live_client_options()
+            // and the apikey/server map above it.
+            Vs::ismap($extra) ? $extra : new \stdClass(),
         ]);
         $client = new IpGeoCurrencySDK(Helpers::to_map($merged_opts));
     }

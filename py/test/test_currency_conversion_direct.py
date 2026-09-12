@@ -22,7 +22,7 @@ class TestCurrencyConversionDirect:
 
 
         result = client.direct({
-            "path": "api-rates/{amount}_{base}2{target}",
+            "path": "api-rates/{amount}-{base}2{target}",
             "method": "GET",
             "params": {},
         })
@@ -63,8 +63,11 @@ def _currency_conversion_direct_setup(mockres):
     live = env.get("IP_GEO_CURRENCY_TEST_LIVE") == "TRUE"
 
     if live:
-        merged_opts = {
-        }
+        # sdk-test-control.json's test.client.options seeds the live
+        # client; the generated fields below overwrite anything they name.
+        merged_opts = dict(runner.live_client_options())
+        merged_opts.update({
+        })
         client = IpGeoCurrencySDK(merged_opts)
         return {
             "client": client,

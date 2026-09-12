@@ -62,7 +62,7 @@ def currency_conversion_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["currency_conversion01", "currency_conversion02", "currency_conversion03", "api_rate01", "api_rate02", "api_rate03", "amount01", "base01", "target01"],
+    ["currency_conversion01", "currency_conversion02", "currency_conversion03", "amount01", "base01", "target01"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",
@@ -91,6 +91,9 @@ def currency_conversion_basic_setup(extra)
 
   if env["IP_GEO_CURRENCY_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
       },
       extra || {},

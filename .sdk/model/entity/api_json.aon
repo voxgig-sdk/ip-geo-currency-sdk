@@ -109,15 +109,19 @@ main: kit: entity: api_json: {
           }
           method: "GET"
           orig: "/api-json/{ip-or-domain}"
-          parts: [
-            "api-json"
-            "{id}"
-          ]
           rename: {
             param: {
               "ip-or-domain": "id"
             }
           }
+          segments: [
+            {
+              lit: "api-json"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
