@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { IpGeoCurrencySDK } from '@voxgig-sdk/ip-geo-currency'
+import { IpGeoCurrencySDK } from '@voxgig-sdk/ip-geo-currency-sdk'
 
 const client = new IpGeoCurrencySDK()
 ```
@@ -550,7 +550,7 @@ ip-geo-currency/
 Import the SDK from the package root:
 
 ```ts
-import { IpGeoCurrencySDK } from '@voxgig-sdk/ip-geo-currency'
+import { IpGeoCurrencySDK } from '@voxgig-sdk/ip-geo-currency-sdk'
 ```
 
 ### Entity state

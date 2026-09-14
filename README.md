@@ -105,7 +105,7 @@ local result, err = client:ApiJson():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/ip-geo-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases) |
+| TypeScript | `@voxgig-sdk/ip-geo-currency-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases) |
 | Python | `voxgig-sdk-ip-geo-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases) |
 | PHP | `voxgig-sdk/ip-geo-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/ip-geo-currency-sdk/go` | `go get github.com/voxgig-sdk/ip-geo-currency-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:ApiJson():load({ id = "test01" })
 ### TypeScript
 
 ```ts
-import { IpGeoCurrencySDK } from '@voxgig-sdk/ip-geo-currency'
+import { IpGeoCurrencySDK } from '@voxgig-sdk/ip-geo-currency-sdk'
 
 const client = new IpGeoCurrencySDK()
 

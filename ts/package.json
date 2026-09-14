@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/ip-geo-currency",
+  "name": "@voxgig-sdk/ip-geo-currency-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the IP Geo Currency public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [

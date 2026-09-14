@@ -1278,7 +1278,7 @@
             "registry": {
               "active": false,
               "name": "npm",
-              "package": "",
+              "package": "@voxgig-sdk/ip-geo-currency-sdk",
               "state": "pending",
               "url": "https://registry.npmjs.org",
               "vault": {
