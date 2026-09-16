@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.IP_GEO_CURRENCY_TEST_LIVE;
         for (const op of ['load']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'currency_conversion.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'currency_conversion.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set IP_GEO_CURRENCY_TEST_CURRENCY_CONVERSION_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "amount", "req": false, "short": "Original amount", "type": "`$NUMBER`", "index$": 0 }, { "active": true, "name": "base", "req": false, "short": "Source currency code", "type": "`$STRING`", "index$": 1 }, { "active": true, "name": "rate", "req": false, "short": "Exchange rate used", "type": "`$NUMBER`", "index$": 2 }, { "active": true, "name": "result", "req": false, "short": "Converted amount", "type": "`$NUMBER`", "index$": 3 }, { "active": true, "name": "target", "req": false, "short": "Target currency code", "type": "`$STRING`", "index$": 4 }], "name": "currency_conversion", "op": { "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": { "params": [{ "active": true, "example": 10, "kind": "param", "name": "amount", "orig": "amount", "reqd": true, "type": "`$NUMBER`", "index$": 0 }, { "active": true, "example": "gbp", "kind": "param", "name": "base", "orig": "base", "reqd": true, "type": "`$STRING`", "index$": 1 }, { "active": true, "example": "usd", "kind": "param", "name": "target", "orig": "target", "reqd": true, "type": "`$STRING`", "index$": 2 }] }, "contract": { "id": "GET /api-rates/{amount}-{base}2{target}", "json": "{\"operationId\":\"convertCurrency\",\"parameters\":[{\"description\":\"Amount to convert\",\"example\":10,\"in\":\"path\",\"name\":\"amount\",\"required\":true,\"schema\":{\"type\":\"number\"}},{\"description\":\"Source currency code (e.g., gbp, usd, eur)\",\"example\":\"gbp\",\"in\":\"path\",\"name\":\"base\",\"required\":true,\"schema\":{\"enum\":[\"usd\",\"eur\",\"gbp\",\"btc\",\"aed\",\"afn\",\"all\",\"amd\",\"ang\",\"aoa\",\"ars\",\"aud\",\"awg\",\"azn\",\"bam\",\"bbd\",\"bdt\",\"bgn\",\"bhd\",\"bif\",\"bmd\",\"bnd\",\"bob\",\"brl\",\"bsd\",\"btn\",\"bwp\",\"byn\",\"bzd\",\"cad\",\"cdf\",\"chf\",\"clf\",\"clp\",\"cnh\",\"cny\",\"cop\",\"crc\",\"cuc\",\"cup\",\"cve\",\"czk\",\"djf\",\"dkk\",\"dop\",\"dzd\",\"egp\",\"ern\",\"etb\",\"fjd\",\"fkp\",\"gel\",\"ggp\",\"ghs\",\"gip\",\"gmd\",\"gnf\",\"gtq\",\"gyd\",\"hkd\",\"hnl\",\"hrk\",\"htg\",\"huf\",\"idr\",\"ils\",\"imp\",\"inr\",\"iqd\",\"irr\",\"isk\",\"jep\",\"jmd\",\"jod\",\"jpy\",\"kes\",\"kgs\",\"khr\",\"kmf\",\"kpw\",\"krw\",\"kwd\",\"kyd\",\"kzt\",\"lak\",\"lbp\",\"lkr\",\"lrd\",\"lsl\",\"lyd\",\"mad\",\"mdl\",\"mga\",\"mkd\",\"mmk\",\"mnt\",\"mop\",\"mru\",\"mur\",\"mvr\",\"mwk\",\"mxn\",\"myr\",\"mzn\",\"nad\",\"ngn\",\"nio\",\"nok\",\"npr\",\"nzd\",\"omr\",\"pab\",\"pen\",\"pgk\",\"php\",\"pkr\",\"pln\",\"pyg\",\"qar\",\"ron\",\"rsd\",\"rub\",\"rwf\",\"sar\",\"sbd\",\"scr\",\"sdg\",\"sek\",\"sgd\",\"shp\",\"sll\",\"sos\",\"srd\",\"ssp\",\"std\",\"stn\",\"svc\",\"syp\",\"szl\",\"thb\",\"tjs\",\"tmt\",\"tnd\",\"top\",\"try\",\"ttd\",\"twd\",\"tzs\",\"uah\",\"ugx\",\"uyu\",\"uzs\",\"ves\",\"vnd\",\"vuv\",\"wst\",\"xaf\",\"xag\",\"xau\",\"xcd\",\"xdr\",\"xof\",\"xpd\",\"xpf\",\"xpt\",\"yer\",\"zar\",\"zmw\",\"zwl\"],\"type\":\"string\"}},{\"description\":\"Target currency code (e.g., usd, eur, gbp)\",\"example\":\"usd\",\"in\":\"path\",\"name\":\"target\",\"required\":true,\"schema\":{\"enum\":[\"usd\",\"eur\",\"gbp\",\"btc\",\"aed\",\"afn\",\"all\",\"amd\",\"ang\",\"aoa\",\"ars\",\"aud\",\"awg\",\"azn\",\"bam\",\"bbd\",\"bdt\",\"bgn\",\"bhd\",\"bif\",\"bmd\",\"bnd\",\"bob\",\"brl\",\"bsd\",\"btn\",\"bwp\",\"byn\",\"bzd\",\"cad\",\"cdf\",\"chf\",\"clf\",\"clp\",\"cnh\",\"cny\",\"cop\",\"crc\",\"cuc\",\"cup\",\"cve\",\"czk\",\"djf\",\"dkk\",\"dop\",\"dzd\",\"egp\",\"ern\",\"etb\",\"fjd\",\"fkp\",\"gel\",\"ggp\",\"ghs\",\"gip\",\"gmd\",\"gnf\",\"gtq\",\"gyd\",\"hkd\",\"hnl\",\"hrk\",\"htg\",\"huf\",\"idr\",\"ils\",\"imp\",\"inr\",\"iqd\",\"irr\",\"isk\",\"jep\",\"jmd\",\"jod\",\"jpy\",\"kes\",\"kgs\",\"khr\",\"kmf\",\"kpw\",\"krw\",\"kwd\",\"kyd\",\"kzt\",\"lak\",\"lbp\",\"lkr\",\"lrd\",\"lsl\",\"lyd\",\"mad\",\"mdl\",\"mga\",\"mkd\",\"mmk\",\"mnt\",\"mop\",\"mru\",\"mur\",\"mvr\",\"mwk\",\"mxn\",\"myr\",\"mzn\",\"nad\",\"ngn\",\"nio\",\"nok\",\"npr\",\"nzd\",\"omr\",\"pab\",\"pen\",\"pgk\",\"php\",\"pkr\",\"pln\",\"pyg\",\"qar\",\"ron\",\"rsd\",\"rub\",\"rwf\",\"sar\",\"sbd\",\"scr\",\"sdg\",\"sek\",\"sgd\",\"shp\",\"sll\",\"sos\",\"srd\",\"ssp\",\"std\",\"stn\",\"svc\",\"syp\",\"szl\",\"thb\",\"tjs\",\"tmt\",\"tnd\",\"top\",\"try\",\"ttd\",\"twd\",\"tzs\",\"uah\",\"ugx\",\"uyu\",\"uzs\",\"ves\",\"vnd\",\"vuv\",\"wst\",\"xaf\",\"xag\",\"xau\",\"xcd\",\"xdr\",\"xof\",\"xpd\",\"xpf\",\"xpt\",\"yer\",\"zar\",\"zmw\",\"zwl\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"amount\":{\"description\":\"Original amount\",\"example\":10,\"type\":\"number\"},\"base\":{\"description\":\"Source currency code\",\"example\":\"GBP\",\"type\":\"string\"},\"rate\":{\"description\":\"Exchange rate used\",\"example\":1.265,\"type\":\"number\"},\"result\":{\"description\":\"Converted amount\",\"example\":12.65,\"type\":\"number\"},\"target\":{\"description\":\"Target currency code\",\"example\":\"USD\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response with converted currency amount\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Invalid currency code or amount\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded (10 requests per second)\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/api-rates/{amount}-{base}2{target}", "rename": { "param": { "amount}-{base}2{target": "amount}_{base}2{target" } }, "segments": [{ "lit": "api-rates" }, { "lit": "{amount}-{base}2{target}" }], "select": { "exist": ["amount", "base", "target"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "currency_conversion", "name__orig": "currency_conversion", "Name": "CurrencyConversion", "name_": "currency_conversion", "name-": "currency-conversion", "NAME": "CURRENCY_CONVERSION", "index$": 1 }, { "active": true, "entity": "currency_conversion", "key$": "BasicCurrencyConversionFlow", "kind": "basic", "name": "BasicCurrencyConversionFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "currency_conversion_ref01", "srcdatavar": "currency_conversion_ref01_data", "suffix": "_dt0" }, "match": { "amount": "amount01", "base": "base01", "target": "target01" }, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-currency_conversion_ref01" } }], "index$": 0 }] }, 'CurrencyConversion');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -100,12 +98,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['IP_GEO_CURRENCY_TEST_CURRENCY_CONVERSION_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'IP_GEO_CURRENCY_TEST_CURRENCY_CONVERSION_ENTID': idmap,
         'IP_GEO_CURRENCY_TEST_LIVE': 'FALSE',
@@ -113,7 +105,13 @@ function basicSetup(extra) {
     });
     idmap = env['IP_GEO_CURRENCY_TEST_CURRENCY_CONVERSION_ENTID'];
     const live = 'TRUE' === env.IP_GEO_CURRENCY_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['IP_GEO_CURRENCY_TEST_CURRENCY_CONVERSION_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.IpGeoCurrencySDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -124,7 +122,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -136,7 +135,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.IP_GEO_CURRENCY_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

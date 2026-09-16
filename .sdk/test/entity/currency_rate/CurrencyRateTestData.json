@@ -16,5 +16,74 @@
     "currency_rate": {
       "currency_rate_ref01": {}
     }
+  },
+  "requests": {
+    "GET /rates.json": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCurrencyRates",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "base": {
+                      "description": "Base currency (USD)",
+                      "example": "USD",
+                      "type": "string"
+                    },
+                    "date": {
+                      "description": "Date of the rates",
+                      "example": "2024-01-15",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "rates": {
+                      "additionalProperties": {
+                        "type": "number"
+                      },
+                      "description": "Exchange rates for all supported currencies",
+                      "example": {
+                        "AUD": 1.52,
+                        "EUR": 0.92,
+                        "GBP": 0.79,
+                        "JPY": 149.5
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with currency rates"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded (10 requests per second)"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

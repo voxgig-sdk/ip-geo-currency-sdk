@@ -1,12 +1,18 @@
 # IpGeoCurrency SDK feature factory
 
 from ipgeocurrency_sdk.feature.base_feature import IpGeoCurrencyBaseFeature
+from ipgeocurrency_sdk.feature.ratelimit_feature import IpGeoCurrencyRatelimitFeature
+from ipgeocurrency_sdk.feature.retry_feature import IpGeoCurrencyRetryFeature
 from ipgeocurrency_sdk.feature.test_feature import IpGeoCurrencyTestFeature
+from ipgeocurrency_sdk.feature.timeout_feature import IpGeoCurrencyTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: IpGeoCurrencyBaseFeature(),
+    "ratelimit": lambda: IpGeoCurrencyRatelimitFeature(),
+    "retry": lambda: IpGeoCurrencyRetryFeature(),
     "test": lambda: IpGeoCurrencyTestFeature(),
+    "timeout": lambda: IpGeoCurrencyTimeoutFeature(),
 }
 
 
