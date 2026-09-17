@@ -127,18 +127,18 @@ class Config {
 
     entity: {
       
-      api_json: {
-      },
-
-      currency_conversion: {
-      },
-
-      currency_rate: {
-      },
-
-      json: {
-      },
-
+        api_json: {
+        },
+  
+        currency_conversion: {
+        },
+  
+        currency_rate: {
+        },
+  
+        json: {
+        },
+  
     }
   }
 

@@ -105,12 +105,12 @@ local result, err = client:ApiJson():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/ip-geo-currency-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases) |
-| Python | `voxgig-sdk-ip-geo-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases) |
-| PHP | `voxgig-sdk/ip-geo-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases) |
+| TypeScript | `@voxgig-sdk/ip-geo-currency-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geo-currency-sdk/tags) |
+| Python | `voxgig-sdk-ip-geo-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geo-currency-sdk/tags) |
+| PHP | `voxgig-sdk/ip-geo-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geo-currency-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/ip-geo-currency-sdk/go` | `go get github.com/voxgig-sdk/ip-geo-currency-sdk/go@latest` |
-| Ruby | `voxgig-sdk-ip-geo-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases) |
-| Lua | `voxgig-sdk-ip-geo-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases) |
+| Ruby | `voxgig-sdk-ip-geo-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geo-currency-sdk/tags) |
+| Lua | `voxgig-sdk-ip-geo-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geo-currency-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/ip-geo-currency-sdk/go-cli` | `go install github.com/voxgig-sdk/ip-geo-currency-sdk/go-cli/cmd/ip-geo-currency@latest` |
 | Go MCP server | `github.com/voxgig-sdk/ip-geo-currency-sdk/go-mcp` | `go get github.com/voxgig-sdk/ip-geo-currency-sdk/go-mcp@latest` |
 
