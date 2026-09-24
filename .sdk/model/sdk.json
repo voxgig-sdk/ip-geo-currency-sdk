@@ -24,104 +24,183 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "api_json": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "city",
-              "req": false,
-              "short": "City name",
-              "type": "`$STRING`"
+          "fields": {
+            "city": {
+              "a": true,
+              "h": "City",
+              "n": "city",
+              "r": false,
+              "sh": "City name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "continent",
-              "req": false,
-              "short": "Continent name",
-              "type": "`$STRING`"
+            "continent": {
+              "a": true,
+              "h": "Continent",
+              "n": "continent",
+              "r": false,
+              "sh": "Continent name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "continent_code",
-              "req": false,
-              "short": "Continent code",
-              "type": "`$STRING`"
+            "continent_code": {
+              "a": true,
+              "h": "Continent Code",
+              "n": "continent_code",
+              "r": false,
+              "sh": "Continent code",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "country",
-              "req": false,
-              "short": "Country name",
-              "type": "`$STRING`"
+            "country": {
+              "a": true,
+              "h": "Country",
+              "n": "country",
+              "r": false,
+              "sh": "Country name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "country_code",
-              "req": false,
-              "short": "ISO 3166-1 alpha-2 country code",
-              "type": "`$STRING`"
+            "country_code": {
+              "a": true,
+              "h": "Country Code",
+              "n": "country_code",
+              "r": false,
+              "sh": "ISO 3166-1 alpha-2 country code",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "currency",
-              "req": false,
-              "short": "Currency code",
-              "type": "`$STRING`"
+            "currency": {
+              "a": true,
+              "h": "Currency",
+              "n": "currency",
+              "r": false,
+              "sh": "Currency code",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "currency_name",
-              "req": false,
-              "short": "Currency name",
-              "type": "`$STRING`"
+            "currency_name": {
+              "a": true,
+              "h": "Currency Name",
+              "n": "currency_name",
+              "r": false,
+              "sh": "Currency name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "ip",
-              "req": false,
-              "short": "IP address",
-              "type": "`$STRING`"
+            "ip": {
+              "a": true,
+              "h": "Ip",
+              "n": "ip",
+              "r": false,
+              "sh": "IP address",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "latitude",
-              "req": false,
-              "short": "Latitude coordinate",
-              "type": "`$NUMBER`"
+            "latitude": {
+              "a": true,
+              "h": "Latitude",
+              "n": "latitude",
+              "r": false,
+              "sh": "Latitude coordinate",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "longitude",
-              "req": false,
-              "short": "Longitude coordinate",
-              "type": "`$NUMBER`"
+            "longitude": {
+              "a": true,
+              "h": "Longitude",
+              "n": "longitude",
+              "r": false,
+              "sh": "Longitude coordinate",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "region",
-              "req": false,
-              "short": "Region or state",
-              "type": "`$STRING`"
+            "region": {
+              "a": true,
+              "h": "Region",
+              "n": "region",
+              "r": false,
+              "sh": "Region or state",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "timezone",
-              "req": false,
-              "short": "Timezone",
-              "type": "`$STRING`"
+            "timezone": {
+              "a": true,
+              "h": "Timezone",
+              "n": "timezone",
+              "r": false,
+              "sh": "Timezone",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -133,35 +212,39 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api-json/{ip-or-domain}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "example": "8.8.8.8",
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "ip_or_domain",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "8.8.8.8",
+                        "k": "param",
+                        "n": "id",
+                        "or": "ip_or_domain",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /api-json/{ip-or-domain}",
-                    "json": "{\"operationId\":\"getIpInfo\",\"parameters\":[{\"description\":\"IP address (e.g., 8.8.8.8) or domain name to look up\",\"example\":\"8.8.8.8\",\"in\":\"path\",\"name\":\"ip-or-domain\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"city\":{\"description\":\"City name\",\"example\":\"Mountain View\",\"type\":\"string\"},\"continent\":{\"description\":\"Continent name\",\"example\":\"North America\",\"type\":\"string\"},\"continent_code\":{\"description\":\"Continent code\",\"example\":\"NA\",\"type\":\"string\"},\"country\":{\"description\":\"Country name\",\"example\":\"United States\",\"type\":\"string\"},\"country_code\":{\"description\":\"ISO 3166-1 alpha-2 country code\",\"example\":\"US\",\"type\":\"string\"},\"currency\":{\"description\":\"Currency code\",\"example\":\"USD\",\"type\":\"string\"},\"currency_name\":{\"description\":\"Currency name\",\"example\":\"United States Dollar\",\"type\":\"string\"},\"ip\":{\"description\":\"IP address\",\"example\":\"8.8.8.8\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"example\":37.386,\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"example\":-122.0838,\"type\":\"number\"},\"region\":{\"description\":\"Region or state\",\"example\":\"California\",\"type\":\"string\"},\"timezone\":{\"description\":\"Timezone\",\"example\":\"America/Los_Angeles\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response with IP geolocation data\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Invalid IP address or domain\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded (10 requests per second)\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api-json/{ip-or-domain}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/api-json/{ip-or-domain}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "ip-or-domain": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "api-json"
                     },
@@ -169,12 +252,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -191,43 +269,48 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "amount",
-              "req": false,
-              "short": "Original amount",
-              "type": "`$NUMBER`"
+          "fields": {
+            "amount": {
+              "a": true,
+              "h": "Amount",
+              "n": "amount",
+              "r": false,
+              "sh": "Original amount",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "base",
-              "req": false,
-              "short": "Source currency code",
-              "type": "`$STRING`"
+            "base": {
+              "a": true,
+              "h": "Base",
+              "n": "base",
+              "r": false,
+              "sh": "Source currency code",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "rate",
-              "req": false,
-              "short": "Exchange rate used",
-              "type": "`$NUMBER`"
+            "rate": {
+              "a": true,
+              "h": "Rate",
+              "n": "rate",
+              "r": false,
+              "sh": "Exchange rate used",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "result",
-              "req": false,
-              "short": "Converted amount",
-              "type": "`$NUMBER`"
+            "result": {
+              "a": true,
+              "h": "Result",
+              "n": "result",
+              "r": false,
+              "sh": "Converted amount",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "target",
-              "req": false,
-              "short": "Target currency code",
-              "type": "`$STRING`"
+            "target": {
+              "a": true,
+              "h": "Target",
+              "n": "target",
+              "r": false,
+              "sh": "Target currency code",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "currency_conversion",
           "op": {
             "load": {
@@ -235,53 +318,59 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api-rates/{amount}-{base}2{target}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "example": 10,
-                        "kind": "param",
-                        "name": "amount",
-                        "orig": "amount",
-                        "reqd": true,
-                        "type": "`$NUMBER`"
+                        "a": true,
+                        "ex": 10,
+                        "k": "param",
+                        "n": "amount",
+                        "or": "amount",
+                        "r": true,
+                        "t": "`$NUMBER`"
                       },
                       {
-                        "active": true,
-                        "example": "gbp",
-                        "kind": "param",
-                        "name": "base",
-                        "orig": "base",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "gbp",
+                        "k": "param",
+                        "n": "base",
+                        "or": "base",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "usd",
-                        "kind": "param",
-                        "name": "target",
-                        "orig": "target",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "usd",
+                        "k": "param",
+                        "n": "target",
+                        "or": "target",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /api-rates/{amount}-{base}2{target}",
-                    "json": "{\"operationId\":\"convertCurrency\",\"parameters\":[{\"description\":\"Amount to convert\",\"example\":10,\"in\":\"path\",\"name\":\"amount\",\"required\":true,\"schema\":{\"type\":\"number\"}},{\"description\":\"Source currency code (e.g., gbp, usd, eur)\",\"example\":\"gbp\",\"in\":\"path\",\"name\":\"base\",\"required\":true,\"schema\":{\"enum\":[\"usd\",\"eur\",\"gbp\",\"btc\",\"aed\",\"afn\",\"all\",\"amd\",\"ang\",\"aoa\",\"ars\",\"aud\",\"awg\",\"azn\",\"bam\",\"bbd\",\"bdt\",\"bgn\",\"bhd\",\"bif\",\"bmd\",\"bnd\",\"bob\",\"brl\",\"bsd\",\"btn\",\"bwp\",\"byn\",\"bzd\",\"cad\",\"cdf\",\"chf\",\"clf\",\"clp\",\"cnh\",\"cny\",\"cop\",\"crc\",\"cuc\",\"cup\",\"cve\",\"czk\",\"djf\",\"dkk\",\"dop\",\"dzd\",\"egp\",\"ern\",\"etb\",\"fjd\",\"fkp\",\"gel\",\"ggp\",\"ghs\",\"gip\",\"gmd\",\"gnf\",\"gtq\",\"gyd\",\"hkd\",\"hnl\",\"hrk\",\"htg\",\"huf\",\"idr\",\"ils\",\"imp\",\"inr\",\"iqd\",\"irr\",\"isk\",\"jep\",\"jmd\",\"jod\",\"jpy\",\"kes\",\"kgs\",\"khr\",\"kmf\",\"kpw\",\"krw\",\"kwd\",\"kyd\",\"kzt\",\"lak\",\"lbp\",\"lkr\",\"lrd\",\"lsl\",\"lyd\",\"mad\",\"mdl\",\"mga\",\"mkd\",\"mmk\",\"mnt\",\"mop\",\"mru\",\"mur\",\"mvr\",\"mwk\",\"mxn\",\"myr\",\"mzn\",\"nad\",\"ngn\",\"nio\",\"nok\",\"npr\",\"nzd\",\"omr\",\"pab\",\"pen\",\"pgk\",\"php\",\"pkr\",\"pln\",\"pyg\",\"qar\",\"ron\",\"rsd\",\"rub\",\"rwf\",\"sar\",\"sbd\",\"scr\",\"sdg\",\"sek\",\"sgd\",\"shp\",\"sll\",\"sos\",\"srd\",\"ssp\",\"std\",\"stn\",\"svc\",\"syp\",\"szl\",\"thb\",\"tjs\",\"tmt\",\"tnd\",\"top\",\"try\",\"ttd\",\"twd\",\"tzs\",\"uah\",\"ugx\",\"uyu\",\"uzs\",\"ves\",\"vnd\",\"vuv\",\"wst\",\"xaf\",\"xag\",\"xau\",\"xcd\",\"xdr\",\"xof\",\"xpd\",\"xpf\",\"xpt\",\"yer\",\"zar\",\"zmw\",\"zwl\"],\"type\":\"string\"}},{\"description\":\"Target currency code (e.g., usd, eur, gbp)\",\"example\":\"usd\",\"in\":\"path\",\"name\":\"target\",\"required\":true,\"schema\":{\"enum\":[\"usd\",\"eur\",\"gbp\",\"btc\",\"aed\",\"afn\",\"all\",\"amd\",\"ang\",\"aoa\",\"ars\",\"aud\",\"awg\",\"azn\",\"bam\",\"bbd\",\"bdt\",\"bgn\",\"bhd\",\"bif\",\"bmd\",\"bnd\",\"bob\",\"brl\",\"bsd\",\"btn\",\"bwp\",\"byn\",\"bzd\",\"cad\",\"cdf\",\"chf\",\"clf\",\"clp\",\"cnh\",\"cny\",\"cop\",\"crc\",\"cuc\",\"cup\",\"cve\",\"czk\",\"djf\",\"dkk\",\"dop\",\"dzd\",\"egp\",\"ern\",\"etb\",\"fjd\",\"fkp\",\"gel\",\"ggp\",\"ghs\",\"gip\",\"gmd\",\"gnf\",\"gtq\",\"gyd\",\"hkd\",\"hnl\",\"hrk\",\"htg\",\"huf\",\"idr\",\"ils\",\"imp\",\"inr\",\"iqd\",\"irr\",\"isk\",\"jep\",\"jmd\",\"jod\",\"jpy\",\"kes\",\"kgs\",\"khr\",\"kmf\",\"kpw\",\"krw\",\"kwd\",\"kyd\",\"kzt\",\"lak\",\"lbp\",\"lkr\",\"lrd\",\"lsl\",\"lyd\",\"mad\",\"mdl\",\"mga\",\"mkd\",\"mmk\",\"mnt\",\"mop\",\"mru\",\"mur\",\"mvr\",\"mwk\",\"mxn\",\"myr\",\"mzn\",\"nad\",\"ngn\",\"nio\",\"nok\",\"npr\",\"nzd\",\"omr\",\"pab\",\"pen\",\"pgk\",\"php\",\"pkr\",\"pln\",\"pyg\",\"qar\",\"ron\",\"rsd\",\"rub\",\"rwf\",\"sar\",\"sbd\",\"scr\",\"sdg\",\"sek\",\"sgd\",\"shp\",\"sll\",\"sos\",\"srd\",\"ssp\",\"std\",\"stn\",\"svc\",\"syp\",\"szl\",\"thb\",\"tjs\",\"tmt\",\"tnd\",\"top\",\"try\",\"ttd\",\"twd\",\"tzs\",\"uah\",\"ugx\",\"uyu\",\"uzs\",\"ves\",\"vnd\",\"vuv\",\"wst\",\"xaf\",\"xag\",\"xau\",\"xcd\",\"xdr\",\"xof\",\"xpd\",\"xpf\",\"xpt\",\"yer\",\"zar\",\"zmw\",\"zwl\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"amount\":{\"description\":\"Original amount\",\"example\":10,\"type\":\"number\"},\"base\":{\"description\":\"Source currency code\",\"example\":\"GBP\",\"type\":\"string\"},\"rate\":{\"description\":\"Exchange rate used\",\"example\":1.265,\"type\":\"number\"},\"result\":{\"description\":\"Converted amount\",\"example\":12.65,\"type\":\"number\"},\"target\":{\"description\":\"Target currency code\",\"example\":\"USD\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response with converted currency amount\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Invalid currency code or amount\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded (10 requests per second)\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api-rates/{amount}-{base}2{target}",
+                  "q": {
+                    "exist": [
+                      "amount",
+                      "base",
+                      "target"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/api-rates/{amount}-{base}2{target}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "amount}-{base}2{target": "amount}_{base}2{target"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "api-rates"
                     },
@@ -289,14 +378,7 @@
                       "lit": "{amount}-{base}2{target}"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "amount",
-                      "base",
-                      "target"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -313,7 +395,7 @@
           "alias": {
             "field": {}
           },
-          "fields": [],
+          "fields": {},
           "name": "currency_rate",
           "op": {
             "load": {
@@ -321,24 +403,24 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /rates.json",
-                    "json": "{\"operationId\":\"getCurrencyRates\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"base\":{\"description\":\"Base currency (USD)\",\"example\":\"USD\",\"type\":\"string\"},\"date\":{\"description\":\"Date of the rates\",\"example\":\"2024-01-15\",\"format\":\"date\",\"type\":\"string\"},\"rates\":{\"additionalProperties\":{\"type\":\"number\"},\"description\":\"Exchange rates for all supported currencies\",\"example\":{\"AUD\":1.52,\"EUR\":0.92,\"GBP\":0.79,\"JPY\":149.5},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response with currency rates\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded (10 requests per second)\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/rates.json",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/rates.json",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "rates.json"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.rates`"
                   }
@@ -355,92 +437,104 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "city",
-              "req": false,
-              "short": "City name",
-              "type": "`$STRING`"
+          "fields": {
+            "city": {
+              "a": true,
+              "h": "City",
+              "n": "city",
+              "r": false,
+              "sh": "City name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "continent",
-              "req": false,
-              "short": "Continent name",
-              "type": "`$STRING`"
+            "continent": {
+              "a": true,
+              "h": "Continent",
+              "n": "continent",
+              "r": false,
+              "sh": "Continent name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "continent_code",
-              "req": false,
-              "short": "Continent code",
-              "type": "`$STRING`"
+            "continent_code": {
+              "a": true,
+              "h": "Continent Code",
+              "n": "continent_code",
+              "r": false,
+              "sh": "Continent code",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "country",
-              "req": false,
-              "short": "Country name",
-              "type": "`$STRING`"
+            "country": {
+              "a": true,
+              "h": "Country",
+              "n": "country",
+              "r": false,
+              "sh": "Country name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "country_code",
-              "req": false,
-              "short": "ISO 3166-1 alpha-2 country code",
-              "type": "`$STRING`"
+            "country_code": {
+              "a": true,
+              "h": "Country Code",
+              "n": "country_code",
+              "r": false,
+              "sh": "ISO 3166-1 alpha-2 country code",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "currency",
-              "req": false,
-              "short": "Currency code",
-              "type": "`$STRING`"
+            "currency": {
+              "a": true,
+              "h": "Currency",
+              "n": "currency",
+              "r": false,
+              "sh": "Currency code",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "currency_name",
-              "req": false,
-              "short": "Currency name",
-              "type": "`$STRING`"
+            "currency_name": {
+              "a": true,
+              "h": "Currency Name",
+              "n": "currency_name",
+              "r": false,
+              "sh": "Currency name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "ip",
-              "req": false,
-              "short": "IP address",
-              "type": "`$STRING`"
+            "ip": {
+              "a": true,
+              "h": "Ip",
+              "n": "ip",
+              "r": false,
+              "sh": "IP address",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "latitude",
-              "req": false,
-              "short": "Latitude coordinate",
-              "type": "`$NUMBER`"
+            "latitude": {
+              "a": true,
+              "h": "Latitude",
+              "n": "latitude",
+              "r": false,
+              "sh": "Latitude coordinate",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "longitude",
-              "req": false,
-              "short": "Longitude coordinate",
-              "type": "`$NUMBER`"
+            "longitude": {
+              "a": true,
+              "h": "Longitude",
+              "n": "longitude",
+              "r": false,
+              "sh": "Longitude coordinate",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "region",
-              "req": false,
-              "short": "Region or state",
-              "type": "`$STRING`"
+            "region": {
+              "a": true,
+              "h": "Region",
+              "n": "region",
+              "r": false,
+              "sh": "Region or state",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "timezone",
-              "req": false,
-              "short": "Timezone",
-              "type": "`$STRING`"
+            "timezone": {
+              "a": true,
+              "h": "Timezone",
+              "n": "timezone",
+              "r": false,
+              "sh": "Timezone",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "json",
           "op": {
             "load": {
@@ -448,39 +542,39 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "nolog",
-                        "orig": "nolog",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "nolog",
+                        "or": "nolog",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /json",
-                    "json": "{\"operationId\":\"getOwnIpInfo\",\"parameters\":[{\"description\":\"Disable logging feature when set (no value required)\",\"in\":\"query\",\"name\":\"nolog\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"city\":{\"description\":\"City name\",\"example\":\"Mountain View\",\"type\":\"string\"},\"continent\":{\"description\":\"Continent name\",\"example\":\"North America\",\"type\":\"string\"},\"continent_code\":{\"description\":\"Continent code\",\"example\":\"NA\",\"type\":\"string\"},\"country\":{\"description\":\"Country name\",\"example\":\"United States\",\"type\":\"string\"},\"country_code\":{\"description\":\"ISO 3166-1 alpha-2 country code\",\"example\":\"US\",\"type\":\"string\"},\"currency\":{\"description\":\"Currency code\",\"example\":\"USD\",\"type\":\"string\"},\"currency_name\":{\"description\":\"Currency name\",\"example\":\"United States Dollar\",\"type\":\"string\"},\"ip\":{\"description\":\"IP address\",\"example\":\"8.8.8.8\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"example\":37.386,\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"example\":-122.0838,\"type\":\"number\"},\"region\":{\"description\":\"Region or state\",\"example\":\"California\",\"type\":\"string\"},\"timezone\":{\"description\":\"Timezone\",\"example\":\"America/Los_Angeles\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response with IP geolocation data\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded (10 requests per second)\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/json",
-                  "segments": [
-                    {
-                      "lit": "json"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/json",
+                  "q": {
                     "exist": [
                       "nolog"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "json"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -909,19 +1003,19 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "api_json_ref01",
                 "srcdatavar": "api_json_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "api_json01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -941,21 +1035,21 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "currency_conversion_ref01",
                 "srcdatavar": "currency_conversion_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "amount": "amount01",
                 "base": "base01",
                 "target": "target01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -975,17 +1069,17 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "currency_rate_ref01",
                 "srcdatavar": "currency_rate_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1005,17 +1099,17 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "json_ref01",
                 "srcdatavar": "json_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {

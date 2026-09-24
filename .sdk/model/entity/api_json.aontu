@@ -1,0 +1,159 @@
+# Entity: api_json
+
+main: kit: entity: api_json: {
+
+  alias: field: {}
+
+  fields: {
+    city: {
+      h: "City"
+      n: "city"
+      r: false
+      sh: "City name"
+      t: "`$STRING`"
+    }
+    continent: {
+      h: "Continent"
+      n: "continent"
+      r: false
+      sh: "Continent name"
+      t: "`$STRING`"
+    }
+    continent_code: {
+      h: "Continent Code"
+      n: "continent_code"
+      r: false
+      sh: "Continent code"
+      t: "`$STRING`"
+    }
+    country: {
+      h: "Country"
+      n: "country"
+      r: false
+      sh: "Country name"
+      t: "`$STRING`"
+    }
+    country_code: {
+      h: "Country Code"
+      n: "country_code"
+      r: false
+      sh: "ISO 3166-1 alpha-2 country code"
+      t: "`$STRING`"
+    }
+    currency: {
+      h: "Currency"
+      n: "currency"
+      r: false
+      sh: "Currency code"
+      t: "`$STRING`"
+    }
+    currency_name: {
+      h: "Currency Name"
+      n: "currency_name"
+      r: false
+      sh: "Currency name"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    ip: {
+      h: "Ip"
+      n: "ip"
+      r: false
+      sh: "IP address"
+      t: "`$STRING`"
+    }
+    latitude: {
+      h: "Latitude"
+      n: "latitude"
+      r: false
+      sh: "Latitude coordinate"
+      t: "`$NUMBER`"
+    }
+    longitude: {
+      h: "Longitude"
+      n: "longitude"
+      r: false
+      sh: "Longitude coordinate"
+      t: "`$NUMBER`"
+    }
+    region: {
+      h: "Region"
+      n: "region"
+      r: false
+      sh: "Region or state"
+      t: "`$STRING`"
+    }
+    timezone: {
+      h: "Timezone"
+      n: "timezone"
+      r: false
+      sh: "Timezone"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "api_json"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api-json/{ip-or-domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "8.8.8.8"
+                k: "param"
+                n: "id"
+                or: "ip_or_domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api-json/{ip-or-domain}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              "ip-or-domain": "id"
+            }
+          }
+          s: [
+            {
+              lit: "api-json"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

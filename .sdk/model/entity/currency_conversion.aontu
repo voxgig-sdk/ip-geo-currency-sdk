@@ -1,0 +1,117 @@
+# Entity: currency_conversion
+
+main: kit: entity: currency_conversion: {
+
+  alias: field: {}
+
+  fields: {
+    amount: {
+      h: "Amount"
+      n: "amount"
+      r: false
+      sh: "Original amount"
+      t: "`$NUMBER`"
+    }
+    base: {
+      h: "Base"
+      n: "base"
+      r: false
+      sh: "Source currency code"
+      t: "`$STRING`"
+    }
+    rate: {
+      h: "Rate"
+      n: "rate"
+      r: false
+      sh: "Exchange rate used"
+      t: "`$NUMBER`"
+    }
+    result: {
+      h: "Result"
+      n: "result"
+      r: false
+      sh: "Converted amount"
+      t: "`$NUMBER`"
+    }
+    target: {
+      h: "Target"
+      n: "target"
+      r: false
+      sh: "Target currency code"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "currency_conversion"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api-rates/{amount}-{base}2{target}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: 10
+                k: "param"
+                n: "amount"
+                or: "amount"
+                r: true
+                t: "`$NUMBER`"
+              }
+              {
+                ex: "gbp"
+                k: "param"
+                n: "base"
+                or: "base"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "usd"
+                k: "param"
+                n: "target"
+                or: "target"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api-rates/{amount}-{base}2{target}"
+          q: {
+            exist: [
+              "amount"
+              "base"
+              "target"
+            ]
+          }
+          r: {
+            param: {
+              "amount}-{base}2{target": "amount}_{base}2{target"
+            }
+          }
+          s: [
+            {
+              lit: "api-rates"
+            }
+            {
+              lit: "{amount}-{base}2{target}"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,39 @@
+# Entity: currency_rate
+
+main: kit: entity: currency_rate: {
+
+  alias: field: {}
+
+  name: "currency_rate"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /rates.json"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/rates.json"
+          s: [
+            {
+              lit: "rates.json"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.rates`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

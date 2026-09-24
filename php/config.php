@@ -116,67 +116,80 @@ class IpGeoCurrencyConfig
           'fields' => [
             [
               'name' => 'city',
-              'short' => 'City name',
+              'title' => 'City',
               'type' => '`$STRING`',
+              'short' => 'City name',
             ],
             [
               'name' => 'continent',
-              'short' => 'Continent name',
+              'title' => 'Continent',
               'type' => '`$STRING`',
+              'short' => 'Continent name',
             ],
             [
               'name' => 'continent_code',
-              'short' => 'Continent code',
+              'title' => 'Continent Code',
               'type' => '`$STRING`',
+              'short' => 'Continent code',
             ],
             [
               'name' => 'country',
-              'short' => 'Country name',
+              'title' => 'Country',
               'type' => '`$STRING`',
+              'short' => 'Country name',
             ],
             [
               'name' => 'country_code',
-              'short' => 'ISO 3166-1 alpha-2 country code',
+              'title' => 'Country Code',
               'type' => '`$STRING`',
+              'short' => 'ISO 3166-1 alpha-2 country code',
             ],
             [
               'name' => 'currency',
-              'short' => 'Currency code',
+              'title' => 'Currency',
               'type' => '`$STRING`',
+              'short' => 'Currency code',
             ],
             [
               'name' => 'currency_name',
-              'short' => 'Currency name',
+              'title' => 'Currency Name',
               'type' => '`$STRING`',
+              'short' => 'Currency name',
             ],
             [
               'name' => 'id',
+              'title' => 'Id',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'ip',
-              'short' => 'IP address',
+              'title' => 'Ip',
               'type' => '`$STRING`',
+              'short' => 'IP address',
             ],
             [
               'name' => 'latitude',
-              'short' => 'Latitude coordinate',
+              'title' => 'Latitude',
               'type' => '`$NUMBER`',
+              'short' => 'Latitude coordinate',
             ],
             [
               'name' => 'longitude',
-              'short' => 'Longitude coordinate',
+              'title' => 'Longitude',
               'type' => '`$NUMBER`',
+              'short' => 'Longitude coordinate',
             ],
             [
               'name' => 'region',
-              'short' => 'Region or state',
+              'title' => 'Region',
               'type' => '`$STRING`',
+              'short' => 'Region or state',
             ],
             [
               'name' => 'timezone',
-              'short' => 'Timezone',
+              'title' => 'Timezone',
               'type' => '`$STRING`',
+              'short' => 'Timezone',
             ],
           ],
           'id' => [
@@ -190,26 +203,9 @@ class IpGeoCurrencyConfig
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'example' => '8.8.8.8',
-                        'kind' => 'param',
-                        'name' => 'id',
-                        'orig' => 'ip_or_domain',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api-json/{ip-or-domain}',
-                  'rename' => [
-                    'param' => [
-                      'ip-or-domain' => 'id',
-                    ],
-                  ],
                   'segments' => [
                     [
                       'lit' => 'api-json',
@@ -218,18 +214,35 @@ class IpGeoCurrencyConfig
                       'var' => 'id',
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'id',
+                  'parts' => [
+                    'api-json',
+                    '{id}',
+                  ],
+                  'rename' => [
+                    'param' => [
+                      'ip-or-domain' => 'id',
                     ],
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'parts' => [
-                    'api-json',
-                    '{id}',
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'id',
+                        'orig' => 'ip_or_domain',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                        'example' => '8.8.8.8',
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'id',
+                    ],
                   ],
                 ],
               ],
@@ -243,28 +256,33 @@ class IpGeoCurrencyConfig
           'fields' => [
             [
               'name' => 'amount',
-              'short' => 'Original amount',
+              'title' => 'Amount',
               'type' => '`$NUMBER`',
+              'short' => 'Original amount',
             ],
             [
               'name' => 'base',
-              'short' => 'Source currency code',
+              'title' => 'Base',
               'type' => '`$STRING`',
+              'short' => 'Source currency code',
             ],
             [
               'name' => 'rate',
-              'short' => 'Exchange rate used',
+              'title' => 'Rate',
               'type' => '`$NUMBER`',
+              'short' => 'Exchange rate used',
             ],
             [
               'name' => 'result',
-              'short' => 'Converted amount',
+              'title' => 'Result',
               'type' => '`$NUMBER`',
+              'short' => 'Converted amount',
             ],
             [
               'name' => 'target',
-              'short' => 'Target currency code',
+              'title' => 'Target',
               'type' => '`$STRING`',
+              'short' => 'Target currency code',
             ],
           ],
           'name' => 'currency_conversion',
@@ -274,42 +292,9 @@ class IpGeoCurrencyConfig
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'example' => 10,
-                        'kind' => 'param',
-                        'name' => 'amount',
-                        'orig' => 'amount',
-                        'reqd' => true,
-                        'type' => '`$NUMBER`',
-                      ],
-                      [
-                        'example' => 'gbp',
-                        'kind' => 'param',
-                        'name' => 'base',
-                        'orig' => 'base',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => 'usd',
-                        'kind' => 'param',
-                        'name' => 'target',
-                        'orig' => 'target',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api-rates/{amount}-{base}2{target}',
-                  'rename' => [
-                    'param' => [
-                      'amount}-{base}2{target' => 'amount}_{base}2{target',
-                    ],
-                  ],
                   'segments' => [
                     [
                       'lit' => 'api-rates',
@@ -318,20 +303,53 @@ class IpGeoCurrencyConfig
                       'lit' => '{amount}-{base}2{target}',
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'amount',
-                      'base',
-                      'target',
+                  'parts' => [
+                    'api-rates',
+                    '{amount}-{base}2{target}',
+                  ],
+                  'rename' => [
+                    'param' => [
+                      'amount}-{base}2{target' => 'amount}_{base}2{target',
                     ],
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'parts' => [
-                    'api-rates',
-                    '{amount}-{base}2{target}',
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'amount',
+                        'orig' => 'amount',
+                        'type' => '`$NUMBER`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                        'example' => 10,
+                      ],
+                      [
+                        'name' => 'base',
+                        'orig' => 'base',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                        'example' => 'gbp',
+                      ],
+                      [
+                        'name' => 'target',
+                        'orig' => 'target',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                        'example' => 'usd',
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'amount',
+                      'base',
+                      'target',
+                    ],
                   ],
                 ],
               ],
@@ -350,7 +368,6 @@ class IpGeoCurrencyConfig
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/rates.json',
@@ -359,14 +376,16 @@ class IpGeoCurrencyConfig
                       'lit' => 'rates.json',
                     ],
                   ],
-                  'select' => [],
+                  'parts' => [
+                    'rates.json',
+                  ],
+                  'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.rates`',
                   ],
-                  'parts' => [
-                    'rates.json',
-                  ],
+                  'args' => [],
+                  'select' => [],
                 ],
               ],
             ],
@@ -379,63 +398,75 @@ class IpGeoCurrencyConfig
           'fields' => [
             [
               'name' => 'city',
-              'short' => 'City name',
+              'title' => 'City',
               'type' => '`$STRING`',
+              'short' => 'City name',
             ],
             [
               'name' => 'continent',
-              'short' => 'Continent name',
+              'title' => 'Continent',
               'type' => '`$STRING`',
+              'short' => 'Continent name',
             ],
             [
               'name' => 'continent_code',
-              'short' => 'Continent code',
+              'title' => 'Continent Code',
               'type' => '`$STRING`',
+              'short' => 'Continent code',
             ],
             [
               'name' => 'country',
-              'short' => 'Country name',
+              'title' => 'Country',
               'type' => '`$STRING`',
+              'short' => 'Country name',
             ],
             [
               'name' => 'country_code',
-              'short' => 'ISO 3166-1 alpha-2 country code',
+              'title' => 'Country Code',
               'type' => '`$STRING`',
+              'short' => 'ISO 3166-1 alpha-2 country code',
             ],
             [
               'name' => 'currency',
-              'short' => 'Currency code',
+              'title' => 'Currency',
               'type' => '`$STRING`',
+              'short' => 'Currency code',
             ],
             [
               'name' => 'currency_name',
-              'short' => 'Currency name',
+              'title' => 'Currency Name',
               'type' => '`$STRING`',
+              'short' => 'Currency name',
             ],
             [
               'name' => 'ip',
-              'short' => 'IP address',
+              'title' => 'Ip',
               'type' => '`$STRING`',
+              'short' => 'IP address',
             ],
             [
               'name' => 'latitude',
-              'short' => 'Latitude coordinate',
+              'title' => 'Latitude',
               'type' => '`$NUMBER`',
+              'short' => 'Latitude coordinate',
             ],
             [
               'name' => 'longitude',
-              'short' => 'Longitude coordinate',
+              'title' => 'Longitude',
               'type' => '`$NUMBER`',
+              'short' => 'Longitude coordinate',
             ],
             [
               'name' => 'region',
-              'short' => 'Region or state',
+              'title' => 'Region',
               'type' => '`$STRING`',
+              'short' => 'Region or state',
             ],
             [
               'name' => 'timezone',
-              'short' => 'Timezone',
+              'title' => 'Timezone',
               'type' => '`$STRING`',
+              'short' => 'Timezone',
             ],
           ],
           'name' => 'json',
@@ -445,16 +476,6 @@ class IpGeoCurrencyConfig
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'nolog',
-                        'orig' => 'nolog',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/json',
@@ -463,17 +484,28 @@ class IpGeoCurrencyConfig
                       'lit' => 'json',
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'nolog',
-                    ],
+                  'parts' => [
+                    'json',
                   ],
+                  'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'parts' => [
-                    'json',
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'nolog',
+                        'orig' => 'nolog',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'nolog',
+                    ],
                   ],
                 ],
               ],

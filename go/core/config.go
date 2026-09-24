@@ -94,67 +94,80 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "city",
-						"short": "City name",
+						"title": "City",
 						"type": "`$STRING`",
+						"short": "City name",
 					},
 					map[string]any{
 						"name": "continent",
-						"short": "Continent name",
+						"title": "Continent",
 						"type": "`$STRING`",
+						"short": "Continent name",
 					},
 					map[string]any{
 						"name": "continent_code",
-						"short": "Continent code",
+						"title": "Continent Code",
 						"type": "`$STRING`",
+						"short": "Continent code",
 					},
 					map[string]any{
 						"name": "country",
-						"short": "Country name",
+						"title": "Country",
 						"type": "`$STRING`",
+						"short": "Country name",
 					},
 					map[string]any{
 						"name": "country_code",
-						"short": "ISO 3166-1 alpha-2 country code",
+						"title": "Country Code",
 						"type": "`$STRING`",
+						"short": "ISO 3166-1 alpha-2 country code",
 					},
 					map[string]any{
 						"name": "currency",
-						"short": "Currency code",
+						"title": "Currency",
 						"type": "`$STRING`",
+						"short": "Currency code",
 					},
 					map[string]any{
 						"name": "currency_name",
-						"short": "Currency name",
+						"title": "Currency Name",
 						"type": "`$STRING`",
+						"short": "Currency name",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "ip",
-						"short": "IP address",
+						"title": "Ip",
 						"type": "`$STRING`",
+						"short": "IP address",
 					},
 					map[string]any{
 						"name": "latitude",
-						"short": "Latitude coordinate",
+						"title": "Latitude",
 						"type": "`$NUMBER`",
+						"short": "Latitude coordinate",
 					},
 					map[string]any{
 						"name": "longitude",
-						"short": "Longitude coordinate",
+						"title": "Longitude",
 						"type": "`$NUMBER`",
+						"short": "Longitude coordinate",
 					},
 					map[string]any{
 						"name": "region",
-						"short": "Region or state",
+						"title": "Region",
 						"type": "`$STRING`",
+						"short": "Region or state",
 					},
 					map[string]any{
 						"name": "timezone",
-						"short": "Timezone",
+						"title": "Timezone",
 						"type": "`$STRING`",
+						"short": "Timezone",
 					},
 				},
 				"id": map[string]any{
@@ -168,26 +181,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "8.8.8.8",
-											"kind": "param",
-											"name": "id",
-											"orig": "ip_or_domain",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api-json/{ip-or-domain}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"ip-or-domain": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "api-json",
@@ -196,18 +192,35 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
+								"parts": []any{
+									"api-json",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"ip-or-domain": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"api-json",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "ip_or_domain",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "8.8.8.8",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -221,28 +234,33 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "amount",
-						"short": "Original amount",
+						"title": "Amount",
 						"type": "`$NUMBER`",
+						"short": "Original amount",
 					},
 					map[string]any{
 						"name": "base",
-						"short": "Source currency code",
+						"title": "Base",
 						"type": "`$STRING`",
+						"short": "Source currency code",
 					},
 					map[string]any{
 						"name": "rate",
-						"short": "Exchange rate used",
+						"title": "Rate",
 						"type": "`$NUMBER`",
+						"short": "Exchange rate used",
 					},
 					map[string]any{
 						"name": "result",
-						"short": "Converted amount",
+						"title": "Result",
 						"type": "`$NUMBER`",
+						"short": "Converted amount",
 					},
 					map[string]any{
 						"name": "target",
-						"short": "Target currency code",
+						"title": "Target",
 						"type": "`$STRING`",
+						"short": "Target currency code",
 					},
 				},
 				"name": "currency_conversion",
@@ -252,42 +270,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": 10,
-											"kind": "param",
-											"name": "amount",
-											"orig": "amount",
-											"reqd": true,
-											"type": "`$NUMBER`",
-										},
-										map[string]any{
-											"example": "gbp",
-											"kind": "param",
-											"name": "base",
-											"orig": "base",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "usd",
-											"kind": "param",
-											"name": "target",
-											"orig": "target",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api-rates/{amount}-{base}2{target}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"amount}-{base}2{target": "amount}_{base}2{target",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "api-rates",
@@ -296,20 +281,53 @@ func MakeConfig() map[string]any {
 										"lit": "{amount}-{base}2{target}",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"amount",
-										"base",
-										"target",
+								"parts": []any{
+									"api-rates",
+									"{amount}-{base}2{target}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"amount}-{base}2{target": "amount}_{base}2{target",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"api-rates",
-									"{amount}-{base}2{target}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "amount",
+											"orig": "amount",
+											"type": "`$NUMBER`",
+											"kind": "param",
+											"reqd": true,
+											"example": 10,
+										},
+										map[string]any{
+											"name": "base",
+											"orig": "base",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "gbp",
+										},
+										map[string]any{
+											"name": "target",
+											"orig": "target",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "usd",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"amount",
+										"base",
+										"target",
+									},
 								},
 							},
 						},
@@ -328,7 +346,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/rates.json",
@@ -337,14 +354,16 @@ func MakeConfig() map[string]any {
 										"lit": "rates.json",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"rates.json",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.rates`",
 								},
-								"parts": []any{
-									"rates.json",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -357,63 +376,75 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "city",
-						"short": "City name",
+						"title": "City",
 						"type": "`$STRING`",
+						"short": "City name",
 					},
 					map[string]any{
 						"name": "continent",
-						"short": "Continent name",
+						"title": "Continent",
 						"type": "`$STRING`",
+						"short": "Continent name",
 					},
 					map[string]any{
 						"name": "continent_code",
-						"short": "Continent code",
+						"title": "Continent Code",
 						"type": "`$STRING`",
+						"short": "Continent code",
 					},
 					map[string]any{
 						"name": "country",
-						"short": "Country name",
+						"title": "Country",
 						"type": "`$STRING`",
+						"short": "Country name",
 					},
 					map[string]any{
 						"name": "country_code",
-						"short": "ISO 3166-1 alpha-2 country code",
+						"title": "Country Code",
 						"type": "`$STRING`",
+						"short": "ISO 3166-1 alpha-2 country code",
 					},
 					map[string]any{
 						"name": "currency",
-						"short": "Currency code",
+						"title": "Currency",
 						"type": "`$STRING`",
+						"short": "Currency code",
 					},
 					map[string]any{
 						"name": "currency_name",
-						"short": "Currency name",
+						"title": "Currency Name",
 						"type": "`$STRING`",
+						"short": "Currency name",
 					},
 					map[string]any{
 						"name": "ip",
-						"short": "IP address",
+						"title": "Ip",
 						"type": "`$STRING`",
+						"short": "IP address",
 					},
 					map[string]any{
 						"name": "latitude",
-						"short": "Latitude coordinate",
+						"title": "Latitude",
 						"type": "`$NUMBER`",
+						"short": "Latitude coordinate",
 					},
 					map[string]any{
 						"name": "longitude",
-						"short": "Longitude coordinate",
+						"title": "Longitude",
 						"type": "`$NUMBER`",
+						"short": "Longitude coordinate",
 					},
 					map[string]any{
 						"name": "region",
-						"short": "Region or state",
+						"title": "Region",
 						"type": "`$STRING`",
+						"short": "Region or state",
 					},
 					map[string]any{
 						"name": "timezone",
-						"short": "Timezone",
+						"title": "Timezone",
 						"type": "`$STRING`",
+						"short": "Timezone",
 					},
 				},
 				"name": "json",
@@ -423,16 +454,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "nolog",
-											"orig": "nolog",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/json",
@@ -441,17 +462,28 @@ func MakeConfig() map[string]any {
 										"lit": "json",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"nolog",
-									},
+								"parts": []any{
+									"json",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"json",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "nolog",
+											"orig": "nolog",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"nolog",
+									},
 								},
 							},
 						},

@@ -1,0 +1,34 @@
+# BasicCurrencyConversionFlow
+
+main: kit: flow: BasicCurrencyConversionFlow:
+{
+  entity: "currency_conversion",
+  kind: "basic",
+  name: "BasicCurrencyConversionFlow",
+  step: [
+    {
+      i: {
+        ref: "currency_conversion_ref01",
+        srcdatavar: "currency_conversion_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        amount: "amount01",
+        base: "base01",
+        target: "target01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-currency_conversion_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCurrencyConversionFlow"
+}
