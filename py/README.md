@@ -280,6 +280,9 @@ API path: `/api-rates/{amount}-{base}2{target}`
 
 | Field | Description |
 | --- | --- |
+| `base` | Base currency (USD) |
+| `date` | Date of the rates |
+| `rates` | Exchange rates for all supported currencies |
 
 Operations: Load.
 
@@ -382,6 +385,14 @@ Create an instance: `currency_rate = client.CurrencyRate()`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `base` | `str` | Base currency (USD) |
+| `date` | `str` | Date of the rates |
+| `rates` | `dict` | Exchange rates for all supported currencies |
 
 #### Example: Load
 

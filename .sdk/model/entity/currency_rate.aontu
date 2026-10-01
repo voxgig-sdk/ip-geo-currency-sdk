@@ -4,6 +4,31 @@ main: kit: entity: currency_rate: {
 
   alias: field: {}
 
+  fields: {
+    base: {
+      h: "Base"
+      n: "base"
+      r: false
+      sh: "Base currency (USD)"
+      t: "`$STRING`"
+    }
+    date: {
+      fo: "date"
+      h: "Date"
+      n: "date"
+      r: false
+      sh: "Date of the rates"
+      t: "`$STRING`"
+    }
+    rates: {
+      h: "Rates"
+      n: "rates"
+      r: false
+      sh: "Exchange rates for all supported currencies"
+      t: "`$OBJECT`"
+    }
+  }
+
   name: "currency_rate"
   op: {
     load: {
@@ -24,14 +49,11 @@ main: kit: entity: currency_rate: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body.rates`"
+            res: "`body`"
           }
         }
       ]
     }
-  }
-
-  fields: {
   }
 
 

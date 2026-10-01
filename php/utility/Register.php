@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 IpGeoCurrencyUtility::setRegistrar(function (IpGeoCurrencyUtility $u): void {
     $u->clean = [IpGeoCurrencyClean::class, 'call'];
+    $u->clean_add = [IpGeoCurrencyClean::class, 'add'];
+    $u->clean_explain = [IpGeoCurrencyDone::class, 'clean_explain'];
     $u->done = [IpGeoCurrencyDone::class, 'call'];
     $u->make_error = [IpGeoCurrencyMakeError::class, 'call'];
     $u->feature_add = [IpGeoCurrencyFeatureAdd::class, 'call'];

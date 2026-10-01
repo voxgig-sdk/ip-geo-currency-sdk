@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 IpGeoCurrencyUtility.registrar = ->(u) {
   u.clean = IpGeoCurrencyUtilities::Clean
+  u.clean_add = IpGeoCurrencyUtilities::CleanAdd
+  u.clean_explain = IpGeoCurrencyUtilities::CleanExplain
   u.done = IpGeoCurrencyUtilities::Done
   u.make_error = IpGeoCurrencyUtilities::MakeError
   u.feature_add = IpGeoCurrencyUtilities::FeatureAdd

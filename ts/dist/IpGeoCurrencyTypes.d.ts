@@ -29,8 +29,14 @@ export interface CurrencyConversionLoadMatch {
     target: string;
 }
 export interface CurrencyRate {
+    base?: string;
+    date?: string;
+    rates?: Record<string, any>;
 }
 export interface CurrencyRateLoadMatch {
+    base?: string;
+    date?: string;
+    rates?: Record<string, any>;
 }
 export interface Json {
     city?: string;

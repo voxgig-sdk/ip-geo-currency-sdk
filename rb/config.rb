@@ -217,7 +217,7 @@ module IpGeoCurrencyConfig
                     "params" => [
                       {
                         "name" => "id",
-                        "orig" => "ip_or_domain",
+                        "orig" => "ip-or-domain",
                         "type" => "`$STRING`",
                         "kind" => "param",
                         "reqd" => true,
@@ -346,7 +346,27 @@ module IpGeoCurrencyConfig
           },
         },
         "currency_rate" => {
-          "fields" => [],
+          "fields" => [
+            {
+              "name" => "base",
+              "title" => "Base",
+              "type" => "`$STRING`",
+              "short" => "Base currency (USD)",
+            },
+            {
+              "name" => "date",
+              "title" => "Date",
+              "type" => "`$STRING`",
+              "short" => "Date of the rates",
+              "format" => "date",
+            },
+            {
+              "name" => "rates",
+              "title" => "Rates",
+              "type" => "`$OBJECT`",
+              "short" => "Exchange rates for all supported currencies",
+            },
+          ],
           "name" => "currency_rate",
           "op" => {
             "load" => {
@@ -368,7 +388,7 @@ module IpGeoCurrencyConfig
                   "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body.rates`",
+                    "res" => "`body`",
                   },
                   "args" => {},
                   "select" => {},

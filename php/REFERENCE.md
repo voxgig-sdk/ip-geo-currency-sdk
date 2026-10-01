@@ -220,6 +220,14 @@ Return the entity name.
 $currency_rate = $client->CurrencyRate();
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `base` | `string` | No | Base currency (USD) |
+| `date` | `string` | No | Date of the rates |
+| `rates` | `array` | No | Exchange rates for all supported currencies |
+
 ### Operations
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`

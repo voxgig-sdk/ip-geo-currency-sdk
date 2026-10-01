@@ -38,6 +38,9 @@ type CurrencyRate struct {
 
 // CurrencyRateLoadMatch is the typed request payload for CurrencyRate.LoadTyped.
 type CurrencyRateLoadMatch struct {
+	Base *string `json:"base,omitempty"`
+	Date *string `json:"date,omitempty"`
+	Rates *map[string]any `json:"rates,omitempty"`
 }
 
 // Json is the typed data model for the json entity.

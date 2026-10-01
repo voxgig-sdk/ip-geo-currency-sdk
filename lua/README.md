@@ -264,6 +264,9 @@ API path: `/api-rates/{amount}-{base}2{target}`
 
 | Field | Description |
 | --- | --- |
+| `base` | Base currency (USD) |
+| `date` | Date of the rates |
+| `rates` | Exchange rates for all supported currencies |
 
 Operations: Load.
 
@@ -366,6 +369,14 @@ Create an instance: `local currency_rate = client:CurrencyRate(nil)`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `base` | `string` | Base currency (USD) |
+| `date` | `string` | Date of the rates |
+| `rates` | `table` | Exchange rates for all supported currencies |
 
 #### Example: Load
 

@@ -57,11 +57,17 @@ class CurrencyConversionLoadMatch
 /** CurrencyRate entity data model. */
 class CurrencyRate
 {
+    public ?string $base = null;
+    public ?string $date = null;
+    public ?array $rates = null;
 }
 
 /** Request payload for CurrencyRate#load. */
 class CurrencyRateLoadMatch
 {
+    public ?string $base = null;
+    public ?string $date = null;
+    public ?array $rates = null;
 }
 
 /** Json entity data model. */

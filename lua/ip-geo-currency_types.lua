@@ -37,8 +37,14 @@
 ---@field target string
 
 ---@class CurrencyRate
+---@field base? string
+---@field date? string
+---@field rates? table
 
 ---@class CurrencyRateLoadMatch
+---@field base? string
+---@field date? string
+---@field rates? table
 
 ---@class Json
 ---@field city? string

@@ -15,9 +15,13 @@ predictable and low-friction for both humans and AI agents.
 
 ## Install
 This package is not yet published to npm. Install it from the GitHub
-release tag (`ts/vX.Y.Z`):
+release tag (`ts/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases)), or from a
+clone, which carries the compiled `dist/`:
 
-- Releases: [https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases](https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/ip-geo-currency-sdk
+npm install ./ip-geo-currency-sdk/ts
+```
 
 
 ## Tutorial: your first API call
@@ -329,6 +333,9 @@ API path: `/api-rates/{amount}-{base}2{target}`
 
 | Field | Description |
 | --- | --- |
+| `base` | Base currency (USD) |
+| `date` | Date of the rates |
+| `rates` | Exchange rates for all supported currencies |
 
 Operations: load.
 
@@ -431,6 +438,14 @@ Create an instance: `const currency_rate = client.CurrencyRate()`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `base` | `string` | Base currency (USD) |
+| `date` | `string` | Date of the rates |
+| `rates` | `Record<string, any>` | Exchange rates for all supported currencies |
 
 #### Example: Load
 

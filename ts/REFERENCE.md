@@ -264,6 +264,14 @@ Return a copy of the entity options.
 const currency_rate = client.CurrencyRate()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `base` | `string` | No | Base currency (USD) |
+| `date` | `string` | No | Date of the rates |
+| `rates` | `Record<string, any>` | No | Exchange rates for all supported currencies |
+
 ### Operations
 
 #### `load(match: object, ctrl?: object)`

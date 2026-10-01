@@ -209,7 +209,7 @@ func MakeConfig() map[string]any {
 									"params": []any{
 										map[string]any{
 											"name": "id",
-											"orig": "ip_or_domain",
+											"orig": "ip-or-domain",
 											"type": "`$STRING`",
 											"kind": "param",
 											"reqd": true,
@@ -338,7 +338,27 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"currency_rate": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "base",
+						"title": "Base",
+						"type": "`$STRING`",
+						"short": "Base currency (USD)",
+					},
+					map[string]any{
+						"name": "date",
+						"title": "Date",
+						"type": "`$STRING`",
+						"short": "Date of the rates",
+						"format": "date",
+					},
+					map[string]any{
+						"name": "rates",
+						"title": "Rates",
+						"type": "`$OBJECT`",
+						"short": "Exchange rates for all supported currencies",
+					},
+				},
 				"name": "currency_rate",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -360,7 +380,7 @@ func MakeConfig() map[string]any {
 								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body.rates`",
+									"res": "`body`",
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},

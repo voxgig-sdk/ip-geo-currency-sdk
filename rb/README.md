@@ -12,9 +12,18 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`):
+GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases)), or
+from a clone:
 
-- Releases: [https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases](https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/ip-geo-currency-sdk
+```
+
+Then add it to your `Gemfile` by path, and run `bundle install`:
+
+```ruby
+gem "voxgig-sdk-ip-geo-currency-sdk", path: "./ip-geo-currency-sdk/rb"
+```
 
 
 ## Tutorial: your first API call
@@ -277,6 +286,9 @@ API path: `/api-rates/{amount}-{base}2{target}`
 
 | Field | Description |
 | --- | --- |
+| `base` | Base currency (USD) |
+| `date` | Date of the rates |
+| `rates` | Exchange rates for all supported currencies |
 
 Operations: Load.
 
@@ -381,6 +393,14 @@ Create an instance: `currency_rate = client.CurrencyRate`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `base` | `String` | Base currency (USD) |
+| `date` | `String` | Date of the rates |
+| `rates` | `Hash` | Exchange rates for all supported currencies |
 
 #### Example: Load
 

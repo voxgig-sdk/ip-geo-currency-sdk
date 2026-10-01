@@ -50,12 +50,16 @@ class CurrencyConversionLoadMatch(TypedDict):
     target: str
 
 
-class CurrencyRate(TypedDict):
-    pass
+class CurrencyRate(TypedDict, total=False):
+    base: str
+    date: str
+    rates: dict
 
 
-class CurrencyRateLoadMatch(TypedDict):
-    pass
+class CurrencyRateLoadMatch(TypedDict, total=False):
+    base: str
+    date: str
+    rates: dict
 
 
 class Json(TypedDict, total=False):

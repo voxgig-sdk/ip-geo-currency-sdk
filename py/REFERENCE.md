@@ -213,6 +213,14 @@ Return the entity name.
 currency_rate = client.CurrencyRate()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `base` | `str` | No | Base currency (USD) |
+| `date` | `str` | No | Date of the rates |
+| `rates` | `dict` | No | Exchange rates for all supported currencies |
+
 ### Operations
 
 #### `load(reqmatch, ctrl=None) -> dict`

@@ -46,6 +46,12 @@ Results: Successful response with currency rates.
 
 SDK operations: `load`.
 
+Key fields to recognise:
+
+- `base`: Base currency (USD)
+- `date`: Date of the rates
+- `rates`: Exchange rates for all supported currencies
+
 ### Json
 
 Results: Successful response with IP geolocation data.

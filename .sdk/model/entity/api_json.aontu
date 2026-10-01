@@ -119,7 +119,7 @@ main: kit: entity: api_json: {
                 ex: "8.8.8.8"
                 k: "param"
                 n: "id"
-                or: "ip_or_domain"
+                or: "ip-or-domain"
                 r: true
                 t: "`$STRING`"
               }
