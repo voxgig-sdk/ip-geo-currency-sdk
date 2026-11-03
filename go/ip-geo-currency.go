@@ -13,7 +13,12 @@ type Context = core.Context
 type Utility = core.Utility
 type Feature = core.Feature
 type Entity = core.Entity
-type IpGeoCurrencyEntity = core.IpGeoCurrencyEntity
+type IpGeoCurrencyEntityBase = core.IpGeoCurrencyEntityBase
+
+// Deprecated: use IpGeoCurrencyEntityBase.
+type IpGeoCurrencyEntity = core.IpGeoCurrencyEntityBase
+
+type StreamItem = core.StreamItem
 type FetcherFunc = core.FetcherFunc
 type Spec = core.Spec
 type Result = core.Result
@@ -41,16 +46,16 @@ func init() {
 	core.NewTimeoutFeatureFunc = func() core.Feature {
 		return feature.NewTimeoutFeature()
 	}
-	core.NewApiJsonEntityFunc = func(client *core.IpGeoCurrencySDK, entopts map[string]any) core.IpGeoCurrencyEntity {
+	core.NewApiJsonEntityFunc = func(client *core.IpGeoCurrencySDK, entopts map[string]any) core.IpGeoCurrencyEntityBase {
 		return entity.NewApiJsonEntity(client, entopts)
 	}
-	core.NewCurrencyConversionEntityFunc = func(client *core.IpGeoCurrencySDK, entopts map[string]any) core.IpGeoCurrencyEntity {
+	core.NewCurrencyConversionEntityFunc = func(client *core.IpGeoCurrencySDK, entopts map[string]any) core.IpGeoCurrencyEntityBase {
 		return entity.NewCurrencyConversionEntity(client, entopts)
 	}
-	core.NewCurrencyRateEntityFunc = func(client *core.IpGeoCurrencySDK, entopts map[string]any) core.IpGeoCurrencyEntity {
+	core.NewCurrencyRateEntityFunc = func(client *core.IpGeoCurrencySDK, entopts map[string]any) core.IpGeoCurrencyEntityBase {
 		return entity.NewCurrencyRateEntity(client, entopts)
 	}
-	core.NewJsonEntityFunc = func(client *core.IpGeoCurrencySDK, entopts map[string]any) core.IpGeoCurrencyEntity {
+	core.NewJsonEntityFunc = func(client *core.IpGeoCurrencySDK, entopts map[string]any) core.IpGeoCurrencyEntityBase {
 		return entity.NewJsonEntity(client, entopts)
 	}
 }

@@ -6,10 +6,28 @@ require_relative "../IpGeoCurrency_sdk"
 require_relative "runner"
 
 class CurrencyConversionEntityTest < Minitest::Test
+  # main.kit.test.live.strict is true (the default is true): a live
+  # request that fails, or a live test missing an input it needs,
+  # fails the test.
+  # An account with no record for a test to read skips it either way.
+  LIVE_STRICT = true
+
   def test_create_instance
     testsdk = IpGeoCurrencySDK.test(nil, nil)
     ent = testsdk.CurrencyConversion(nil)
     assert !ent.nil?
+  end
+
+  def test_validate
+    cfg = IpGeoCurrencyConfig.shared_config
+    unless cfg["feature"].is_a?(Hash) && cfg["feature"].key?("validate")
+      skip("feature not present in this SDK: validate")
+    end
+    client = IpGeoCurrencySDK.test(nil, { "feature" => { "validate" => { "active" => true } } })
+    err = assert_raises(StandardError) do
+      client.CurrencyConversion(nil).load({ "amount" => "x", "base" => "x", "target" => "x" }, nil)
+    end
+    assert_equal "validate_failed", err.code
   end
 
   def test_basic_flow
@@ -23,11 +41,12 @@ class CurrencyConversionEntityTest < Minitest::Test
         return
       end
     end
-    # The basic flow consumes synthetic IDs from the fixture. In live mode
-    # without an *_ENTID env override, those IDs hit the live API and 4xx.
-    if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set IP_GEO_CURRENCY_TEST_CURRENCY_CONVERSION_ENTID JSON to run live"
-      return
+    if setup[:live]
+      { "amount01" => 10, "base01" => "gbp", "target01" => "usd" }.each do |_live_key, _live_ex|
+        if setup[:synthetic_only] || setup[:idmap][_live_key].nil?
+          setup[:idmap][_live_key] = _live_ex
+        end
+      end
     end
     client = setup[:client]
 
@@ -42,6 +61,17 @@ class CurrencyConversionEntityTest < Minitest::Test
     # LOAD
     currency_conversion_ref01_ent = client.CurrencyConversion(nil)
     currency_conversion_ref01_match_dt0 = {}
+    currency_conversion_ref01_match_dt0["amount"] = setup[:idmap]["amount"] || setup[:idmap]["amount01"]
+    currency_conversion_ref01_match_dt0["base"] = setup[:idmap]["base"] || setup[:idmap]["base01"]
+    currency_conversion_ref01_match_dt0["target"] = setup[:idmap]["target"] || setup[:idmap]["target01"]
+    unless setup[:live]
+      own = currency_conversion_ref01_data["amount"]
+      currency_conversion_ref01_match_dt0["amount"] = own if [String, Numeric, TrueClass, FalseClass].any? { |c| own.is_a?(c) }
+      own = currency_conversion_ref01_data["base"]
+      currency_conversion_ref01_match_dt0["base"] = own if [String, Numeric, TrueClass, FalseClass].any? { |c| own.is_a?(c) }
+      own = currency_conversion_ref01_data["target"]
+      currency_conversion_ref01_match_dt0["target"] = own if [String, Numeric, TrueClass, FalseClass].any? { |c| own.is_a?(c) }
+    end
     currency_conversion_ref01_data_dt0_loaded = currency_conversion_ref01_ent.load(currency_conversion_ref01_match_dt0, nil)
     assert !currency_conversion_ref01_data_dt0_loaded.nil?
 
@@ -52,7 +82,7 @@ def currency_conversion_basic_setup(extra)
   Runner.load_env_local
 
   entity_data_file = File.join(__dir__, "..", "..", ".sdk", "test", "entity", "currency_conversion", "CurrencyConversionTestData.json")
-  entity_data_source = File.read(entity_data_file)
+  entity_data_source = File.read(entity_data_file, encoding: "UTF-8")
   entity_data = JSON.parse(entity_data_source)
 
   options = {}
@@ -71,9 +101,8 @@ def currency_conversion_basic_setup(extra)
     }
   )
 
-  # Detect ENTID env override before envOverride consumes it. When live
-  # mode is on without a real override, the basic test runs against synthetic
-  # IDs from the fixture and 4xx's. Surface this so the test can skip.
+  # Whether *_ENTID supplied the idmap, read before env_override consumes
+  # it: without it, the ids a live flow binds are the fixture's synthetic ones.
   entid_env_raw = ENV["IP_GEO_CURRENCY_TEST_CURRENCY_CONVERSION_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 

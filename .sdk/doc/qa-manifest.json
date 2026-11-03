@@ -3,5 +3,27 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Base currency (USD)",
+      "City name",
+      "Continent code",
+      "Continent name",
+      "Converted amount",
+      "Country name",
+      "Date of the rates",
+      "Exchange rate used",
+      "Exchange rates for all supported currencies",
+      "ISO 3166-1 alpha-2 country code",
+      "Original amount",
+      "Production server",
+      "Source currency code",
+      "Successful response with IP geolocation data",
+      "Successful response with converted currency amount",
+      "Successful response with currency rates",
+      "Target currency code",
+      "This API provides geolocation information and currency data based on a user&#39;s IP address. It allows developers to retrieve IP details such as country, city, and currency exchange rates through simple HTTP requests."
+    ]
+  }
 }

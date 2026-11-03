@@ -47,19 +47,19 @@ client := sdk.TestSDK(testopts, sdkopts)
 
 ### Instance Methods
 
-#### `ApiJson(data map[string]any) IpGeoCurrencyEntity`
+#### `ApiJson(data map[string]any) IpGeoCurrencyEntityBase`
 
 Create a new `ApiJson` entity instance. Pass `nil` for no initial data.
 
-#### `CurrencyConversion(data map[string]any) IpGeoCurrencyEntity`
+#### `CurrencyConversion(data map[string]any) IpGeoCurrencyEntityBase`
 
 Create a new `CurrencyConversion` entity instance. Pass `nil` for no initial data.
 
-#### `CurrencyRate(data map[string]any) IpGeoCurrencyEntity`
+#### `CurrencyRate(data map[string]any) IpGeoCurrencyEntityBase`
 
 Create a new `CurrencyRate` entity instance. Pass `nil` for no initial data.
 
-#### `Json(data map[string]any) IpGeoCurrencyEntity`
+#### `Json(data map[string]any) IpGeoCurrencyEntityBase`
 
 Create a new `Json` entity instance. Pass `nil` for no initial data.
 
@@ -128,14 +128,14 @@ fmt.Println(apiJson.GetName()) // "api_json"
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
 
 ```go
 result, err := client.ApiJson(nil).Load(map[string]any{"id": "api_json_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data())
 ```
 
 ### Common Methods
@@ -154,6 +154,14 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 Create a new `ApiJsonEntity` instance with the same client and
 options.
+
+#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
+
+Run an operation through the pipeline and send its result items on the
+returned channel, which closes when the stream ends. A `StreamItem` holds
+one item in `Item`, or in `Err` the error that ended the stream: the
+error the operation itself would return, sent as the last value. Under
+`throw: false` in `callopts["ctrl"]`, no error is sent.
 
 #### `GetName() string`
 
@@ -183,14 +191,14 @@ fmt.Println(currencyConversion.GetName()) // "currency_conversion"
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
 
 ```go
 result, err := client.CurrencyConversion(nil).Load(map[string]any{"amount": 1, "base": "base", "target": "target"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data())
 ```
 
 ### Common Methods
@@ -209,6 +217,14 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 Create a new `CurrencyConversionEntity` instance with the same client and
 options.
+
+#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
+
+Run an operation through the pipeline and send its result items on the
+returned channel, which closes when the stream ends. A `StreamItem` holds
+one item in `Item`, or in `Err` the error that ended the stream: the
+error the operation itself would return, sent as the last value. Under
+`throw: false` in `callopts["ctrl"]`, no error is sent.
 
 #### `GetName() string`
 
@@ -236,14 +252,14 @@ fmt.Println(currencyRate.GetName()) // "currency_rate"
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
 
 ```go
 result, err := client.CurrencyRate(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data())
 ```
 
 ### Common Methods
@@ -262,6 +278,14 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 Create a new `CurrencyRateEntity` instance with the same client and
 options.
+
+#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
+
+Run an operation through the pipeline and send its result items on the
+returned channel, which closes when the stream ends. A `StreamItem` holds
+one item in `Item`, or in `Err` the error that ended the stream: the
+error the operation itself would return, sent as the last value. Under
+`throw: false` in `callopts["ctrl"]`, no error is sent.
 
 #### `GetName() string`
 
@@ -298,14 +322,14 @@ fmt.Println(json.GetName()) // "json"
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
 
 ```go
 result, err := client.Json(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data())
 ```
 
 ### Common Methods
@@ -324,6 +348,14 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 Create a new `JsonEntity` instance with the same client and
 options.
+
+#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
+
+Run an operation through the pipeline and send its result items on the
+returned channel, which closes when the stream ends. A `StreamItem` holds
+one item in `Item`, or in `Err` the error that ended the stream: the
+error the operation itself would return, sent as the last value. Under
+`throw: false` in `callopts["ctrl"]`, no error is sent.
 
 #### `GetName() string`
 
@@ -489,6 +521,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

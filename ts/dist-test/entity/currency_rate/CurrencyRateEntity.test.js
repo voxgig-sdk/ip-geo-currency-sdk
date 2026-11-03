@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.CurrencyRate();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.IpGeoCurrencySDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.CurrencyRate().load({ "base": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.IP_GEO_CURRENCY_TEST_LIVE;
         for (const op of ['load']) {
@@ -62,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "base": { "a": true, "h": "Base", "n": "base", "r": false, "sh": "Base currency (USD)", "t": "`$STRING`", "key$": "base", "index$": 0 }, "date": { "a": true, "fo": "date", "h": "Date", "n": "date", "r": false, "sh": "Date of the rates", "t": "`$STRING`", "key$": "date", "index$": 1 }, "rates": { "a": true, "h": "Rates", "n": "rates", "r": false, "sh": "Exchange rates for all supported currencies", "t": "`$OBJECT`", "key$": "rates", "index$": 2 } }, "name": "currency_rate", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /rates.json", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "GET", "o": "/rates.json", "q": {}, "r": {}, "s": [{ "lit": "rates.json" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "currency_rate", "name__orig": "currency_rate", "Name": "CurrencyRate", "name_": "currency_rate", "name-": "currency-rate", "NAME": "CURRENCY_RATE", "index$": 2 }, { "active": true, "entity": "currency_rate", "key$": "BasicCurrencyRateFlow", "kind": "basic", "name": "BasicCurrencyRateFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "currency_rate_ref01", "srcdatavar": "currency_rate_ref01_data", "suffix": "_dt0" }, "m": {}, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-currency_rate_ref01" } }], "index$": 0 }] }, 'CurrencyRate', { "GET /rates.json": { "protocol": "http", "parameters": [] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "base": { "a": true, "h": "Base", "n": "base", "r": false, "sh": "Base currency (USD)", "t": "`$STRING`", "key$": "base", "index$": 0 }, "date": { "a": true, "fo": "date", "h": "Date", "n": "date", "r": false, "sh": "Date of the rates", "t": "`$STRING`", "key$": "date", "index$": 1 }, "rates": { "a": true, "h": "Rates", "n": "rates", "r": false, "sh": "Exchange rates for all supported currencies", "t": "`$OBJECT`", "key$": "rates", "index$": 2 } }, "name": "currency_rate", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /rates.json", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "GET", "o": "/rates.json", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "rates.json" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "currency_rate", "name__orig": "currency_rate", "Name": "CurrencyRate", "name_": "currency_rate", "name-": "currency-rate", "NAME": "CURRENCY_RATE", "index$": 2 }, { "active": true, "entity": "currency_rate", "key$": "BasicCurrencyRateFlow", "kind": "basic", "name": "BasicCurrencyRateFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "currency_rate_ref01", "srcdatavar": "currency_rate_ref01_data", "suffix": "_dt0" }, "m": {}, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-currency_rate_ref01" } }], "index$": 0 }] }, 'CurrencyRate', { "GET /rates.json": { "protocol": "http", "parameters": [] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -76,6 +84,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(null != currency_rate_ref01_data_dt0);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

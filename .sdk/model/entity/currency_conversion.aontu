@@ -95,6 +95,10 @@ main: kit: entity: currency_conversion: {
               "amount}-{base}2{target": "amount}_{base}2{target"
             }
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "api-rates"

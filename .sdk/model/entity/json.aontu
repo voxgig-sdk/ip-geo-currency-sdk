@@ -115,10 +115,9 @@ main: kit: entity: json: {
           }
           m: "GET"
           o: "/json"
-          q: {
-            exist: [
-              "nolog"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

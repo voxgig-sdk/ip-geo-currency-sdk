@@ -23,7 +23,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
@@ -67,7 +72,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
@@ -88,17 +98,22 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
             "base": "USD",
             "date": "2024-01-15",
             "rates": {
-                "AUD": 1.52,
                 "EUR": 0.92,
                 "GBP": 0.79,
-                "JPY": 149.5
+                "JPY": 149.5,
+                "AUD": 1.52
             }
         },
         "idField": "id"
@@ -114,8 +129,18 @@ const PLAN = [
             "nolog": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "nolog"
+        ],
+        "queryArgs": [
+            {
+                "name": "nolog",
+                "wire": "nolog"
+            }
         ],
         "auth": null,
         "status": 200,

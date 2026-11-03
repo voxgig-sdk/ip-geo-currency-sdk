@@ -137,6 +137,10 @@ main: kit: entity: api_json: {
               "ip-or-domain": "id"
             }
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "api-json"

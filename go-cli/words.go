@@ -75,7 +75,7 @@ func runOp(client *sdk.IpGeoCurrencySDK, op string, query *eng.Value, entityAtom
 
 // entityFor dispatches on the lowercase entity name. The generator
 // emits one `case "<name>":` per entity defined in the SDK model.
-func entityFor(client *sdk.IpGeoCurrencySDK, name string) (sdk.IpGeoCurrencyEntity, error) {
+func entityFor(client *sdk.IpGeoCurrencySDK, name string) (sdk.IpGeoCurrencyEntityBase, error) {
 	switch strings.ToLower(name) {
 	case "api_json":
 		return client.ApiJson(nil), nil

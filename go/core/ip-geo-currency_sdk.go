@@ -146,6 +146,14 @@ func (sdk *IpGeoCurrencySDK) Prepare(fetchargs map[string]any) (map[string]any, 
 	if method == "" {
 		method = "GET"
 	}
+	method = strings.ToUpper(method)
+
+	allowMethodVal := vs.GetPath(options, []any{"allow", "method"})
+	if !Allowed(allowMethodVal, method) {
+		allowMethod, _ := allowMethodVal.(string)
+		return nil, ctx.MakeError("spec_method_allow",
+			"Method \""+method+"\" not allowed by SDK option allow.method value: \""+allowMethod+"\"")
+	}
 
 	params := ToMapAny(vs.GetProp(fetchargs, "params"))
 	if params == nil {
@@ -205,8 +213,7 @@ func (sdk *IpGeoCurrencySDK) Direct(fetchargs map[string]any) (map[string]any, e
 
 // Is this raw-access op permitted by the SDK's allow.op option?
 func (sdk *IpGeoCurrencySDK) opAllowed(op string) bool {
-	allowOp, _ := vs.GetPath(sdk.options, []any{"allow", "op"}).(string)
-	return strings.Contains(allowOp, op)
+	return Allowed(vs.GetPath(sdk.options, []any{"allow", "op"}), op)
 }
 
 func (sdk *IpGeoCurrencySDK) opDenied(op string) map[string]any {
@@ -278,20 +285,34 @@ func (sdk *IpGeoCurrencySDK) rawRequest(fetchargs map[string]any) (map[string]an
 		noBody := status == 204 || status == 304 || contentLength == "0"
 
 		var jsonData any
+		var bodyErr error
 		if !noBody {
 			if jf := vs.GetProp(fm, "json"); jf != nil {
 				if f, ok := jf.(func() any); ok {
 					jsonData = f()
 				}
 			}
+			if unreadable, _ := vs.GetProp(fm, "unreadable").(bool); unreadable {
+				var failed error
+				if status < 200 || status >= 300 {
+					failed = ctx.MakeError("request_status",
+						fmt.Sprintf("request: %d: %v", status, vs.GetProp(fm, "statusText")))
+				}
+				bodyErr = UnreadableBody(ctx, status, headers, vs.GetProp(fm, "body"),
+					fetchdef["headers"], failed)
+			}
 		}
 
-		return map[string]any{
-			"ok":      status >= 200 && status < 300,
+		out := map[string]any{
+			"ok":      bodyErr == nil && status >= 200 && status < 300,
 			"status":  status,
 			"headers": headers,
 			"data":    jsonData,
-		}, nil
+		}
+		if bodyErr != nil {
+			out["err"] = sdk.cleanErr(ctx, bodyErr)
+		}
+		return out, nil
 	}
 
 	return map[string]any{"ok": false, "err": ctx.MakeError("direct_invalid", "invalid response type")}, nil
@@ -354,7 +375,7 @@ func (sdk *IpGeoCurrencySDK) Graphql(
 // ApiJson returns a ApiJson entity bound to this client.
 // Idiomatic usage: client.ApiJson(nil).List(nil, nil) or
 // client.ApiJson(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *IpGeoCurrencySDK) ApiJson(data map[string]any) IpGeoCurrencyEntity {
+func (sdk *IpGeoCurrencySDK) ApiJson(data map[string]any) IpGeoCurrencyEntityBase {
 	return NewApiJsonEntityFunc(sdk, data)
 }
 
@@ -362,7 +383,7 @@ func (sdk *IpGeoCurrencySDK) ApiJson(data map[string]any) IpGeoCurrencyEntity {
 // CurrencyConversion returns a CurrencyConversion entity bound to this client.
 // Idiomatic usage: client.CurrencyConversion(nil).List(nil, nil) or
 // client.CurrencyConversion(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *IpGeoCurrencySDK) CurrencyConversion(data map[string]any) IpGeoCurrencyEntity {
+func (sdk *IpGeoCurrencySDK) CurrencyConversion(data map[string]any) IpGeoCurrencyEntityBase {
 	return NewCurrencyConversionEntityFunc(sdk, data)
 }
 
@@ -370,7 +391,7 @@ func (sdk *IpGeoCurrencySDK) CurrencyConversion(data map[string]any) IpGeoCurren
 // CurrencyRate returns a CurrencyRate entity bound to this client.
 // Idiomatic usage: client.CurrencyRate(nil).List(nil, nil) or
 // client.CurrencyRate(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *IpGeoCurrencySDK) CurrencyRate(data map[string]any) IpGeoCurrencyEntity {
+func (sdk *IpGeoCurrencySDK) CurrencyRate(data map[string]any) IpGeoCurrencyEntityBase {
 	return NewCurrencyRateEntityFunc(sdk, data)
 }
 
@@ -378,7 +399,7 @@ func (sdk *IpGeoCurrencySDK) CurrencyRate(data map[string]any) IpGeoCurrencyEnti
 // Json returns a Json entity bound to this client.
 // Idiomatic usage: client.Json(nil).List(nil, nil) or
 // client.Json(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *IpGeoCurrencySDK) Json(data map[string]any) IpGeoCurrencyEntity {
+func (sdk *IpGeoCurrencySDK) Json(data map[string]any) IpGeoCurrencyEntityBase {
 	return NewJsonEntityFunc(sdk, data)
 }
 

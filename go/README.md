@@ -16,7 +16,7 @@ go get github.com/voxgig-sdk/ip-geo-currency-sdk/go@latest
 ```
 
 The Go module proxy resolves the version from the `go/vX.Y.Z` GitHub
-release tag — see [Releases](https://github.com/voxgig-sdk/ip-geo-currency-sdk/releases) for the available versions.
+release tag — see [Tags](https://github.com/voxgig-sdk/ip-geo-currency-sdk/tags) for the available versions.
 
 To vendor from a local checkout instead, clone this repo alongside your
 project and add a `replace` directive pointing at the checked-out
@@ -35,9 +35,10 @@ loading a specific record.
 ### Quickstart
 
 A complete program: create a client, then call the entity operations.
-Each operation returns `(value, error)` — the value is the data itself
-(there is no `{ok, data}` wrapper), so check `err` and use the value
-directly.
+Each operation returns `(value, error)` — the value is the entity, and for
+`List` a `[]any` of entities, one per record (there is no `{ok, data}`
+wrapper), so check `err` and read a record through the entity's
+`Data()`.
 
 ```go
 package main
@@ -50,12 +51,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // Load a single apiJson — the value is the loaded record.
+    // Load a single apiJson — the value is the entity; Data() reads its record.
     apiJson, err := client.ApiJson(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(apiJson)
+    fmt.Println(apiJson.(sdk.Entity).Data())
 }
 ```
 
@@ -141,7 +142,7 @@ apiJson, err := client.ApiJson(nil).Load(
 if err != nil {
     panic(err)
 }
-fmt.Println(apiJson) // the returned mock data
+fmt.Println(apiJson.(sdk.Entity).Data()) // the entity's mock record
 ```
 
 ### Use a custom fetch function
@@ -218,18 +219,18 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `ApiJson` | `(data map[string]any) IpGeoCurrencyEntity` | Create an ApiJson entity instance. |
-| `CurrencyConversion` | `(data map[string]any) IpGeoCurrencyEntity` | Create a CurrencyConversion entity instance. |
-| `CurrencyRate` | `(data map[string]any) IpGeoCurrencyEntity` | Create a CurrencyRate entity instance. |
-| `Json` | `(data map[string]any) IpGeoCurrencyEntity` | Create a Json entity instance. |
+| `ApiJson` | `(data map[string]any) IpGeoCurrencyEntityBase` | Create an ApiJson entity instance. |
+| `CurrencyConversion` | `(data map[string]any) IpGeoCurrencyEntityBase` | Create a CurrencyConversion entity instance. |
+| `CurrencyRate` | `(data map[string]any) IpGeoCurrencyEntityBase` | Create a CurrencyRate entity instance. |
+| `Json` | `(data map[string]any) IpGeoCurrencyEntityBase` | Create a Json entity instance. |
 
-### Entity interface (IpGeoCurrencyEntity)
+### Entity interface (IpGeoCurrencyEntityBase)
 
-All entities implement the `IpGeoCurrencyEntity` interface.
+All entities implement the `IpGeoCurrencyEntityBase` interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
+| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria, and return it. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -237,12 +238,12 @@ All entities implement the `IpGeoCurrencyEntity` interface.
 
 ### Result shape
 
-Entity operations return `(value, error)`. The `value` is the
-operation's data **directly** — there is no wrapper:
+Entity operations return `(value, error)`. The `value` is the entity
+itself — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` | the entity record (`map[string]any`) |
+| `Load` | the entity, whose `Data()` reads its record (`map[string]any`) |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
@@ -250,7 +251,7 @@ slice):
 
     apiJson, err := client.ApiJson(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil { /* handle */ }
-    // apiJson is the returned record
+    // apiJson is the entity; apiJson.(sdk.Entity).Data() reads its record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -366,7 +367,7 @@ apiJson, err := client.ApiJson(nil).Load(map[string]any{"id": "api_json_id"}, ni
 if err != nil {
     panic(err)
 }
-fmt.Println(apiJson) // the loaded record
+fmt.Println(apiJson.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 
@@ -397,7 +398,7 @@ currencyConversion, err := client.CurrencyConversion(nil).Load(map[string]any{"a
 if err != nil {
     panic(err)
 }
-fmt.Println(currencyConversion) // the loaded record
+fmt.Println(currencyConversion.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 
@@ -426,7 +427,7 @@ currencyRate, err := client.CurrencyRate(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(currencyRate) // the loaded record
+fmt.Println(currencyRate.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 
@@ -464,7 +465,7 @@ json, err := client.Json(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(json) // the loaded record
+fmt.Println(json.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 ## Features
@@ -601,7 +602,9 @@ The Go SDK uses `map[string]any` throughout rather than typed structs.
 This mirrors the dynamic nature of the API and keeps the SDK
 flexible — no code generation is needed when the API schema changes.
 
-Use `core.ToMapAny()` to safely cast results and nested data.
+An operation returns the entity, and its `Data()` returns the record. Use
+`core.ToMapAny()` to safely cast that record, or data nested in it, to
+`map[string]any`: it returns `nil` for anything else, an entity included.
 
 ### Package structure
 

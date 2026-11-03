@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { IpGeoCurrencySDK, BaseFeature, stdutil } from '../../..'
+import { IpGeoCurrencySDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('CurrencyConversionEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = IpGeoCurrencySDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.CurrencyConversion().load({"amount":"x","base":"x","target":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.IP_GEO_CURRENCY_TEST_LIVE
@@ -51,7 +63,7 @@ describe('CurrencyConversionEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"amount":{"a":true,"h":"Amount","n":"amount","r":false,"sh":"Original amount","t":"`$NUMBER`","key$":"amount","index$":0},"base":{"a":true,"h":"Base","n":"base","r":false,"sh":"Source currency code","t":"`$STRING`","key$":"base","index$":1},"rate":{"a":true,"h":"Rate","n":"rate","r":false,"sh":"Exchange rate used","t":"`$NUMBER`","key$":"rate","index$":2},"result":{"a":true,"h":"Result","n":"result","r":false,"sh":"Converted amount","t":"`$NUMBER`","key$":"result","index$":3},"target":{"a":true,"h":"Target","n":"target","r":false,"sh":"Target currency code","t":"`$STRING`","key$":"target","index$":4}},"name":"currency_conversion","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /api-rates/{amount}-{base}2{target}","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":10,"k":"param","n":"amount","or":"amount","r":true,"t":"`$NUMBER`","index$":0},{"a":true,"ex":"gbp","k":"param","n":"base","or":"base","r":true,"t":"`$STRING`","index$":1},{"a":true,"ex":"usd","k":"param","n":"target","or":"target","r":true,"t":"`$STRING`","index$":2}]},"k":"http","m":"GET","o":"/api-rates/{amount}-{base}2{target}","q":{"exist":["amount","base","target"]},"r":{"param":{"amount}-{base}2{target":"amount}_{base}2{target"}},"s":[{"lit":"api-rates"},{"lit":"{amount}-{base}2{target}"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"currency_conversion","name__orig":"currency_conversion","Name":"CurrencyConversion","name_":"currency_conversion","name-":"currency-conversion","NAME":"CURRENCY_CONVERSION","index$":1}, {"active":true,"entity":"currency_conversion","key$":"BasicCurrencyConversionFlow","kind":"basic","name":"BasicCurrencyConversionFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"currency_conversion_ref01","srcdatavar":"currency_conversion_ref01_data","suffix":"_dt0"},"m":{"amount":"amount01","base":"base01","target":"target01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-currency_conversion_ref01"}}],"index$":0}]}, 'CurrencyConversion', {"GET /api-rates/{amount}-{base}2{target}":{"protocol":"http","parameters":[{"name":"amount","in":"path","description":"Amount to convert","required":true,"schema":{"type":"number"},"example":10,"index$":0},{"name":"base","in":"path","description":"Source currency code (e.g., gbp, usd, eur)","required":true,"schema":{"type":"string","enum":["usd","eur","gbp","btc","aed","afn","all","amd","ang","aoa","ars","aud","awg","azn","bam","bbd","bdt","bgn","bhd","bif","bmd","bnd","bob","brl","bsd","btn","bwp","byn","bzd","cad","cdf","chf","clf","clp","cnh","cny","cop","crc","cuc","cup","cve","czk","djf","dkk","dop","dzd","egp","ern","etb","fjd","fkp","gel","ggp","ghs","gip","gmd","gnf","gtq","gyd","hkd","hnl","hrk","htg","huf","idr","ils","imp","inr","iqd","irr","isk","jep","jmd","jod","jpy","kes","kgs","khr","kmf","kpw","krw","kwd","kyd","kzt","lak","lbp","lkr","lrd","lsl","lyd","mad","mdl","mga","mkd","mmk","mnt","mop","mru","mur","mvr","mwk","mxn","myr","mzn","nad","ngn","nio","nok","npr","nzd","omr","pab","pen","pgk","php","pkr","pln","pyg","qar","ron","rsd","rub","rwf","sar","sbd","scr","sdg","sek","sgd","shp","sll","sos","srd","ssp","std","stn","svc","syp","szl","thb","tjs","tmt","tnd","top","try","ttd","twd","tzs","uah","ugx","uyu","uzs","ves","vnd","vuv","wst","xaf","xag","xau","xcd","xdr","xof","xpd","xpf","xpt","yer","zar","zmw","zwl"]},"example":"gbp","index$":1},{"name":"target","in":"path","description":"Target currency code (e.g., usd, eur, gbp)","required":true,"schema":{"type":"string","enum":["usd","eur","gbp","btc","aed","afn","all","amd","ang","aoa","ars","aud","awg","azn","bam","bbd","bdt","bgn","bhd","bif","bmd","bnd","bob","brl","bsd","btn","bwp","byn","bzd","cad","cdf","chf","clf","clp","cnh","cny","cop","crc","cuc","cup","cve","czk","djf","dkk","dop","dzd","egp","ern","etb","fjd","fkp","gel","ggp","ghs","gip","gmd","gnf","gtq","gyd","hkd","hnl","hrk","htg","huf","idr","ils","imp","inr","iqd","irr","isk","jep","jmd","jod","jpy","kes","kgs","khr","kmf","kpw","krw","kwd","kyd","kzt","lak","lbp","lkr","lrd","lsl","lyd","mad","mdl","mga","mkd","mmk","mnt","mop","mru","mur","mvr","mwk","mxn","myr","mzn","nad","ngn","nio","nok","npr","nzd","omr","pab","pen","pgk","php","pkr","pln","pyg","qar","ron","rsd","rub","rwf","sar","sbd","scr","sdg","sek","sgd","shp","sll","sos","srd","ssp","std","stn","svc","syp","szl","thb","tjs","tmt","tnd","top","try","ttd","twd","tzs","uah","ugx","uyu","uzs","ves","vnd","vuv","wst","xaf","xag","xau","xcd","xdr","xof","xpd","xpf","xpt","yer","zar","zmw","zwl"]},"example":"usd","index$":2}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"amount":{"a":true,"h":"Amount","n":"amount","r":false,"sh":"Original amount","t":"`$NUMBER`","key$":"amount","index$":0},"base":{"a":true,"h":"Base","n":"base","r":false,"sh":"Source currency code","t":"`$STRING`","key$":"base","index$":1},"rate":{"a":true,"h":"Rate","n":"rate","r":false,"sh":"Exchange rate used","t":"`$NUMBER`","key$":"rate","index$":2},"result":{"a":true,"h":"Result","n":"result","r":false,"sh":"Converted amount","t":"`$NUMBER`","key$":"result","index$":3},"target":{"a":true,"h":"Target","n":"target","r":false,"sh":"Target currency code","t":"`$STRING`","key$":"target","index$":4}},"name":"currency_conversion","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /api-rates/{amount}-{base}2{target}","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":10,"k":"param","n":"amount","or":"amount","r":true,"t":"`$NUMBER`","index$":0},{"a":true,"ex":"gbp","k":"param","n":"base","or":"base","r":true,"t":"`$STRING`","index$":1},{"a":true,"ex":"usd","k":"param","n":"target","or":"target","r":true,"t":"`$STRING`","index$":2}]},"k":"http","m":"GET","o":"/api-rates/{amount}-{base}2{target}","q":{"exist":["amount","base","target"]},"r":{"param":{"amount}-{base}2{target":"amount}_{base}2{target"}},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"api-rates"},{"lit":"{amount}-{base}2{target}"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"currency_conversion","name__orig":"currency_conversion","Name":"CurrencyConversion","name_":"currency_conversion","name-":"currency-conversion","NAME":"CURRENCY_CONVERSION","index$":1}, {"active":true,"entity":"currency_conversion","key$":"BasicCurrencyConversionFlow","kind":"basic","name":"BasicCurrencyConversionFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"currency_conversion_ref01","srcdatavar":"currency_conversion_ref01_data","suffix":"_dt0"},"m":{"amount":"amount01","base":"base01","target":"target01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-currency_conversion_ref01"}}],"index$":0}]}, 'CurrencyConversion', {"GET /api-rates/{amount}-{base}2{target}":{"protocol":"http","parameters":[{"name":"amount","in":"path","description":"Amount to convert","required":true,"schema":{"type":"number"},"example":10,"index$":0},{"name":"base","in":"path","description":"Source currency code (e.g., gbp, usd, eur)","required":true,"schema":{"type":"string","enum":["usd","eur","gbp","btc","aed","afn","all","amd","ang","aoa","ars","aud","awg","azn","bam","bbd","bdt","bgn","bhd","bif","bmd","bnd","bob","brl","bsd","btn","bwp","byn","bzd","cad","cdf","chf","clf","clp","cnh","cny","cop","crc","cuc","cup","cve","czk","djf","dkk","dop","dzd","egp","ern","etb","fjd","fkp","gel","ggp","ghs","gip","gmd","gnf","gtq","gyd","hkd","hnl","hrk","htg","huf","idr","ils","imp","inr","iqd","irr","isk","jep","jmd","jod","jpy","kes","kgs","khr","kmf","kpw","krw","kwd","kyd","kzt","lak","lbp","lkr","lrd","lsl","lyd","mad","mdl","mga","mkd","mmk","mnt","mop","mru","mur","mvr","mwk","mxn","myr","mzn","nad","ngn","nio","nok","npr","nzd","omr","pab","pen","pgk","php","pkr","pln","pyg","qar","ron","rsd","rub","rwf","sar","sbd","scr","sdg","sek","sgd","shp","sll","sos","srd","ssp","std","stn","svc","syp","szl","thb","tjs","tmt","tnd","top","try","ttd","twd","tzs","uah","ugx","uyu","uzs","ves","vnd","vuv","wst","xaf","xag","xau","xcd","xdr","xof","xpd","xpf","xpt","yer","zar","zmw","zwl"]},"example":"gbp","index$":1},{"name":"target","in":"path","description":"Target currency code (e.g., usd, eur, gbp)","required":true,"schema":{"type":"string","enum":["usd","eur","gbp","btc","aed","afn","all","amd","ang","aoa","ars","aud","awg","azn","bam","bbd","bdt","bgn","bhd","bif","bmd","bnd","bob","brl","bsd","btn","bwp","byn","bzd","cad","cdf","chf","clf","clp","cnh","cny","cop","crc","cuc","cup","cve","czk","djf","dkk","dop","dzd","egp","ern","etb","fjd","fkp","gel","ggp","ghs","gip","gmd","gnf","gtq","gyd","hkd","hnl","hrk","htg","huf","idr","ils","imp","inr","iqd","irr","isk","jep","jmd","jod","jpy","kes","kgs","khr","kmf","kpw","krw","kwd","kyd","kzt","lak","lbp","lkr","lrd","lsl","lyd","mad","mdl","mga","mkd","mmk","mnt","mop","mru","mur","mvr","mwk","mxn","myr","mzn","nad","ngn","nio","nok","npr","nzd","omr","pab","pen","pgk","php","pkr","pln","pyg","qar","ron","rsd","rub","rwf","sar","sbd","scr","sdg","sek","sgd","shp","sll","sos","srd","ssp","std","stn","svc","syp","szl","thb","tjs","tmt","tnd","top","try","ttd","twd","tzs","uah","ugx","uyu","uzs","ves","vnd","vuv","wst","xaf","xag","xau","xcd","xdr","xof","xpd","xpf","xpt","yer","zar","zmw","zwl"]},"example":"usd","index$":2}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -61,15 +73,29 @@ describe('CurrencyConversionEntity', async () => {
 
     let currency_conversion_ref01_data = Object.values(setup.data.existing.currency_conversion)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const currency_conversion_ref01_ent = client.CurrencyConversion()
+    const currency_conversion_ref01_match_dt0: any = {}
+    currency_conversion_ref01_match_dt0['amount'] = setup.idmap['amount'] ?? setup.idmap['amount01']
+    currency_conversion_ref01_match_dt0['base'] = setup.idmap['base'] ?? setup.idmap['base01']
+    currency_conversion_ref01_match_dt0['target'] = setup.idmap['target'] ?? setup.idmap['target01']
+    if (['string', 'number', 'boolean'].includes(typeof currency_conversion_ref01_data['amount'])) currency_conversion_ref01_match_dt0['amount'] = currency_conversion_ref01_data['amount']
+    if (['string', 'number', 'boolean'].includes(typeof currency_conversion_ref01_data['base'])) currency_conversion_ref01_match_dt0['base'] = currency_conversion_ref01_data['base']
+    if (['string', 'number', 'boolean'].includes(typeof currency_conversion_ref01_data['target'])) currency_conversion_ref01_match_dt0['target'] = currency_conversion_ref01_data['target']
+    const currency_conversion_ref01_data_dt0 = (await currency_conversion_ref01_ent.load(currency_conversion_ref01_match_dt0)).data()
+    assert(null != currency_conversion_ref01_data_dt0)
 
 
   })
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

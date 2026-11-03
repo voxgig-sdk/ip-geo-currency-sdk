@@ -79,6 +79,7 @@ module IpGeoCurrencyConfig
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -230,6 +231,10 @@ module IpGeoCurrencyConfig
                       "id",
                     ],
                   },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
                 },
               ],
             },
@@ -337,6 +342,10 @@ module IpGeoCurrencyConfig
                       "target",
                     ],
                   },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
                 },
               ],
             },
@@ -392,6 +401,10 @@ module IpGeoCurrencyConfig
                   },
                   "args" => {},
                   "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
                 },
               ],
             },
@@ -508,10 +521,10 @@ module IpGeoCurrencyConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "nolog",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],

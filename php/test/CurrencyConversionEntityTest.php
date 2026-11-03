@@ -11,11 +11,33 @@ use Voxgig\Struct\Struct as Vs;
 
 class CurrencyConversionEntityTest extends TestCase
 {
+    // main.kit.test.live.strict is true (the default is true): a live
+    // request that fails, or a live test missing an input it needs,
+    // fails the test.
+    // An account with no record for a test to read skips it either way.
+    private const LIVE_STRICT = true;
+
     public function test_create_instance(): void
     {
         $testsdk = IpGeoCurrencySDK::test(null, null);
         $ent = $testsdk->CurrencyConversion(null);
         $this->assertNotNull($ent);
+    }
+
+    public function test_validate(): void
+    {
+        $cfg = IpGeoCurrencyConfig::shared_config();
+        if (!isset($cfg["feature"]["validate"])) {
+            $this->markTestSkipped('feature not present in this SDK: validate');
+        }
+        $client = IpGeoCurrencySDK::test(null, ["feature" => ["validate" => ["active" => true]]]);
+        $err = null;
+        try {
+            $client->CurrencyConversion(null)->load(["amount" => 'x', "base" => 'x', "target" => 'x'], null);
+        } catch (\Throwable $e) {
+            $err = $e;
+        }
+        $this->assertSame('validate_failed', $err->sdk_code ?? null);
     }
 
     public function test_basic_flow(): void
@@ -30,11 +52,12 @@ class CurrencyConversionEntityTest extends TestCase
                 return;
             }
         }
-        // The basic flow consumes synthetic IDs from the fixture. In live mode
-        // without an *_ENTID env override, those IDs hit the live API and 4xx.
-        if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set IP_GEO_CURRENCY_TEST_CURRENCY_CONVERSION_ENTID JSON to run live");
-            return;
+        if (!empty($setup["live"])) {
+            foreach (["amount01" => 10, "base01" => 'gbp', "target01" => 'usd'] as $_liveKey => $_liveEx) {
+                if (!empty($setup["synthetic_only"]) || null === ($setup["idmap"][$_liveKey] ?? null)) {
+                    $setup["idmap"][$_liveKey] = $_liveEx;
+                }
+            }
         }
         $client = $setup["client"];
 
@@ -49,6 +72,20 @@ class CurrencyConversionEntityTest extends TestCase
         // LOAD
         $currency_conversion_ref01_ent = $client->CurrencyConversion(null);
         $currency_conversion_ref01_match_dt0 = [];
+        $currency_conversion_ref01_match_dt0["amount"] = $setup["idmap"]["amount"] ?? $setup["idmap"]["amount01"] ?? null;
+        $currency_conversion_ref01_match_dt0["base"] = $setup["idmap"]["base"] ?? $setup["idmap"]["base01"] ?? null;
+        $currency_conversion_ref01_match_dt0["target"] = $setup["idmap"]["target"] ?? $setup["idmap"]["target01"] ?? null;
+        if (empty($setup["live"])) {
+            if (is_scalar($currency_conversion_ref01_data["amount"] ?? null)) {
+                $currency_conversion_ref01_match_dt0["amount"] = $currency_conversion_ref01_data["amount"];
+            }
+            if (is_scalar($currency_conversion_ref01_data["base"] ?? null)) {
+                $currency_conversion_ref01_match_dt0["base"] = $currency_conversion_ref01_data["base"];
+            }
+            if (is_scalar($currency_conversion_ref01_data["target"] ?? null)) {
+                $currency_conversion_ref01_match_dt0["target"] = $currency_conversion_ref01_data["target"];
+            }
+        }
         $currency_conversion_ref01_data_dt0_loaded = $currency_conversion_ref01_ent->load($currency_conversion_ref01_match_dt0, null);
         $this->assertNotNull($currency_conversion_ref01_data_dt0_loaded);
 
@@ -74,9 +111,8 @@ function currency_conversion_basic_setup($extra)
         $idmap[$k] = strtoupper($k);
     }
 
-    // Detect ENTID env override before envOverride consumes it. When live
-    // mode is on without a real override, the basic test runs against synthetic
-    // IDs from the fixture and 4xx's. Surface this so the test can skip.
+    // Whether *_ENTID supplied the idmap, read before env_override consumes
+    // it: without it, the ids a live flow binds are the fixture's synthetic ones.
     $entid_env_raw = getenv("IP_GEO_CURRENCY_TEST_CURRENCY_CONVERSION_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 

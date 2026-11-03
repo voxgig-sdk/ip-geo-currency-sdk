@@ -93,6 +93,7 @@ class IpGeoCurrencyConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -244,6 +245,10 @@ class IpGeoCurrencyConfig
                       'id',
                     ],
                   ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -351,6 +356,10 @@ class IpGeoCurrencyConfig
                       'target',
                     ],
                   ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -406,6 +415,10 @@ class IpGeoCurrencyConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -522,10 +535,10 @@ class IpGeoCurrencyConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'nolog',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
